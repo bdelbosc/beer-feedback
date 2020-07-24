@@ -19,6 +19,5 @@
 
 </script>
 
-
-<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
 <div><p contenteditable="false" bind:innerHTML={value}/></div>
+<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>

@@ -120,12 +120,12 @@
   <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker"/>
   <div class="inputRow">
     <input type="checkbox" id="initial" bind:checked={initial}/>
-    <label for="initial">Initial &#9684;</label>
+    <label for="initial">Initial aroma &#9684;</label>
   </div>
 
   <div class="inputRow">
     <input type="checkbox" id="warms" bind:checked={warms}/>
-    <label for="warms">Warms &#9685;</label>
+    <label for="warms">When the beer warms &#9685;</label>
   </div>
 
   <div class="inputRow">

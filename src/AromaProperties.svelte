@@ -5,11 +5,11 @@
 </script>
 
 {#if inappropriate}
-  <span title="Inappropriate">&#9888;</span>
+  <button><span title="Inappropriate">&#9888;</span></button>
 {/if}
 {#if initial}
-  <span title="Initial aroma">&#9684;</span>
+  <button><span title="Initial aroma">&#9684;</span></button>
 {/if}
 {#if warms}
-  <span title="When the beer warms">&#9685;</span>
+  <button><span title="When the beer warms">&#9685;</span></button>
 {/if}

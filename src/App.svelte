@@ -1,11 +1,21 @@
 <script>
-  let currentAroma = '';
-  let aromas = [];
-
   import aromaData from './aroma-data.json';
   import aromaLayout from './aroma-layout.json';
   import SunburstPicker from './SunburstPicker.svelte';
   import Level from './Level.svelte';
+  import AromaProperties from './AromaProperties.svelte';
+  import {onMount} from 'svelte';
+
+  let aromas = [];
+  let currentAroma = '';
+  let inappropriate = false;
+  let initial = false;
+  let warms = false;
+
+  onMount(async () => {
+    document.getElementById('picker').hidden = true;
+    document.getElementById('list').hidden = false;
+  });
 
   function getLevelRank(level) {
     if (level === 'none') return 0;
@@ -29,10 +39,6 @@
   function compare(a, b) {
     const aa = getCategoryRank(a.category) + getLevelRank(a.level);
     const bb = getCategoryRank(b.category) + getLevelRank(b.level);
-    console.log(a);
-    console.log(aa);
-    console.log(b);
-    console.log(bb);
     if (bb > aa) return 1;
     if (aa > bb) return -1;
     return 0;
@@ -53,9 +59,19 @@
       aroma += "/";
       aroma += boom[i];
     }
-    aromas = aromas.concat({level: level, category: category, trait: aroma});
+    aromas = aromas.concat({
+      level: level,
+      category: category,
+      trait: aroma,
+      initial: initial,
+      warms: warms,
+      inappropriate: inappropriate
+    });
     aromas.sort(compare);
     aromas = aromas;
+    initial = false;
+    warms = false;
+    inappropriate = false;
   }
 
   function submit() {
@@ -87,49 +103,68 @@
     background-color: aquamarine;
   }
 
+  div.inputRow {
+    display: flex;
+    flex-direction: row;
+  }
+
   .close:hover {
     background-color: #f44336;
     color: white;
   }
 
-  /*#picker {*/
-  /*	display: none;*/
-  /*}*/
 </style>
 <h1>Aromas</h1>
 
 <div id="picker">
   <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker"/>
-  Intensity:
-  <button on:click={() => add('none')}>
-    <Level value='none'/>
-  </button>
-  <button on:click={() => add('low')}>
-    <Level value='low'/>
-  </button>
-  <button on:click={() => add('medium-low')}>
-    <Level value='medium-low'/>
-  </button>
-  <button on:click={() => add('medium')}>
-    <Level value='medium'/>
-  </button>
-  <button on:click={() => add('medium-high')}>
-    <Level value='medium-high'/>
-  </button>
-  <button on:click={() => add('high')}>
-    <Level value='high'/>
-  </button>
+  <div class="inputRow">
+    <input type="checkbox" id="initial" bind:checked={initial}/>
+    <label for="initial">Initial &#9684;</label>
+  </div>
+
+  <div class="inputRow">
+    <input type="checkbox" id="warms" bind:checked={warms}/>
+    <label for="warms">Warms &#9685;</label>
+  </div>
+
+  <div class="inputRow">
+    <input type="checkbox" id="inappropriate" bind:checked={inappropriate}/>
+    <label for="inappropriate">Inappropriate &#9888;</label>
+  </div>
+  <div>
+    Intensity:
+    <button on:click={() => add('none')}>
+      <Level value='none'/>
+    </button>
+    <button on:click={() => add('low')}>
+      <Level value='low'/>
+    </button>
+    <button on:click={() => add('medium-low')}>
+      <Level value='medium-low'/>
+    </button>
+    <button on:click={() => add('medium')}>
+      <Level value='medium'/>
+    </button>
+    <button on:click={() => add('medium-high')}>
+      <Level value='medium-high'/>
+    </button>
+    <button on:click={() => add('high')}>
+      <Level value='high'/>
+    </button>
+  </div>
 </div>
 
 <div id="list">
   {#each aromas as aroma, i}
     <div class="{aroma.category}">
-      <Level value={aroma.level}/>
+      <button on:click={() => clear(i)} class="close">&#10060;</button>
       <input
         placeholder="Pick aroma"
         bind:value={aroma.trait}
       >
-      <button on:click={() => clear(i)} class="close">&#128465;</button>
+      <button><Level value={aroma.level}/></button>
+      <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>
     </div>
   {/each}
 

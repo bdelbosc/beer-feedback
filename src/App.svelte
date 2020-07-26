@@ -6,7 +6,29 @@
   import AromaProperties from './AromaProperties.svelte';
   import {onMount} from 'svelte';
 
-  let aromas = [];
+  let aromas = [
+    {
+      "trait": "Chocolat",
+      "category": "malt",
+      "inappropriate": true,
+      "level": "medium",
+      "initial": true,
+      "warms": false
+    },
+    {
+      "trait": "Framboise",
+      "category": "hops",
+      "inappropriate": false,
+      "level": "high",
+      "initial": false,
+      "warms": true
+    },
+    {
+      "trait": "A long description",
+      "category": "others",
+      "level": "none"
+    }
+  ];
   let currentAroma = '';
   let inappropriate = false;
   let initial = false;
@@ -30,7 +52,7 @@
   function getCategoryRank(category) {
     if (category === "malt") return 100;
     if (category === "hops") return 90;
-    if (category === "esters") return 80;
+    if (category === "fermentation") return 80;
     if (category === "others") return 70;
     if (category === "flaws") return 50;
     return 10;
@@ -86,16 +108,25 @@
 
 </script>
 <style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+
   div.malt {
     background-color: bisque;
+  }
 
+  span.malt {
+    background-color: bisque;
+    background: url(/images/question.png);
+    width: 3em;
   }
 
   div.hops {
     background-color: yellowgreen;
   }
 
-  div.esters {
+  div.fermentation {
     background-color: lightslategray;
   }
 
@@ -108,16 +139,24 @@
     flex-direction: row;
   }
 
-  .close:hover {
+  .remove:hover {
     background-color: #f44336;
     color: white;
   }
 
+  .intensityButton {
+    width: 3em;
+  }
+
+  .level {
+    width: 2em;
+  }
 </style>
 <h1>Aromas</h1>
 
 <div id="picker">
   <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker"/>
+
   <div class="inputRow">
     <input type="checkbox" id="initial" bind:checked={initial}/>
     <label for="initial">Initial aroma &#9684;</label>
@@ -132,24 +171,24 @@
     <input type="checkbox" id="inappropriate" bind:checked={inappropriate}/>
     <label for="inappropriate">Inappropriate &#9888;</label>
   </div>
+
   <div>
-    Intensity:
-    <button on:click={() => add('none')}>
+    <button class="intensityButton" on:click={() => add('none')}>
       <Level value='none'/>
     </button>
-    <button on:click={() => add('low')}>
+    <button class="intensityButton" on:click={() => add('low')}>
       <Level value='low'/>
     </button>
-    <button on:click={() => add('medium-low')}>
+    <button class="intensityButton" on:click={() => add('medium-low')}>
       <Level value='medium-low'/>
     </button>
-    <button on:click={() => add('medium')}>
+    <button class="intensityButton" on:click={() => add('medium')}>
       <Level value='medium'/>
     </button>
-    <button on:click={() => add('medium-high')}>
+    <button class="intensityButton" on:click={() => add('medium-high')}>
       <Level value='medium-high'/>
     </button>
-    <button on:click={() => add('high')}>
+    <button class="intensityButton" on:click={() => add('high')}>
       <Level value='high'/>
     </button>
   </div>
@@ -157,13 +196,17 @@
 
 <div id="list">
   {#each aromas as aroma, i}
-    <div class="{aroma.category}">
-      <button on:click={() => clear(i)} class="close">&#10060;</button>
+    <div>
+      <button class="remove" on:click={() => clear(i)}>&#8855;</button>
+      <img src="/images/{aroma.category}.png" alt="{aroma.category}"/>
       <input
         placeholder="Pick aroma"
         bind:value={aroma.trait}
       >
-      <button><Level value={aroma.level}/></button>
+      <button class="level">
+        <Level value={aroma.level}/>
+      </button>
+
       <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>
     </div>
   {/each}

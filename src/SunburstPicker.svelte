@@ -19,5 +19,5 @@
 
 </script>
 
-<div>Selected: <span contenteditable="false" bind:innerHTML={value}/></div>
 <div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
+<div>Selected: <span contenteditable="false" bind:innerHTML={value}/></div>

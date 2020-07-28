@@ -2,22 +2,61 @@
 	<script src="https://cdn.plot.ly/plotly-latest.min.js" type="text/javascript" on:load={plotlyLoaded}></script>
 </svelte:head>
 
+
 <script>
+	import {onMount} from 'svelte';
+
 	export let value = '';
+	let selected = '';
+	let mounted = false;
 	export let plotId = 'plotDiv';
 	export let data = [];
 	export let layout = {};
+
+	onMount(async () => {
+		mounted = true;
+	});
 
 	function plotlyLoaded() {
 		let plotDiv = document.getElementById(plotId);
 		plotDiv.hidden = false;
 		let Plot = new Plotly.newPlot(plotDiv, data, layout, {showSendToCloud: false});
-		plotDiv.on('plotly_sunburstclick', function(data) {
-			value = data["points"][0]["currentPath"] + data["points"][0]["label"];
+		plotDiv.on('plotly_sunburstclick', function (data) {
+			selected = data["points"][0]["currentPath"] + data["points"][0]["label"];
 		});
 	}
 
-</script>
+	function validate() {
+		console.log("validate");
+		value = selected;
+	}
 
-<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
-<div>Selected: <span contenteditable="false" bind:innerHTML={value}/></div>
+	function edit() {
+		console.log("edit");
+		selected = value;
+		value = '';
+	}
+
+	$: {
+		if (mounted) {
+			if (value.length == 0) {
+				document.getElementById(plotId + "Selected").hidden = true;
+				document.getElementById(plotId + "Edit").hidden = false;
+			} else {
+				document.getElementById(plotId + "Selected").hidden = false;
+				document.getElementById(plotId + "Edit").hidden = true;
+			}
+		}
+	}
+
+</script>
+<div id="{plotId}Edit">
+	<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
+	<input bind:value="{selected}" size="32"/><br/>
+	<button on:click={validate}>Validate</button>
+</div>
+<div id="{plotId}Selected">
+	<span contenteditable="false" bind:innerHTML={value}/>
+	<button on:click={edit}>Edit</button>
+</div>
+

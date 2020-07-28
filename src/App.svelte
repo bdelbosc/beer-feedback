@@ -6,12 +6,15 @@
   import AromaProperties from './AromaProperties.svelte';
   import {onMount} from 'svelte';
 
+  let visible = true;
+
+
   let aromas = [
     {
       "trait": "Chocolat",
       "category": "malt",
       "inappropriate": true,
-      "level": "medium",
+      "level": 3,
       "initial": true,
       "warms": false
     },
@@ -19,35 +22,27 @@
       "trait": "Framboise",
       "category": "hops",
       "inappropriate": false,
-      "level": "high",
+      "level": 5,
       "initial": false,
       "warms": true
     },
     {
       "trait": "A long description",
       "category": "others",
-      "level": "none"
+      "level": 0
     }
   ];
   let currentAroma = '';
   let inappropriate = false;
   let initial = false;
   let warms = false;
+  let level = 3;
+  let selecting = true;
 
   onMount(async () => {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
   });
-
-  function getLevelRank(level) {
-    if (level === 'none') return 0;
-    if (level === 'low') return 1;
-    if (level === 'medium-low') return 2;
-    if (level === 'medium') return 3;
-    if (level === 'medium-high') return 4;
-    if (level === 'high') return 5;
-    return 0;
-  }
 
   function getCategoryRank(category) {
     if (category === "malt") return 100;
@@ -59,19 +54,20 @@
   }
 
   function compare(a, b) {
-    const aa = getCategoryRank(a.category) + getLevelRank(a.level);
-    const bb = getCategoryRank(b.category) + getLevelRank(b.level);
+    const aa = getCategoryRank(a.category) + a.level;
+    const bb = getCategoryRank(b.category) + b.level;
     if (bb > aa) return 1;
     if (aa > bb) return -1;
     return 0;
   }
 
   function picker() {
+    currentAroma = '';
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
   }
 
-  function add(level) {
+  function add() {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
     var boom = currentAroma.split('/');
@@ -105,33 +101,15 @@
     aromas = aromas;
   }
 
+  function updateTextInput(val) {
+    document.getElementById('textInput').value = "foo" + val;
+  }
 
+  $: selecting = currentAroma.length > 0;
 </script>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-
-  div.malt {
-    background-color: bisque;
-  }
-
-  span.malt {
-    background-color: bisque;
-    background: url(/images/question.png);
-    width: 3em;
-  }
-
-  div.hops {
-    background-color: yellowgreen;
-  }
-
-  div.fermentation {
-    background-color: lightslategray;
-  }
-
-  div.others {
-    background-color: aquamarine;
   }
 
   div.inputRow {
@@ -144,10 +122,6 @@
     color: white;
   }
 
-  .intensityButton {
-    width: 3em;
-  }
-
   .level {
     width: 2em;
   }
@@ -156,6 +130,10 @@
 
 <div id="picker">
   <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker"/>
+{#if selecting}
+  <div>
+    Intensity: <Level edit=true bind:value={level}/>
+  </div>
 
   <div class="inputRow">
     <input type="checkbox" id="initial" bind:checked={initial}/>
@@ -172,26 +150,10 @@
     <label for="inappropriate">Inappropriate &#9888;</label>
   </div>
 
-  <div>
-    <button class="intensityButton" on:click={() => add('none')}>
-      <Level value='none'/>
-    </button>
-    <button class="intensityButton" on:click={() => add('low')}>
-      <Level value='low'/>
-    </button>
-    <button class="intensityButton" on:click={() => add('medium-low')}>
-      <Level value='medium-low'/>
-    </button>
-    <button class="intensityButton" on:click={() => add('medium')}>
-      <Level value='medium'/>
-    </button>
-    <button class="intensityButton" on:click={() => add('medium-high')}>
-      <Level value='medium-high'/>
-    </button>
-    <button class="intensityButton" on:click={() => add('high')}>
-      <Level value='high'/>
-    </button>
-  </div>
+  <button on:click={() => add()}>
+    Add
+  </button>
+{/if}
 </div>
 
 <div id="list">
@@ -199,14 +161,8 @@
     <div>
       <button class="remove" on:click={() => clear(i)}>&#8855;</button>
       <img src="/images/{aroma.category}.png" alt="{aroma.category}"/>
-      <input
-        placeholder="Pick aroma"
-        bind:value={aroma.trait}
-      >
-      <button class="level">
+      <span>{aroma.trait}</span>
         <Level value={aroma.level}/>
-      </button>
-
       <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>
     </div>
   {/each}
@@ -218,3 +174,4 @@
     Submit
   </button>
 </div>
+

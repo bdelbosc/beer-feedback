@@ -12,11 +12,11 @@
   }
 </style>
 {#if inappropriate}
-  <button><span title="Inappropriate">&#9888;</span></button>
+  <span title="Inappropriate">&#9888;</span>
 {/if}
 {#if initial}
-  <button><span title="Initial aroma">&#9684;</span></button>
+  <span title="Initial aroma">&#9684;</span>
 {/if}
 {#if warms}
-  <button><span title="When the beer warms">&#9685;</span></button>
+  <span title="When the beer warms">&#9685;</span>
 {/if}

@@ -6,9 +6,6 @@
   import AromaProperties from './AromaProperties.svelte';
   import {onMount} from 'svelte';
 
-  let visible = true;
-
-
   let aromas = [
     {
       "trait": "Chocolat",
@@ -38,6 +35,7 @@
   let warms = false;
   let level = 3;
   let selecting = true;
+  let editEntry = -1;
 
   onMount(async () => {
     document.getElementById('picker').hidden = true;
@@ -67,6 +65,17 @@
     document.getElementById('list').hidden = true;
   }
 
+  function edit(index) {
+    currentAroma = 'Aroma/' + aromas[index].category + "/" + aromas[index].trait;
+    initial = aromas[index].initial;
+    inappropriate = aromas[index].inappropriate;
+    warms = aromas[index].warms;
+    level = aromas[index].level;
+    editEntry = index;
+    document.getElementById('picker').hidden = false;
+    document.getElementById('list').hidden = true;
+  }
+
   function add() {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
@@ -77,14 +86,26 @@
       aroma += "/";
       aroma += boom[i];
     }
-    aromas = aromas.concat({
-      level: level,
-      category: category,
-      trait: aroma,
-      initial: initial,
-      warms: warms,
-      inappropriate: inappropriate
-    });
+    if (editEntry >= 0) {
+      aromas[editEntry] = {
+        level: level,
+        category: category,
+        trait: aroma,
+        initial: initial,
+        warms: warms,
+        inappropriate: inappropriate
+      };
+      editEntry = -1;
+    } else {
+      aromas = aromas.concat({
+        level: level,
+        category: category,
+        trait: aroma,
+        initial: initial,
+        warms: warms,
+        inappropriate: inappropriate
+      });
+    }
     aromas.sort(compare);
     aromas = aromas;
     initial = false;
@@ -99,10 +120,6 @@
   function clear(index) {
     aromas.splice(index, 1);
     aromas = aromas;
-  }
-
-  function updateTextInput(val) {
-    document.getElementById('textInput').value = "foo" + val;
   }
 
   $: selecting = currentAroma.length > 0;
@@ -149,16 +166,21 @@
     <input type="checkbox" id="inappropriate" bind:checked={inappropriate}/>
     <label for="inappropriate">Inappropriate &#9888;</label>
   </div>
-
-  <button on:click={() => add()}>
-    Add
-  </button>
+  {#if editEntry >= 0}
+    <button on:click={() => add()}>
+      Update
+    </button>
+  {:else}
+    <button on:click={() => add()}>
+      Add
+    </button>
+  {/if}
 {/if}
 </div>
 
 <div id="list">
   {#each aromas as aroma, i}
-    <div>
+    <div on:click={() => edit(i)}>
       <button class="remove" on:click={() => clear(i)}>&#8855;</button>
       <img src="/images/{aroma.category}.png" alt="{aroma.category}"/>
       <span>{aroma.trait}</span>

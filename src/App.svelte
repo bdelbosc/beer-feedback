@@ -36,10 +36,12 @@
   let level = 3;
   let selecting = true;
   let editEntry = -1;
+  let comment = '';
 
   onMount(async () => {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
+    computeComment(aromas);
   });
 
   function getCategoryRank(category) {
@@ -63,6 +65,12 @@
     currentAroma = '';
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
+  }
+
+  function cancel() {
+    document.getElementById('picker').hidden = true;
+    document.getElementById('list').hidden = false;
+    editEntry = -1;
   }
 
   function edit(index) {
@@ -122,7 +130,38 @@
     aromas = aromas;
   }
 
+  function computeComment(aromaList) {
+    var categories = [];
+    for (var i = 0; i < aromaList.length; i++) {
+      if (!categories.includes((aromaList[i].category))) {
+        categories.push(aromaList[i].category);
+      }
+    }
+    var text = '';
+    if (!categories.includes("malt")) {
+      text += 'malt';
+    }
+    if (!categories.includes("hops")) {
+      if (text) {
+        text += ', ';
+      }
+      text += "hops";
+    }
+    if (!categories.includes("fermentation")) {
+      if (text) {
+        text += ', ';
+      }
+      text += 'fermentation';
+    }
+    if (text) {
+      return "Please, add " + text + " and others aromatics";
+    }
+    return "ok";
+  }
+
   $: selecting = currentAroma.length > 0;
+
+  $: comment = computeComment(aromas);
 </script>
 <style>
   body {
@@ -176,15 +215,24 @@
     </button>
   {/if}
 {/if}
+  <button on:click={() => cancel()}>
+    Cancel
+  </button>
 </div>
 
 <div id="list">
+  {#if comment !== "ok"}
+    <div>{comment}</div>
+    {:else}
+    <div>You can add more aromatics or submit</div>
+  {/if}
+
   {#each aromas as aroma, i}
-    <div on:click={() => edit(i)}>
+    <div>
       <button class="remove" on:click={() => clear(i)}>&#8855;</button>
       <img src="/images/{aroma.category}.png" alt="{aroma.category}"/>
-      <span>{aroma.trait}</span>
-        <Level value={aroma.level}/>
+      <span on:click={() => edit(i)}>{aroma.trait}</span>
+      <Level value={aroma.level}/>
       <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>
     </div>
   {/each}
@@ -192,8 +240,10 @@
   <button on:click={picker}>
     Add new Aroma
   </button>
-  <button on:click={submit}>
-    Submit
-  </button>
+  {#if comment === "ok"}
+    <button on:click={submit}>
+      Submit
+    </button>
+  {/if}
 </div>
 

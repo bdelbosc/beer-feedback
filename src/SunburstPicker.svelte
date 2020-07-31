@@ -5,7 +5,6 @@
 
 <script>
 	import {onMount} from 'svelte';
-
 	export let value = '';
 	let selected = '';
 	let mounted = false;
@@ -53,7 +52,9 @@
 <div id="{plotId}Edit">
 	<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
 	<input bind:value="{selected}" size="32"/><br/>
-	<button on:click={validate}>Validate</button>
+	{#if selected.length}
+		<button on:click={validate}>Validate</button>
+	{/if}
 </div>
 <div id="{plotId}Selected">
 	<span contenteditable="false" bind:innerHTML={value}/>

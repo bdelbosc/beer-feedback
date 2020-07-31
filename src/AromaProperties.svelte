@@ -1,4 +1,6 @@
 <script>
+  import SvgIcon from './SvgIcon.svelte'
+  import {alertIcon, initialIcon, warmsIcon} from './AppIcons'
   export let inappropriate = false;
   export let initial = false;
   export let warms = false;
@@ -12,11 +14,11 @@
   }
 </style>
 {#if inappropriate}
-  <span title="Inappropriate">&#9888;</span>
+  <span title="Inappropriate"><SvgIcon d={alertIcon} fill="orange"/></span>
 {/if}
 {#if initial}
-  <span title="Initial aroma">&#9684;</span>
+  <span title="Initial aroma"><SvgIcon d={initialIcon}/></span>
 {/if}
 {#if warms}
-  <span title="When the beer warms">&#9685;</span>
+  <span title="When the beer warms"><SvgIcon d={warmsIcon}/></span>
 {/if}

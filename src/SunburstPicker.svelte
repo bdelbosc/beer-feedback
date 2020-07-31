@@ -5,6 +5,9 @@
 
 <script>
 	import {onMount} from 'svelte';
+	import SvgIcon from "./SvgIcon.svelte";
+	import {checkmarkIcon, editIcon} from './AppIcons'
+
 	export let value = '';
 	let selected = '';
 	let mounted = false;
@@ -51,13 +54,18 @@
 </script>
 <div id="{plotId}Edit">
 	<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
-	<input bind:value="{selected}" size="32"/><br/>
+	<input bind:value="{selected}" size="28"/>
+	<br/>
 	{#if selected.length}
-		<button on:click={validate}>Validate</button>
-	{/if}
+		<button on:click={validate}>
+			<SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
+		</button>{/if}
+	<slot/>
 </div>
 <div id="{plotId}Selected">
 	<span contenteditable="false" bind:innerHTML={value}/>
-	<button on:click={edit}>Edit</button>
+	<button on:click={edit}>
+		<SvgIcon d={editIcon}/>
+	</button>
 </div>
 

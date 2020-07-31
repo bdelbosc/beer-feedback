@@ -6,7 +6,20 @@
   import AromaProperties from './AromaProperties.svelte';
   import {onMount} from 'svelte';
   import SvgIcon from "./SvgIcon.svelte";
-  import {trashIcon, cancelIcon, addIcon, alertIcon, warmsIcon, initialIcon, editIcon, checkmarkIcon} from './AppIcons'
+  import {
+    hopsIcon,
+    maltIcon,
+    fermentationIcon,
+    moreIcon,
+    trashIcon,
+    cancelIcon,
+    addIcon,
+    alertIcon,
+    warmsIcon,
+    initialIcon,
+    editIcon,
+    checkmarkIcon
+  } from './AppIcons'
 
   let aromas = [
     {
@@ -238,10 +251,18 @@
 
   {#each aromas as aroma, i}
     <div>
-      <button class="remove" on:click={() => clear(i)}>
-        <SvgIcon d={trashIcon} size="0.8em"/>
-      </button>
-      <img src="/images/{aroma.category}.png" alt="{aroma.category}"/>
+      <span title="Delete" class="remove" on:click={() => clear(i)}><SvgIcon d={trashIcon} size="0.8em"/></span>
+      {#if aroma.category === 'hops'}
+        <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="green"/></span>
+      {:else if aroma.category === 'malt'}
+        <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="brown"/></span>
+      {:else if aroma.category === 'fermentation'}
+        <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="brown"/></span>
+      {:else if aroma.category === 'flaws'}
+        <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="darkorange"/></span>
+      {:else}
+        <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="blue"/></span>
+      {/if}
       <Level value={aroma.level}/>
       <span on:click={() => edit(i)}>{aroma.trait}</span>
       <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>

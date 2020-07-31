@@ -6,12 +6,6 @@
   export let warms = false;
 </script>
 <style>
-  span {
-    font-size: larger;
-  }
-  button {
-    width: 2em;
-  }
 </style>
 {#if inappropriate}
   <span title="Inappropriate"><SvgIcon d={alertIcon} fill="orange"/></span>

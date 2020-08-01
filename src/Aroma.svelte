@@ -18,7 +18,8 @@
     warmsIcon,
     initialIcon,
     editIcon,
-    checkmarkIcon
+    checkmarkIcon,
+    nextIcon
   } from './AppIcons'
 
   let aromas = [
@@ -39,9 +40,19 @@
       "warms": true
     },
     {
+      "trait": "Esters/Pear",
+      "category": "fermentation",
+      "level": 2
+    },
+    {
       "trait": "A long description",
       "category": "others",
       "level": 0
+    },
+    {
+      "trait": "Oxydation/Cherry",
+      "category": "flaws",
+      "level": 1
     }
   ];
   let currentAroma = '';
@@ -188,6 +199,11 @@
     flex-direction: row;
   }
 
+  .remove {
+    float: right;
+    clear: both;
+  }
+
   .remove:hover {
     background-color: #f44336;
     color: white;
@@ -195,6 +211,16 @@
 
   button.cancel {
     float: right;
+  }
+
+  .comment {
+    clear: both;
+    font-style: italic;
+    color: orangered;
+  }
+
+  .buttons, .item {
+    clear: both;
   }
 
 </style>
@@ -243,39 +269,36 @@
 </div>
 
 <div id="list">
-  {#if comment !== "ok"}
-    <div>{comment}</div>
-  {:else}
-    <div>You can add more aromatics or Submit</div>
-  {/if}
-
   {#each aromas as aroma, i}
-    <div>
-      <span title="Delete" class="remove" on:click={() => clear(i)}><SvgIcon d={trashIcon} size="0.8em"/></span>
+    <div class="item">
+      <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
+      </button>
       {#if aroma.category === 'hops'}
-        <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="green"/></span>
+        <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="darkolivegreen"/></span>
       {:else if aroma.category === 'malt'}
-        <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="brown"/></span>
+        <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="orange"/></span>
       {:else if aroma.category === 'fermentation'}
-        <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="brown"/></span>
+        <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="chocolate"/></span>
       {:else if aroma.category === 'flaws'}
         <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="darkorange"/></span>
       {:else}
-        <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="blue"/></span>
+        <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="darkgray"/></span>
       {/if}
       <Level value={aroma.level}/>
       <span on:click={() => edit(i)}>{aroma.trait}</span>
       <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>
     </div>
   {/each}
-
-  <button on:click={picker}>
-    <span title="Add new Aroma"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
-  </button>
-  {#if comment === "ok"}
-    <button on:click={submit}>
-      Submit
-    </button>
+  {#if comment !== "ok"}
+    <div class="comment">{comment}</div>
   {/if}
+  <div class="buttons">
+    <button on:click={picker}>
+      <span title="Add new Aroma"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
+    </button>
+    <button on:click={submit} class="submit" disabled={comment !== "ok"}>
+      <span title="Next Section"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
+    </button>
+  </div>
 </div>
 

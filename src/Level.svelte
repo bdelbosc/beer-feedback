@@ -9,69 +9,60 @@
   $: level = levels[value];
 </script>
 <style>
-  input[type=range] {
-    -webkit-appearance: none;
-    margin: 18px 0;
-    width: 100%;
-  }
 
   input[type=range]:focus {
     outline: none;
   }
 
-  input[type=range]::-webkit-slider-runnable-track {
+  input[type='range'] {
+    overflow: hidden;
+    margin: 18px 0;
     width: 100%;
-    height: 8.4px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #3071a9;
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
-  }
-
-  input[type=range]::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
-    background: #ffffff;
-    cursor: pointer;
+    height: 30px;
     -webkit-appearance: none;
-    margin-top: -14px;
   }
 
-  input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #367ebd;
+  input[type='range']::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    color: #367ebd;
+    margin-top: -1px;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    width: 0px;
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: lightgray;
+    box-shadow: -160px 0px 0px 160px #367ebd;
   }
 
   input[type=range]::-moz-range-track {
+    height: 20px;
     width: 100%;
-    height: 8.4px;
     cursor: pointer;
-    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-    background: #367ebd;
-    border-radius: 1.3px;
-    border: 0.2px solid #010101;
+    background: #fff;
+    border-radius: 2px;
+    border: 0px solid gray;
   }
 
-  /*input[type="range"]::-moz-range-progress {*/
-  /*  background-color: #367ebd;*/
-  /*}*/
+  input[type=range]::-moz-range-progress {
+    background-color: #367ebd;
+    height: 20px;
+  }
 
   input[type=range]::-moz-range-thumb {
     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
     border: 1px solid #000000;
-    height: 36px;
-    width: 16px;
-    border-radius: 3px;
-    background: #ffffff;
+    height: 18px;
+    width: 18px;
+    border-radius: 0px;
+    background: lightgray;
     cursor: pointer;
   }
 
   input[type=range]::-ms-track {
     width: 100%;
-    height: 8.4px;
+    height: 10px;
     cursor: pointer;
     background: transparent;
     border-color: transparent;

@@ -224,8 +224,6 @@
   }
 
 </style>
-<h1>Aromas</h1>
-
 <div id="picker">
   <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker">
     <button class="cancel" on:click={() => cancel()}>

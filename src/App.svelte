@@ -1,9 +1,43 @@
 <svelte:head>
-<!--  <meta name="viewport" content="width=320, initial-scale=1.0">-->
+  <!--  <meta name="viewport" content="width=320, initial-scale=1.0">-->
 </svelte:head>
 <script>
   import Tabs from "./Tabs.svelte";
   import Aroma from './Aroma.svelte';
+
+  let aromas = [
+    {
+      "trait": "Chocolat",
+      "category": "malt",
+      "inappropriate": true,
+      "level": 3,
+      "initial": true,
+      "warms": false
+    },
+    {
+      "trait": "Framboise",
+      "category": "hops",
+      "inappropriate": false,
+      "level": 5,
+      "initial": false,
+      "warms": true
+    },
+    {
+      "trait": "Esters/Pear",
+      "category": "fermentation",
+      "level": 2
+    },
+    {
+      "trait": "A long description",
+      "category": "others",
+      "level": 0
+    },
+    {
+      "trait": "Oxydation/Cherry",
+      "category": "flaws",
+      "level": 1
+    }
+  ];
 
   let tabItems = [
     {label: "Aroma", shortLabel: "A", value: 1},
@@ -24,7 +58,7 @@
   <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
 
   {#if 1 === currentTab}
-    <Aroma/>
+    <Aroma aromas={aromas}/>
   {:else if 2 === currentTab}
     Appearance
   {:else if 3 === currentTab}

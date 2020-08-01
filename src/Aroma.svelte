@@ -22,39 +22,7 @@
     nextIcon
   } from './AppIcons'
 
-  let aromas = [
-    {
-      "trait": "Chocolat",
-      "category": "malt",
-      "inappropriate": true,
-      "level": 3,
-      "initial": true,
-      "warms": false
-    },
-    {
-      "trait": "Framboise",
-      "category": "hops",
-      "inappropriate": false,
-      "level": 5,
-      "initial": false,
-      "warms": true
-    },
-    {
-      "trait": "Esters/Pear",
-      "category": "fermentation",
-      "level": 2
-    },
-    {
-      "trait": "A long description",
-      "category": "others",
-      "level": 0
-    },
-    {
-      "trait": "Oxydation/Cherry",
-      "category": "flaws",
-      "level": 1
-    }
-  ];
+  export let aromas = [];
   let currentAroma = '';
   let inappropriate = false;
   let initial = false;
@@ -131,7 +99,7 @@
       };
       editEntry = -1;
     } else {
-      aromas = aromas.concat({
+      aromas.push({
         level: level,
         category: category,
         trait: aroma,
@@ -139,9 +107,10 @@
         warms: warms,
         inappropriate: inappropriate
       });
+      aromas = aromas;
     }
     aromas.sort(compare);
-    aromas = aromas;
+    // aromas = aromas;
     initial = false;
     warms = false;
     inappropriate = false;

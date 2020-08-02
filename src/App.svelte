@@ -10,6 +10,16 @@
     nextIcon
   } from './AppIcons'
 
+  let start = new Date();
+  let mytime =  new Date();
+  let elapsed = 0;
+
+  const interval = setInterval(() => {
+    mytime = new Date();
+    elapsed = Math.round((mytime - start) / 1000);
+    // console.log(appearance);
+  }, 1000);
+
   let aromas = [
     {
       "trait": "Chocolat",
@@ -60,6 +70,12 @@
     console.log(appearance);
   }
 
+  const formatter = new Intl.DateTimeFormat('en', {
+    hour12: false,
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit'
+  });
 
 </script>
 <style>
@@ -68,6 +84,9 @@
     margin: auto;
   }
 </style>
+
+
+{formatter.format(mytime)} {elapsed} {elapsed === 1 ? 'second' : 'seconds'}
 <div class="main">
   <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
 

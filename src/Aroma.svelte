@@ -260,5 +260,6 @@
       <span title="Add new Aroma"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
     </button>
   </div>
+
 </div>
 

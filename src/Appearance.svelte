@@ -13,7 +13,8 @@
   ];
 
   const hues = [
-    {id: 'none', text: 'No'},
+    {id: 'none', text: ''},
+    {id: 'copper', text: `Copper`},
     {id: 'red', text: `Red`},
     {id: 'garnet', text: `Garnet`},
   ];
@@ -21,23 +22,27 @@
   const clarities = [
     {id: undefined, text: ''},
     {id: 'brillant', text: `Brillant`},
+    {id: 'clear', text: `Clear`},
     {id: 'hazy', text: `Hazy`},
+    {id: 'cloudy', text: `Cloudy`},
     {id: 'opaque', text: `Opaque`}
   ];
 
   const retentions = [
     {id: undefined, text: ''},
-    {id: 'poor', text: `Poor`},
-    {id: 'medium', text: `Medium`},
-    {id: 'long', text: `Long lasting`}
+    {id: 1, text: `Poor`},
+    {id: 3, text: `Average`},
+    {id: 5, text: `Long lasting`}
   ];
 
   const textures = [
     {id: undefined, text: ''},
+    {id: 'thin', text: `Thin`},
+    {id: 'frothy', text: `Frothy`},
     {id: 'creamy', text: `Creamy`},
+    {id: 'dense', text: `Dense`},
     {id: 'rocky', text: `Rocky`},
-    {id: 'bigbubbles', text: `Big bubbles`},
-    {id: 'dense', text: `Dense`}
+    {id: 'bigbubbles', text: `Big bubbles`}
   ];
 
 </script>
@@ -46,6 +51,7 @@
     float: left;
     width: 100px;
   }
+
   select {
     width: 10em;
   }

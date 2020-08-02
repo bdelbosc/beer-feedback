@@ -1,0 +1,37 @@
+{
+  "margin": {
+    "l": 0,
+    "r": 0,
+    "b": 0,
+    "t": 0
+  },
+  "width": 320,
+  "height": 350,
+  "sunburstcolorway": [
+    "#FFC300",
+    "#dd408c",
+    "#f1a2d9",
+    "#ff5833",
+    "#259f20",
+    "#97df2d",
+    "#bf6c26",
+    "#df892d",
+    "#ac5812",
+    "#fcd98e",
+    "#5d070e",
+    "#928a80",
+    "#fdf7cb",
+    "#bfac26",
+    "#6b9f20",
+    "#33b5ff",
+    "#33ffe3",
+    "#c7eef3",
+    "#b2aea9"
+  ],
+  "autocolorscale": true,
+  "extendsunburstcolors": true,
+  "extendsunburstcolorway": true,
+  "font": {
+    "size": 22
+  }
+}

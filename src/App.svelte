@@ -5,6 +5,7 @@
   import Tabs from "./Tabs.svelte";
   import Aroma from './Aroma.svelte';
   import Appearance from './Appearance.svelte';
+  import Flavor from './Flavor.svelte';
   import SvgIcon from "./SvgIcon.svelte";
   import {
     nextIcon
@@ -56,6 +57,8 @@
 
   let appearance = {};
 
+  let flavors = [];
+
   let tabItems = [
     {label: "Aroma", shortLabel: "A", value: 1},
     {label: "Appearance", shortLabel: "A", value: 2},
@@ -83,6 +86,10 @@
     max-width: 320px;
     margin: auto;
   }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+
 </style>
 
 
@@ -95,7 +102,7 @@
   {:else if 2 === currentTab}
     <Appearance appearance={appearance}/>
   {:else if 3 === currentTab}
-    Flavors
+    <Flavor flavors={flavors}/>
   {:else if 4 === currentTab}
     Mouthfeel
   {:else if 5 === currentTab}

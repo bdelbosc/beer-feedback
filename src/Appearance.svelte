@@ -106,4 +106,5 @@
 </div>
 <div>
   <label><span class="label">Laces</span><input type=checkbox bind:checked={appearance['laces']}></label>
+  <label><span class="label">Legs</span><input type=checkbox bind:checked={appearance['legs']}></label>
 </div>

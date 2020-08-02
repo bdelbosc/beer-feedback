@@ -116,10 +116,6 @@
     inappropriate = false;
   }
 
-  function submit() {
-    console.log(aromas);
-  }
-
   function clear(index) {
     aromas.splice(index, 1);
     aromas = aromas;
@@ -262,9 +258,6 @@
   <div class="buttons">
     <button on:click={picker}>
       <span title="Add new Aroma"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
-    </button>
-    <button on:click={submit} class="submit" disabled={comment !== "ok"}>
-      <span title="Next Section"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
     </button>
   </div>
 </div>

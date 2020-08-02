@@ -1,35 +1,103 @@
 <script>
   import Srm from "./Srm.svelte";
-  import {onMount} from 'svelte';
 
-  export let appearance = [];
+  export let appearance = {};
 
-  let srm;
+  const heads = [
+    {id: undefined, text: ''},
+    {id: 'white', text: `White`},
+    {id: 'ivory', text: `Ivory`},
+    {id: 'beige', text: `Beige`},
+    {id: 'tan', text: `Tan`},
+    {id: 'brown', text: `Brown`}
+  ];
 
-  onMount(async () => {
-    if (appearance[0]['color'] === undefined) {
-      srm = '?';
-    } else {
-      srm = appearance[0]['color'];
-    }
-  });
+  const hues = [
+    {id: 'none', text: 'No'},
+    {id: 'red', text: `Red`},
+    {id: 'garnet', text: `Garnet`},
+  ];
 
-  function update(color) {
-    if (color === undefined) {
-      return;
-    }
-    appearance[0]['color'] = color;
-    // appearance = appearance;
-  }
+  const clarities = [
+    {id: undefined, text: ''},
+    {id: 'brillant', text: `Brillant`},
+    {id: 'hazy', text: `Hazy`},
+    {id: 'opaque', text: `Opaque`}
+  ];
 
-  $: update(srm);
+  const retentions = [
+    {id: undefined, text: ''},
+    {id: 'poor', text: `Poor`},
+    {id: 'medium', text: `Medium`},
+    {id: 'long', text: `Long lasting`}
+  ];
+
+  const textures = [
+    {id: undefined, text: ''},
+    {id: 'creamy', text: `Creamy`},
+    {id: 'rocky', text: `Rocky`},
+    {id: 'bigbubbles', text: `Big bubbles`},
+    {id: 'dense', text: `Dense`}
+  ];
 
 </script>
-
-<div>Color: <Srm bind:value={srm}/></div>
-<div>Hue:</div>
-<div>Clarity:</div>
-<div>Head:</div>
-<div>Retention:</div>
-<div>Texture:</div>
-
+<style>
+  span.label {
+    float: left;
+    width: 100px;
+  }
+  select {
+    width: 10em;
+  }
+</style>
+<div><span class="label">Color</span>
+  <Srm bind:value={appearance['color']}/>
+</div>
+<div><span class="label">Clarity</span>
+  <select bind:value={appearance['clarity']}>
+    {#each clarities as item}
+      <option value={item.id}>
+        {item.text}
+      </option>
+    {/each}
+  </select>
+</div>
+<div><span class="label">Hue</span>
+  <select bind:value={appearance['hue']}>
+    {#each hues as item}
+      <option value={item.id}>
+        {item.text}
+      </option>
+    {/each}
+  </select>
+</div>
+<div><span class="label">Head</span>
+  <select bind:value={appearance['head']}>
+    {#each heads as item}
+      <option value={item.id}>
+        {item.text}
+      </option>
+    {/each}
+  </select>
+</div>
+<div><span class="label">Retention</span>
+  <select bind:value={appearance['retention']}>
+    {#each retentions as item}
+      <option value={item.id}>
+        {item.text}
+      </option>
+    {/each}
+  </select>
+</div>
+<div><span class="label">Texture</span>
+  <select bind:value={appearance['texture']}>
+    {#each textures as item}
+      <option value={item.id}>
+        {item.text}
+      </option>
+    {/each}
+  </select>
+</div>
+<div>
+  <label><span class="label">Laces</span><input type=checkbox bind:checked={appearance['laces']}></label>
+</div>

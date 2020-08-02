@@ -1,7 +1,7 @@
 <script>
   import {onMount} from 'svelte';
 
-  export let value = 0;
+  export let value;
 
   const SRM_RGB_MAP = {
     1: '#FFE699',
@@ -78,5 +78,5 @@
             on:click={() => selectSrm(color)}>{color}</button>
   {/each}
 </div>
-<button id="selection" style="height: 3em; width: 3em; color: {getFontColor(value)}; background-color: {SRM_RGB_MAP[value]}"
+<button id="selection" style="width: 10em; color: {getFontColor(value)}; background-color: {SRM_RGB_MAP[value]}"
         on:click={() => pickSrm()}>{value}</button>

@@ -4,6 +4,7 @@
 <script>
   import Tabs from "./Tabs.svelte";
   import Aroma from './Aroma.svelte';
+  import Appearance from './Appearance.svelte';
 
   let aromas = [
     {
@@ -39,6 +40,8 @@
     }
   ];
 
+  let appearance = [{'color': '?'}];
+
   let tabItems = [
     {label: "Aroma", shortLabel: "A", value: 1},
     {label: "Appearance", shortLabel: "A", value: 2},
@@ -46,7 +49,7 @@
     {label: "Moothfeel", shortLabel: "M", value: 4},
     {label: "Overall", shortLabel: "O", value: 5}
   ];
-  let currentTab;
+  let currentTab = 1;
 </script>
 <style>
   div.main {
@@ -60,7 +63,7 @@
   {#if 1 === currentTab}
     <Aroma aromas={aromas}/>
   {:else if 2 === currentTab}
-    Appearance
+    <Appearance appearance={appearance}/>
   {:else if 3 === currentTab}
     Flavors
   {:else if 4 === currentTab}

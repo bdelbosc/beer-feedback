@@ -1,6 +1,6 @@
 <script>
   export let value = undefined;
-  export let checked = undefined;
+  export let checked = false;
   export let options = [];
 </script>
 <style>

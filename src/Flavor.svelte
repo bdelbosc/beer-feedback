@@ -23,7 +23,7 @@
     nextIcon
   } from './AppIcons'
 
-  export let flavors = [];
+  export let flavors = undefined;
   let currentFlavor = '';
   let inappropriate = false;
   let aftertaste = false;
@@ -67,7 +67,7 @@
   onMount(async () => {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
-    computeComment(flavors);
+    computeComment(flavors['flavors']);
   });
 
   function getCategoryRank(category) {
@@ -100,10 +100,10 @@
   }
 
   function edit(index) {
-    currentFlavor = 'Aroma/' + flavors[index].category + "/" + flavors[index].trait;
-    inappropriate = flavors[index].inappropriate;
-    aftertaste = flavors[index].aftertaste;
-    level = flavors[index].level;
+    currentFlavor = 'Aroma/' + flavors['flavors'][index].category + "/" + flavors['flavors'][index].trait;
+    inappropriate = flavors['flavors'][index].inappropriate;
+    aftertaste = flavors['flavors'][index].aftertaste;
+    level = flavors['flavors'][index].level;
     editEntry = index;
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
@@ -120,7 +120,7 @@
       aroma += boom[i];
     }
     if (editEntry >= 0) {
-      flavors[editEntry] = {
+      flavors['flavors'][editEntry] = {
         level: level,
         category: category,
         trait: aroma,
@@ -129,7 +129,7 @@
       };
       editEntry = -1;
     } else {
-      flavors.push({
+      flavors['flavors'].push({
         level: level,
         category: category,
         trait: aroma,
@@ -138,22 +138,22 @@
       });
       flavors = flavors;
     }
-    flavors.sort(compare);
+    flavors['flavors'].sort(compare);
     // aromas = aromas;
     inappropriate = false;
     aftertaste = false;
   }
 
   function clear(index) {
-    flavors.splice(index, 1);
+    flavors['flavors'].splice(index, 1);
     flavors = flavors;
   }
 
-  function computeComment(aromaList) {
+  function computeComment(flavorList) {
     var categories = [];
-    for (var i = 0; i < aromaList.length; i++) {
-      if (!categories.includes((aromaList[i].category))) {
-        categories.push(aromaList[i].category);
+    for (var i = 0; i < flavorList.length; i++) {
+      if (!categories.includes((flavorList[i].category))) {
+        categories.push(flavorList[i].category);
       }
     }
     var text = '';
@@ -180,7 +180,7 @@
 
   $: selecting = currentFlavor.length > 0;
 
-  $: comment = computeComment(flavors);
+  $: comment = computeComment(flavors['flavors']);
 </script>
 <style>
 
@@ -251,7 +251,7 @@
 </div>
 
 <div id="list">
-  {#each flavors as item, i}
+  {#each flavors['flavors'] as item, i}
     <div class="item">
       <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
@@ -283,8 +283,8 @@
   </div>
 
   <div>
-    <SelectCheck bind:value={flavors['bitterness']} options={bitterness}
-                 bind:checked={flavors['bitterness-inappropriate']}>
+    <SelectCheck bind:value={flavors['bitterness']['value']} options={bitterness}
+                 bind:checked={flavors['bitterness']['inappropriate']}>
       Bitterness
       <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
@@ -292,16 +292,16 @@
 
 
   <div>
-    <SelectCheck bind:value={flavors['balance']} options={balances}
-                 bind:checked={flavors['balance-inappropriate']}>
+    <SelectCheck bind:value={flavors['balance']['value']} options={balances}
+                 bind:checked={flavors['balance']['inappropriate']}>
       Balance
       <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
   </div>
 
   <div>
-    <SelectCheck bind:value={flavors['finish']} options={dryness}
-                 bind:checked={flavors['finish-inappropriate']}>
+    <SelectCheck bind:value={flavors['finish']['value']} options={dryness}
+                 bind:checked={flavors['finish']['inappropriate']}>
       Finish
       <span slot="checkbox">Inappropriate</span>
     </SelectCheck>

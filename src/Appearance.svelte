@@ -1,7 +1,7 @@
 <script>
   import Srm from "./Srm.svelte";
 
-  export let appearance = {};
+  export let appearance;
 
   const heads = [
     {id: undefined, text: ''},

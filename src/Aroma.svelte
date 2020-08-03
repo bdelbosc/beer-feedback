@@ -22,7 +22,7 @@
     nextIcon
   } from './AppIcons'
 
-  export let aromas = [];
+  export let aromas = undefined;
   let currentAroma = '';
   let inappropriate = false;
   let initial = false;
@@ -35,7 +35,7 @@
   onMount(async () => {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
-    computeComment(aromas);
+    computeComment(aromas['aromas']);
   });
 
   function getCategoryRank(category) {
@@ -68,11 +68,11 @@
   }
 
   function edit(index) {
-    currentAroma = 'Aroma/' + aromas[index].category + "/" + aromas[index].trait;
+    currentAroma = 'Aroma/' + aromas['aromas'][index].category + "/" + aromas[index].trait;
     initial = aromas[index].initial;
-    inappropriate = aromas[index].inappropriate;
-    warms = aromas[index].warms;
-    level = aromas[index].level;
+    inappropriate = aromas['aromas'][index].inappropriate;
+    warms = aromas['aromas'][index].warms;
+    level = aromas['aromas'][index].level;
     editEntry = index;
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
@@ -89,7 +89,7 @@
       aroma += boom[i];
     }
     if (editEntry >= 0) {
-      aromas[editEntry] = {
+      aromas['aromas'][editEntry] = {
         level: level,
         category: category,
         trait: aroma,
@@ -99,7 +99,7 @@
       };
       editEntry = -1;
     } else {
-      aromas.push({
+      aromas['aromas'].push({
         level: level,
         category: category,
         trait: aroma,
@@ -109,7 +109,7 @@
       });
       aromas = aromas;
     }
-    aromas.sort(compare);
+    aromas['aromas'].sort(compare);
     // aromas = aromas;
     initial = false;
     warms = false;
@@ -117,7 +117,7 @@
   }
 
   function clear(index) {
-    aromas.splice(index, 1);
+    aromas['aromas'].splice(index, 1);
     aromas = aromas;
   }
 
@@ -152,7 +152,7 @@
 
   $: selecting = currentAroma.length > 0;
 
-  $: comment = computeComment(aromas);
+  $: comment = computeComment(aromas['aromas']);
 </script>
 <style>
   body {
@@ -232,7 +232,7 @@
 </div>
 
 <div id="list">
-  {#each aromas as aroma, i}
+  {#each aromas['aromas'] as aroma, i}
     <div class="item">
       <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>

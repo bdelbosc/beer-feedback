@@ -6,6 +6,8 @@
   import AromaProperties from './AromaProperties.svelte';
   import {onMount} from 'svelte';
   import SvgIcon from "./SvgIcon.svelte";
+  import SelectCheck from "./SelectCheck.svelte";
+
   import {
     hopsIcon,
     maltIcon,
@@ -211,14 +213,6 @@
     clear: both;
   }
 
-  span.label {
-    float: left;
-    width: 100px;
-  }
-
-  select {
-    width: 10em;
-  }
 
 </style>
 <div id="picker">
@@ -284,39 +278,33 @@
 
   <div class="buttons">
     <button on:click={picker}>
-      <span title="Add new Flavors"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
+      <span title="Add new Flavor"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
     </button>
   </div>
 
-  <div><span class="label">Bitterness</span>
-    <select bind:value={flavors['bitterness']}>
-      {#each bitterness as item}
-        <option value={item.id}>
-          {item.text}
-        </option>
-      {/each}
-    </select>
+  <div>
+    <SelectCheck bind:value={flavors['bitterness']} options={bitterness}
+                 bind:checked={flavors['bitterness-inappropriate']}>
+      Bitterness
+      <span slot="checkbox">Inappropriate</span>
+    </SelectCheck>
   </div>
 
 
-  <div><span class="label">Balance</span>
-    <select bind:value={flavors['balance']}>
-      {#each balances as item}
-        <option value={item.id}>
-          {item.text}
-        </option>
-      {/each}
-    </select>
+  <div>
+    <SelectCheck bind:value={flavors['balance']} options={balances}
+                 bind:checked={flavors['balance-inappropriate']}>
+      Balance
+      <span slot="checkbox">Inappropriate</span>
+    </SelectCheck>
   </div>
 
-  <div><span class="label">Finish</span>
-    <select bind:value={flavors['finish']}>
-      {#each dryness as item}
-        <option value={item.id}>
-          {item.text}
-        </option>
-      {/each}
-    </select>
+  <div>
+    <SelectCheck bind:value={flavors['finish']} options={dryness}
+                 bind:checked={flavors['finish-inappropriate']}>
+      Finish
+      <span slot="checkbox">Inappropriate</span>
+    </SelectCheck>
   </div>
 
 </div>

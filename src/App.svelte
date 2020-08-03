@@ -11,6 +11,7 @@
     nextIcon
   } from './AppIcons'
 
+  export let name = "Beer feedback";
   let start = new Date();
   let mytime =  new Date();
   let elapsed = 0;
@@ -71,6 +72,7 @@
   function submit() {
     console.log(aromas);
     console.log(appearance);
+    console.log(flavors);
   }
 
   const formatter = new Intl.DateTimeFormat('en', {

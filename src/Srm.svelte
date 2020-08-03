@@ -1,7 +1,7 @@
 <script>
   import {onMount} from 'svelte';
 
-  export let value;
+  export let value = undefined;
 
   const SRM_RGB_MAP = {
     1: '#FFE699',

@@ -6,6 +6,7 @@
   import Aroma from './Aroma.svelte';
   import Appearance from './Appearance.svelte';
   import Flavor from './Flavor.svelte';
+  import Mouthfeel from './Mouthfeel.svelte';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {
     nextIcon
@@ -14,12 +15,14 @@
   import {AromaDto} from './js/Aroma'
   import {AppearanceDto} from './js/Appearance'
   import {FlavorDto} from './js/Flavor'
+  import {MouthfeelDto} from './js/Mouthfeel'
 
-  export let name = "Beer feedback";
+  export const name = "Beer feedback";
 
   let aroma = new AromaDto();
   let appearance = new AppearanceDto();
   let flavor = new FlavorDto();
+  let mouthfeel = new MouthfeelDto();
 
   let start = new Date();
   let mytime = new Date();
@@ -54,12 +57,11 @@
       console.log("Saving flavors");
       console.log(flavor);
     }
-    if (mouthfeel.updated) {
+    if (mouthfeel.isUpdated()) {
+      tabItems[3].comment = getComment(mouthfeel);
+      updated = true;
       console.log("Saving mouthfeel");
       console.log(mouthfeel);
-      mouthfeel.updated = false;
-      updated = true;
-      tabItems[3].completed = mouthfeel.completed;
     }
     if (overall.updated) {
       console.log("Saving overall");
@@ -74,12 +76,6 @@
 
     // console.log(appearance);
   }, 3000);
-
-  let mouthfeel = {
-    'type': 'mouthfeel',
-    'completed': false,
-    'updated': false,
-  };
 
   let overall = {
     'type': 'overall',
@@ -136,7 +132,7 @@
   {:else if 3 === currentTab}
     <Flavor flavor={flavor}/>
   {:else if 4 === currentTab}
-    Mouthfeel
+    <Mouthfeel mouthfeel={mouthfeel}/>
   {:else if 5 === currentTab}
     Overall
   {/if}

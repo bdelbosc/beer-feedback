@@ -1,0 +1,68 @@
+<script>
+  import SelectCheck from "./comp/SelectCheck.svelte";
+  import {
+    ASTRINGENCY_OPTIONS,
+    BODY_OPTIONS,
+    CARBONATION_OPTIONS,
+    CREAMINESS_OPTIONS,
+    WARMTH_OPTIONS
+  } from './js/Mouthfeel';
+
+  export let mouthfeel;
+
+  function updateHandler() {
+    mouthfeel.updateHandler()
+  }
+</script>
+
+<style>
+  span.label {
+    float: left;
+    width: 100px;
+  }
+
+  input {
+    width: 10em;
+  }
+</style>
+
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={mouthfeel.body} options={BODY_OPTIONS}
+               bind:checked={mouthfeel.bodyInappropriate}>
+    Mouthfeel
+    <span slot="checkbox">Inappropriate</span>
+  </SelectCheck>
+</div>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={mouthfeel.carbonation} options={CARBONATION_OPTIONS}
+               bind:checked={mouthfeel.carbonationInappropriate}>
+    Carbonation
+    <span slot="checkbox">Inappropriate</span>
+  </SelectCheck>
+</div>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={mouthfeel.warmth} options={WARMTH_OPTIONS}
+               bind:checked={mouthfeel.warmthInappropriate}>
+    Warmth
+    <span slot="checkbox">Inappropriate</span>
+  </SelectCheck>
+</div>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={mouthfeel.creaminess} options={CREAMINESS_OPTIONS}
+               bind:checked={mouthfeel.creaminessInappropriate}>
+    Creaminess
+    <span slot="checkbox">Inappropriate</span>
+  </SelectCheck>
+</div>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={mouthfeel.astringency} options={ASTRINGENCY_OPTIONS}
+               bind:checked={mouthfeel.astringencyInappropriate}>
+    Astringency
+    <span slot="checkbox">Inappropriate</span>
+  </SelectCheck>
+</div>
+<div>
+  <span class="label">Other</span>
+  <input on:change={updateHandler} type=text bind:value={mouthfeel.other}/>
+</div>
+

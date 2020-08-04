@@ -1,6 +1,6 @@
 import {BaseCategory} from './BaseCategory';
 
-const fields = ['body', 'carbonation', 'warmth', 'creaminess', 'astringency', 'other'];
+const fields = ['body', 'carbonation', 'warmth', 'creaminess', 'astringency', 'other', 'score'];
 
 const BODY_OPTIONS = [
   {id: undefined, text: ''},
@@ -48,7 +48,7 @@ const ASTRINGENCY_OPTIONS = [
   {id: 2, text: 'Medium Low'},
   {id: 3, text: 'Medium'},
   {id: 4, text: 'Medium-High'},
-  {id: 5, text: 'High'}
+  {id: 5, text: 'Harsh'}
 ]
 
 class Mouthfeel extends BaseCategory {

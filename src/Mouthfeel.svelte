@@ -7,6 +7,7 @@
     CREAMINESS_OPTIONS,
     WARMTH_OPTIONS
   } from './js/Mouthfeel';
+  import Score from "./comp/Score.svelte";
 
   export let mouthfeel;
 
@@ -64,5 +65,8 @@
 <div>
   <span class="label">Other</span>
   <input on:change={updateHandler} type=text bind:value={mouthfeel.other}/>
+</div>
+<div>
+  <Score on:change={updateHandler} bind:value={mouthfeel.score} max="5" min="1">Score</Score>
 </div>
 

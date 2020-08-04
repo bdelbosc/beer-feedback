@@ -21,6 +21,8 @@
 
   export const name = "Beer feedback";
 
+  let totalScore;
+
   let aroma = new AromaDto();
   let appearance = new AppearanceDto();
   let flavor = new FlavorDto();
@@ -36,6 +38,16 @@
       return '';
     }
     return 'Comment on: ' + item.getRequired().join(', ') + '.';
+  }
+
+  function computeScore() {
+    let score = 0;
+    if (aroma.score > 0) score += aroma.score;
+    if (appearance.score > 0) score += appearance.score;
+    if (flavor.score > 0) score += flavor.score;
+    if (mouthfeel.score > 0) score += mouthfeel.score;
+    if (overall.score > 0) score += overall.score;
+    return score;
   }
 
   const interval = setInterval(() => {
@@ -74,6 +86,7 @@
     }
     if (updated) {
       tabItems = tabItems;
+      totalScore = computeScore();
     }
 
     // console.log(appearance);
@@ -119,7 +132,7 @@
   }
 </style>
 
-{formatter.format(mytime)} {elapsed} {elapsed === 1 ? 'second' : 'seconds'}
+Elapsed: {elapsed} seconds, Score: {totalScore}
 <div class="main">
   <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
   {#if 1 === currentTab}

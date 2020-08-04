@@ -6,6 +6,7 @@
     TECHNICAL_OPTIONS,
     DRINKABILITY_OPTIONS
   } from './js/Overall';
+  import Score from "./comp/Score.svelte";
 
   export let overall;
 
@@ -53,4 +54,8 @@
   <span class="label">Feedback</span>
   <input on:change={updateHandler} type=text bind:value={overall.feedback}/>
 </div>
+<div>
+  <Score on:change={updateHandler} bind:value={overall.score} max="10" min="1">Score</Score>
+</div>
+
 

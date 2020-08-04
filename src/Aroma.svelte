@@ -3,7 +3,7 @@
   import aromaLayout from './data/aroma-layout.json';
   import SunburstPicker from './comp/SunburstPicker.svelte';
   import Level from './comp/Level.svelte';
-  import AromaProperties from './AromaProperties.svelte';
+  import AromaProperties from './comp/AromaProperties.svelte';
   import {onMount} from 'svelte';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {
@@ -20,6 +20,7 @@
     editIcon,
     checkmarkIcon,
   } from './js/AppIcons'
+  import Score from "./comp/Score.svelte";
 
   export let aroma;
   let currentAroma = '';
@@ -98,6 +99,10 @@
   function clear(index) {
     aroma.aromas.splice(index, 1);
     aroma = aroma;
+    aroma.updateHandler();
+  }
+
+  function updateHandler() {
     aroma.updateHandler();
   }
 
@@ -203,4 +208,6 @@
   </div>
 
 </div>
-
+<div>
+  <Score on:change={updateHandler} bind:value={aroma.score} max="12" min="4">Score</Score>
+</div>

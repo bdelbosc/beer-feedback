@@ -1,6 +1,6 @@
 import {BaseCategory} from './BaseCategory';
 
-const fields = ['accuracy', 'technical', 'intangible', 'drinkability', 'feedback'];
+const fields = ['accuracy', 'technical', 'intangible', 'drinkability', 'feedback', 'score'];
 
 const ACCURACY_OPTIONS = [
   {id: undefined, text: ''},

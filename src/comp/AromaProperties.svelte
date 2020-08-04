@@ -1,6 +1,6 @@
 <script>
-  import SvgIcon from './comp/SvgIcon.svelte'
-  import {alertIcon, initialIcon, warmsIcon, aftertasteIcon} from './js/AppIcons'
+  import SvgIcon from './SvgIcon.svelte'
+  import {alertIcon, initialIcon, warmsIcon, aftertasteIcon} from '../js/AppIcons'
 
   export let inappropriate = false;
   export let initial = false;

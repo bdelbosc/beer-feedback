@@ -3,7 +3,7 @@
   import flavorLayout from './data/flavor-layout.json';
   import SunburstPicker from './comp/SunburstPicker.svelte';
   import Level from './comp/Level.svelte';
-  import AromaProperties from './AromaProperties.svelte';
+  import AromaProperties from './comp/AromaProperties.svelte';
   import {onMount} from 'svelte';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import SelectCheck from "./comp/SelectCheck.svelte";
@@ -22,6 +22,7 @@
     checkmarkIcon,
     nextIcon
   } from './js/AppIcons'
+  import Score from "./comp/Score.svelte";
 
   export let flavor;
 
@@ -226,4 +227,6 @@
   </div>
 
 </div>
-
+<div>
+  <Score on:change={updateHandler} bind:value={flavor.score} max="20" min="5">Score</Score>
+</div>

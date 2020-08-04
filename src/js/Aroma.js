@@ -1,4 +1,4 @@
-const fields = [];
+const fields = ['score'];
 import {BaseCategory, compareCategory} from './BaseCategory';
 
 class Aroma extends BaseCategory {

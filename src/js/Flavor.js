@@ -1,6 +1,6 @@
 import {BaseCategory, compareCategory} from './BaseCategory';
 
-const fields = ['bitterness', 'balance', 'finish'];
+const fields = ['bitterness', 'balance', 'finish', 'score'];
 
 const BITTERNESS_OPTIONS = [
   {id: undefined, text: ''},
@@ -25,7 +25,7 @@ const BALANCE_OPTIONS = [
 
 const DRYNESS_OPTIONS = [
   {id: undefined, text: ''},
-  {id: 0, text: `Bone Dry`},
+  {id: 0, text: `Biting`},
   {id: 1, text: `Dry`},
   {id: 2, text: `Balanced`},
   {id: 3, text: `Somewhat sweet`},

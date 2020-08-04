@@ -3,6 +3,7 @@
   import {
     HEAD_OPTIONS, RETENTION_OPTIONS, CLARITY_OPTIONS, HUE_OPTIONS, TEXTURE_OPTIONS
   } from './js/Appearance';
+  import Score from "./comp/Score.svelte";
 
   export let appearance;
 
@@ -73,4 +74,7 @@
                                                             bind:checked={appearance.laces}></label>
   <label for="legs"><span class="label">Legs</span><input id="legs" on:change={updateHandler} type=checkbox
                                                           bind:checked={appearance.legs}></label>
+</div>
+<div>
+  <Score on:change={updateHandler} bind:value={appearance.score} max="3" min="1">Score</Score>
 </div>

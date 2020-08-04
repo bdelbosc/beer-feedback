@@ -1,6 +1,6 @@
 import {BaseCategory} from './BaseCategory';
 
-const fields = ['color', 'head', 'clarity', 'hue', 'retention', 'texture', 'legs', 'laces'];
+const fields = ['color', 'head', 'clarity', 'hue', 'retention', 'texture', 'legs', 'laces', 'score'];
 
 const HEAD_OPTIONS = [
   {id: undefined, text: ''},

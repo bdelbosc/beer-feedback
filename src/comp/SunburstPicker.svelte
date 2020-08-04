@@ -52,14 +52,17 @@
 	}
 
 </script>
+<style>
+	input {
+		width: 320px;
+	}
+</style>
 <div id="{plotId}Edit">
-	<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
 	<input bind:value="{selected}" size="28"/>
-	<br/>
-	{#if selected.length}
-		<button on:click={validate}>
-			<SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
-		</button>{/if}
+	<div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
+	<button on:click={validate} disabled={selected.length == 0}>
+		<SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
+	</button>
 	<slot/>
 </div>
 <div id="{plotId}Selected">

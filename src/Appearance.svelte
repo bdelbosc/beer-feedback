@@ -45,6 +45,11 @@
     {id: 'bigbubbles', text: `Big bubbles`}
   ];
 
+  const changeHandler = function () {
+    appearance.updated = true;
+  };
+
+
 </script>
 <style>
   span.label {
@@ -60,7 +65,7 @@
   <Srm bind:value={appearance['color']}/>
 </div>
 <div><span class="label">Clarity</span>
-  <select bind:value={appearance['clarity']}>
+  <select on:change={changeHandler} bind:value={appearance.clarity}>
     {#each clarities as item}
       <option value={item.id}>
         {item.text}
@@ -69,7 +74,7 @@
   </select>
 </div>
 <div><span class="label">Hue</span>
-  <select bind:value={appearance['hue']}>
+  <select on:change={changeHandler} bind:value={appearance.hue}>
     {#each hues as item}
       <option value={item.id}>
         {item.text}
@@ -78,7 +83,7 @@
   </select>
 </div>
 <div><span class="label">Head</span>
-  <select bind:value={appearance['head']}>
+  <select on:change={changeHandler} bind:value={appearance.head}>
     {#each heads as item}
       <option value={item.id}>
         {item.text}
@@ -87,7 +92,7 @@
   </select>
 </div>
 <div><span class="label">Retention</span>
-  <select bind:value={appearance['retention']}>
+  <select on:change={changeHandler} bind:value={appearance.retention}>
     {#each retentions as item}
       <option value={item.id}>
         {item.text}
@@ -96,7 +101,7 @@
   </select>
 </div>
 <div><span class="label">Texture</span>
-  <select bind:value={appearance['texture']}>
+  <select on:change={changeHandler} bind:value={appearance.texture}>
     {#each textures as item}
       <option value={item.id}>
         {item.text}
@@ -105,6 +110,8 @@
   </select>
 </div>
 <div>
-  <label><span class="label">Laces</span><input type=checkbox bind:checked={appearance['laces']}></label>
-  <label><span class="label">Legs</span><input type=checkbox bind:checked={appearance['legs']}></label>
+  <label><span class="label">Laces</span><input on:change={changeHandler} type=checkbox
+                                                bind:checked={appearance.laces}></label>
+  <label><span class="label">Legs</span><input on:change={changeHandler} type=checkbox
+                                               bind:checked={appearance.legs}></label>
 </div>

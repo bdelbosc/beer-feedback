@@ -181,6 +181,7 @@
   $: selecting = currentFlavor.length > 0;
 
   $: comment = computeComment(flavors['flavors']);
+
 </script>
 <style>
 

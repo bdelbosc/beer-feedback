@@ -11,6 +11,10 @@
     nextIcon
   } from './AppIcons'
 
+  import {
+    isAppearanceCompleted
+  } from './main.js'
+
   export let name = "Beer feedback";
   let start = new Date();
   let mytime = new Date();
@@ -19,14 +23,56 @@
   const interval = setInterval(() => {
     mytime = new Date();
     elapsed = Math.round((mytime - start) / 1000);
+    let updated = false;
+
+    if (aromas.updated) {
+      console.log("Saving aromas");
+      console.log(aromas);
+      aromas.updated = false;
+      tabItems[0].completed = aromas.completed;
+      updated = true;
+      console.log(tabItems);
+    }
+    if (appearance.updated) {
+      appearance.updated = false;
+      appearance.completed = isAppearanceCompleted(appearance);
+      console.log("Saving appearance");
+      console.log(appearance);
+      tabItems[1].completed = appearance.completed;
+    }
+    if (flavors.updated) {
+      console.log("Saving flavors");
+      console.log(flavors);
+      flavors.updated = false;
+      updated = true;
+      tabItems[2].completed = flavors.completed;
+    }
+    if (mouthfeel.updated) {
+      console.log("Saving mouthfeel");
+      console.log(mouthfeel);
+      mouthfeel.updated = false;
+      tabItems[3].completed = mouthfeel.completed;
+    }
+    if (overall.updated) {
+      console.log("Saving overall");
+      console.log(overall);
+      overall.updated = false;
+      tabItems[4].completed = overall.completed;
+    }
+
+    if (updated) {
+      tabItems = tabItems;
+    }
     // console.log(appearance);
-  }, 1000);
+  }, 3000);
 
   let aromas = {
-    "type": "aromas",
+    'type': 'aromas',
+    'completed': true,
+    'updated': false,
     "aromas": [
       {
-        "trait": "Chocolat",
+        "trait": "Chocolate",
         "category": "malt",
         "inappropriate": true,
         "level": 3,
@@ -61,12 +107,16 @@
 
   let appearance = {
     'type': 'appearance',
+    'completed': false,
+    'updated': false,
     'laces': false,
     'legs': false,
   };
 
   let flavors = {
     'type': 'flavors',
+    'completed': false,
+    'updated': false,
     'flavors': [],
     'bitterness': {},
     'balance': {},
@@ -75,18 +125,22 @@
 
   let mouthfeel = {
     'type': 'mouthfeel',
+    'completed': false,
+    'updated': false,
   };
 
   let overall = {
     'type': 'overall',
+    'completed': false,
+    'updated': false,
   };
 
   let tabItems = [
-    {label: "Aroma", shortLabel: "A", value: 1},
-    {label: "Appearance", shortLabel: "A", value: 2},
-    {label: "Flavors", shortLabel: "F", value: 3},
-    {label: "Moothfeel", shortLabel: "M", value: 4},
-    {label: "Overall", shortLabel: "O", value: 5}
+    {label: "Aroma", shortLabel: "A", value: 1, completed: aromas.completed},
+    {label: "Appearance", shortLabel: "A", value: 2, completed: appearance.completed},
+    {label: "Flavors", shortLabel: "F", value: 3, completed: flavors.completed},
+    {label: "Moothfeel", shortLabel: "M", value: 4, completed: mouthfeel.completed},
+    {label: "Overall", shortLabel: "O", value: 5, completed: overall.completed}
   ];
   let currentTab = 1;
 
@@ -105,18 +159,19 @@
     second: '2-digit'
   });
 
+
 </script>
+
 <style>
   div.main {
     max-width: 320px;
     margin: auto;
   }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
-
 </style>
-
 
 {formatter.format(mytime)} {elapsed} {elapsed === 1 ? 'second' : 'seconds'}
 <div class="main">
@@ -138,3 +193,4 @@
 <button on:click={submit} class="submit">
   <span title="Next Section"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
 </button>
+

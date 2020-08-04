@@ -38,18 +38,30 @@
   }
 
   li.active > span {
-    color: black;
+    color: red;
+    background-color: #fff;
+    /*border-color: #dee2e6 #dee2e6 #fff;*/
+    border-color: darkgrey darkgrey #fff;
+  }
+
+  li.activeCompleted > span {
+    color: darkgreen;
     background-color: #fff;
     /*border-color: #dee2e6 #dee2e6 #fff;*/
     border-color: darkgrey darkgrey #fff;
   }
 
   li.inactive > span {
-    color: darkgray;
+    color: red;
     background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff;
   }
 
+  li.inactiveCompleted > span {
+    color: darkgreen;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+  }
 
 </style>
 
@@ -57,11 +69,11 @@
   {#if Array.isArray(items)}
     {#each items as item}
       {#if activeTabValue === item.value}
-        <li class="active">
+        <li class={item.completed ? 'activeCompleted' : 'active'}>
           <span on:click={handleClick(item.value)}>{item.label}</span>
         </li>
       {:else}
-        <li class="inactive">
+        <li class={item.completed ? 'inactiveCompleted' : 'inactive'}>
           <span on:click={handleClick(item.value)}>{item.shortLabel}</span>
         </li>
       {/if}

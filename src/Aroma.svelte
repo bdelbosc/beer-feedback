@@ -35,7 +35,7 @@
   onMount(async () => {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
-    computeComment(aromas['aromas']);
+    computeComment(aromas.aromas);
   });
 
   function getCategoryRank(category) {
@@ -68,11 +68,11 @@
   }
 
   function edit(index) {
-    currentAroma = 'Aroma/' + aromas['aromas'][index].category + "/" + aromas[index].trait;
-    initial = aromas[index].initial;
-    inappropriate = aromas['aromas'][index].inappropriate;
-    warms = aromas['aromas'][index].warms;
-    level = aromas['aromas'][index].level;
+    currentAroma = 'Aroma/' + aromas.aromas[index].category + "/" + aromas.aromas[index].trait;
+    initial = aromas.aromas[index].initial;
+    inappropriate = aromas.aromas[index].inappropriate;
+    warms = aromas.aromas[index].warms;
+    level = aromas.aromas[index].level;
     editEntry = index;
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
@@ -89,7 +89,7 @@
       aroma += boom[i];
     }
     if (editEntry >= 0) {
-      aromas['aromas'][editEntry] = {
+      aromas.aromas[editEntry] = {
         level: level,
         category: category,
         trait: aroma,
@@ -99,7 +99,7 @@
       };
       editEntry = -1;
     } else {
-      aromas['aromas'].push({
+      aromas.aromas.push({
         level: level,
         category: category,
         trait: aroma,
@@ -109,16 +109,17 @@
       });
       aromas = aromas;
     }
-    aromas['aromas'].sort(compare);
-    // aromas = aromas;
+    aromas.aromas.sort(compare);
     initial = false;
     warms = false;
     inappropriate = false;
+    aromas.updated = true;
   }
 
   function clear(index) {
-    aromas['aromas'].splice(index, 1);
+    aromas.aromas.splice(index, 1);
     aromas = aromas;
+    aromas.updated = true;
   }
 
   function computeComment(aromaList) {
@@ -145,14 +146,16 @@
       text += 'fermentation';
     }
     if (text) {
+      aromas.completed = false;
       return "Please, add " + text + " and others aromatics";
     }
+    aromas.completed = true;
     return "ok";
   }
 
   $: selecting = currentAroma.length > 0;
 
-  $: comment = computeComment(aromas['aromas']);
+  $: comment = computeComment(aromas.aromas);
 </script>
 <style>
   body {
@@ -232,7 +235,10 @@
 </div>
 
 <div id="list">
-  {#each aromas['aromas'] as aroma, i}
+  {#if comment !== "ok"}
+    <div class="comment">{comment}</div>
+  {/if}
+  {#each aromas.aromas as aroma, i}
     <div class="item">
       <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
@@ -252,9 +258,6 @@
       <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>
     </div>
   {/each}
-  {#if comment !== "ok"}
-    <div class="comment">{comment}</div>
-  {/if}
   <div class="buttons">
     <button on:click={picker}>
       <span title="Add new Aroma"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>

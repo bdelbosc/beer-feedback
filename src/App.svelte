@@ -13,53 +13,66 @@
   } from './AppIcons'
 
   import {AppearanceDto} from './js/Appearance'
+  import {FlavorDto} from './js/Flavor'
 
   export let name = "Beer feedback";
+
+  let appearance = new AppearanceDto();
+  let flavors = new FlavorDto();
+
   let start = new Date();
   let mytime = new Date();
   let elapsed = 0;
+
+  function getComment(item) {
+    if (item.isCompleted()) {
+      return '';
+    }
+    return "Missing: " + item.getRequired();
+  }
 
   const interval = setInterval(() => {
     mytime = new Date();
     elapsed = Math.round((mytime - start) / 1000);
     let updated = false;
-
     if (aromas.updated) {
       console.log("Saving aromas");
       console.log(aromas);
       aromas.updated = false;
-      tabItems[0].completed = aromas.completed;
-      updated = true;
+      tabItems[0].comment = 'not impl';
       console.log(tabItems);
+      updated = true;
     }
     if (appearance.isUpdated()) {
-      tabItems[1].completed = appearance.isCompleted();
+      tabItems[1].comment = getComment(appearance);
+      updated = true;
       console.log("Saving appearance");
       console.log(appearance);
     }
-    if (flavors.updated) {
+    if (flavors.isUpdated()) {
+      tabItems[2].comment = getComment(flavors);
+      updated = true;
       console.log("Saving flavors");
       console.log(flavors);
-      flavors.updated = false;
-      updated = true;
-      tabItems[2].completed = flavors.completed;
     }
     if (mouthfeel.updated) {
       console.log("Saving mouthfeel");
       console.log(mouthfeel);
       mouthfeel.updated = false;
+      updated = true;
       tabItems[3].completed = mouthfeel.completed;
     }
     if (overall.updated) {
       console.log("Saving overall");
       console.log(overall);
       overall.updated = false;
+      updated = true;
       tabItems[4].completed = overall.completed;
     }
-
     if (updated) {
       tabItems = tabItems;
     }
+
     // console.log(appearance);
   }, 3000);
 
@@ -102,17 +115,6 @@
     ]
   };
 
-  let appearance = new AppearanceDto();
-
-  let flavors = {
-    'type': 'flavors',
-    'completed': false,
-    'updated': false,
-    'flavors': [],
-    'bitterness': {},
-    'balance': {},
-    'finish': {},
-  };
 
   let mouthfeel = {
     'type': 'mouthfeel',
@@ -127,11 +129,11 @@
   };
 
   let tabItems = [
-    {label: "Aroma", shortLabel: "A", value: 1, completed: aromas.completed},
-    {label: "Appearance", shortLabel: "A", value: 2, completed: appearance.isCompleted()},
-    {label: "Flavors", shortLabel: "F", value: 3, completed: flavors.completed},
-    {label: "Moothfeel", shortLabel: "M", value: 4, completed: mouthfeel.completed},
-    {label: "Overall", shortLabel: "O", value: 5, completed: overall.completed}
+    {label: "Aroma", shortLabel: "A", value: 1, comment: ''},
+    {label: "Appearance", shortLabel: "A", value: 2, comment: ''},
+    {label: "Flavors", shortLabel: "F", value: 3, comment: ''},
+    {label: "Moothfeel", shortLabel: "M", value: 4, comment: ''},
+    {label: "Overall", shortLabel: "O", value: 5, comment: ''}
   ];
   let currentTab = 1;
 

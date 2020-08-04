@@ -3,9 +3,14 @@
   export let checked = false;
   export let options = [];
 
-  const changeHandler = function () {
-    console.log(this, `changed value to ${this.value}`);
-  };
+  import {createEventDispatcher} from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
+  function eventHandler() {
+    // propagate change event
+    dispatch('change');
+  }
 
 </script>
 <style>
@@ -29,7 +34,7 @@
 </style>
 
 <span class="label"><slot/></span>
-<select on:change={changeHandler} bind:value={value}>
+<select on:change={eventHandler} bind:value={value}>
   {#each options as item}
     <option value={item.id}>
       {item.text}
@@ -40,7 +45,7 @@
 <span class="check">
   <span class="label">&nbsp</span>
   <label>
-    <input on:change={changeHandler} type="checkbox" bind:checked={checked}/>
+    <input on:change={eventHandler} type="checkbox" bind:checked={checked}/>
     <slot name="checkbox"/>
   </label>
 </span>

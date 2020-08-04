@@ -12,6 +12,10 @@
   });
 
   const handleClick = tabValue => () => (activeTabValue = tabValue);
+
+  let comment;
+
+  $: comment = items[activeTabValue - 1].comment;
 </script>
 
 <style>
@@ -63,20 +67,28 @@
     border-color: #dee2e6 #dee2e6 #fff;
   }
 
+  .comment {
+    clear: both;
+    font-style: italic;
+    color: orangered;
+  }
+
 </style>
 
 <ul>
   {#if Array.isArray(items)}
     {#each items as item}
       {#if activeTabValue === item.value}
-        <li class={item.completed ? 'activeCompleted' : 'active'}>
+        <li class={item.comment ? 'active':'activeCompleted'}>
           <span on:click={handleClick(item.value)}>{item.label}</span>
         </li>
       {:else}
-        <li class={item.completed ? 'inactiveCompleted' : 'inactive'}>
+        <li class={item.comment ? 'inactive': 'inactiveCompleted'}>
           <span on:click={handleClick(item.value)}>{item.shortLabel}</span>
         </li>
       {/if}
     {/each}
   {/if}
 </ul>
+
+<div class="comment">{comment}</div>

@@ -45,13 +45,10 @@
     {id: 'bigbubbles', text: `Big bubbles`}
   ];
 
-  const changeHandler = function () {
-    appearance.update();
-  };
+  function updateHandler() {
+    appearance.updateHandler();
+  }
 
-  let comment;
-
-  $: comment = appearance.getRequired();
 </script>
 <style>
   span.label {
@@ -59,16 +56,20 @@
     width: 100px;
   }
 
+  span.missing {
+    float: left;
+    width: 100px;
+    color:  orangered;
+  }
   select {
     width: 10em;
   }
 </style>
-<div class="comment">{comment}</div>
-<div on:click={changeHandler}><span class="label">Color</span>
+<div on:click={updateHandler}><span class="label" id="color">Color</span>
   <Srm bind:value={appearance['color']}/>
 </div>
-<div><span class="label">Clarity</span>
-  <select on:change={changeHandler} bind:value={appearance.clarity}>
+<div><span class="label" id="clarity">Clarity</span>
+  <select on:change={updateHandler} bind:value={appearance.clarity}>
     {#each clarities as item}
       <option value={item.id}>
         {item.text}
@@ -77,7 +78,7 @@
   </select>
 </div>
 <div><span class="label">Hue</span>
-  <select on:change={changeHandler} bind:value={appearance.hue}>
+  <select on:change={() => updateHandler} bind:value={appearance.hue}>
     {#each hues as item}
       <option value={item.id}>
         {item.text}
@@ -86,7 +87,7 @@
   </select>
 </div>
 <div><span class="label">Head</span>
-  <select on:change={changeHandler} bind:value={appearance.head}>
+  <select on:change={updateHandler} bind:value={appearance.head}>
     {#each heads as item}
       <option value={item.id}>
         {item.text}
@@ -95,7 +96,7 @@
   </select>
 </div>
 <div><span class="label">Retention</span>
-  <select on:change={changeHandler} bind:value={appearance.retention}>
+  <select on:change={updateHandler} bind:value={appearance.retention}>
     {#each retentions as item}
       <option value={item.id}>
         {item.text}
@@ -104,7 +105,7 @@
   </select>
 </div>
 <div><span class="label">Texture</span>
-  <select on:change={changeHandler} bind:value={appearance.texture}>
+  <select on:change={updateHandler} bind:value={appearance.texture}>
     {#each textures as item}
       <option value={item.id}>
         {item.text}
@@ -113,8 +114,8 @@
   </select>
 </div>
 <div>
-  <label for="laces"><span class="label">Laces</span><input id="laces" on:change={changeHandler} type=checkbox
+  <label for="laces"><span class="label">Laces</span><input id="laces" on:change={updateHandler} type=checkbox
                                                             bind:checked={appearance.laces}></label>
-  <label for="legs"><span class="label">Legs</span><input id="legs" on:change={changeHandler} type=checkbox
+  <label for="legs"><span class="label">Legs</span><input id="legs" on:change={updateHandler} type=checkbox
                                                           bind:checked={appearance.legs}></label>
 </div>

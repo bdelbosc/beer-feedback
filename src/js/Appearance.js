@@ -1,40 +1,19 @@
 const fields = ['color', 'head', 'clarity', 'hue', 'retention', 'texture', 'legs', 'laces'];
+import {BaseCategory} from './BaseCategory';
 
-class Appearance {
+class Appearance extends BaseCategory {
 
   constructor() {
-    this.completed = false;
-    this.updated = true;
-    this.required = [];
+    super();
     // fields with default values
     this.laces = false;
     this.legs = false;
   }
 
-  isUpdated() {
-    return this.updated;
-  }
-
-  isCompleted() {
-    if (this.updated) {
-      this.checkCompletion();
-      this.updated = false;
-    }
-    return this.completed;
-  }
-
-  getRequired() {
-    return this.required;
-  }
-
-  update() {
-    this.updated = true;
-  }
-
   checkCompletion() {
-    console.log("checkCompletion");
+    console.log("checkCompletion appearance");
     this.required.length = 0;
-    for (var i = 0; i < fields.length; i++) {
+    for (let i = 0; i < fields.length; i++) {
       if (!this.hasOwnProperty(fields[i])) {
         this.required.push(fields[i]);
         console.log(fields[i] + " no props");
@@ -45,7 +24,7 @@ class Appearance {
         console.log(fields[i] + " undefined");
       }
     }
-    this.completed = this.required.length == 0;
+    this.completed = (this.required.length === 0);
   }
 }
 

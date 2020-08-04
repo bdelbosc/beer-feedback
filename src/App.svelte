@@ -7,6 +7,7 @@
   import Appearance from './Appearance.svelte';
   import Flavor from './Flavor.svelte';
   import Mouthfeel from './Mouthfeel.svelte';
+  import Overall from './Overall.svelte';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {
     nextIcon
@@ -16,6 +17,7 @@
   import {AppearanceDto} from './js/Appearance'
   import {FlavorDto} from './js/Flavor'
   import {MouthfeelDto} from './js/Mouthfeel'
+  import {OverallDto} from './js/Overall'
 
   export const name = "Beer feedback";
 
@@ -23,6 +25,7 @@
   let appearance = new AppearanceDto();
   let flavor = new FlavorDto();
   let mouthfeel = new MouthfeelDto();
+  let overall = new OverallDto();
 
   let start = new Date();
   let mytime = new Date();
@@ -63,12 +66,11 @@
       console.log("Saving mouthfeel");
       console.log(mouthfeel);
     }
-    if (overall.updated) {
+    if (overall.isUpdated()) {
+      tabItems[4].comment = getComment(overall);
+      updated = true;
       console.log("Saving overall");
       console.log(overall);
-      overall.updated = false;
-      updated = true;
-      tabItems[4].completed = overall.completed;
     }
     if (updated) {
       tabItems = tabItems;
@@ -77,11 +79,6 @@
     // console.log(appearance);
   }, 3000);
 
-  let overall = {
-    'type': 'overall',
-    'completed': false,
-    'updated': false,
-  };
 
   let tabItems = [
     {label: "Aroma", shortLabel: "A", value: 1, comment: ''},
@@ -134,7 +131,7 @@
   {:else if 4 === currentTab}
     <Mouthfeel mouthfeel={mouthfeel}/>
   {:else if 5 === currentTab}
-    Overall
+    <Overall overall={overall}/>
   {/if}
 
 </div>
@@ -142,4 +139,3 @@
 <button on:click={submit} class="submit">
   <span title="Next Section"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
 </button>
-

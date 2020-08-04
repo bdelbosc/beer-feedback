@@ -16,12 +16,6 @@
     width: 100px;
   }
 
-  span.missing {
-    float: left;
-    width: 100px;
-    color: orangered;
-  }
-
   select {
     width: 10em;
   }

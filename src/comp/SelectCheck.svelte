@@ -2,6 +2,7 @@
   export let value = undefined;
   export let checked = false;
   export let options = [];
+  export let noCheck = false;
 
   import {createEventDispatcher} from 'svelte';
 
@@ -41,6 +42,7 @@
     </option>
   {/each}
 </select>
+{#if !noCheck}
 <br/>
 <span class="check">
   <span class="label">&nbsp</span>
@@ -49,3 +51,4 @@
     <slot name="checkbox"/>
   </label>
 </span>
+{/if}

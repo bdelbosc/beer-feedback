@@ -1,5 +1,5 @@
 const fields = [];
-import {BaseCategory} from './BaseCategory';
+import {BaseCategory, compareCategory} from './BaseCategory';
 
 class Aroma extends BaseCategory {
 
@@ -39,6 +39,13 @@ class Aroma extends BaseCategory {
       this.required.push('fermentation');
     }
     this.completed = (this.required.length === 0);
+  }
+
+  updateHandler(sort = false) {
+    super.updateHandler();
+    if (sort) {
+      this.aromas.sort(compareCategory);
+    }
   }
 }
 

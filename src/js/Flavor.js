@@ -1,4 +1,4 @@
-import {BaseCategory} from './BaseCategory';
+import {BaseCategory, compareCategory} from './BaseCategory';
 
 const fields = ['bitterness', 'balance', 'finish'];
 
@@ -76,6 +76,13 @@ class Flavor extends BaseCategory {
       }
     }
     this.completed = (this.required.length === 0);
+  }
+
+  updateHandler(sort = false) {
+    super.updateHandler();
+    if (sort) {
+      this.flavors.sort(compareCategory);
+    }
   }
 }
 

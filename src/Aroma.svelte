@@ -35,23 +35,6 @@
     document.getElementById('list').hidden = false;
   });
 
-  function getCategoryRank(category) {
-    if (category === "malt") return 100;
-    if (category === "hops") return 90;
-    if (category === "fermentation") return 80;
-    if (category === "others") return 70;
-    if (category === "flaws") return 50;
-    return 10;
-  }
-
-  function compare(a, b) {
-    const aa = getCategoryRank(a.category) + a.level;
-    const bb = getCategoryRank(b.category) + b.level;
-    if (bb > aa) return 1;
-    if (aa > bb) return -1;
-    return 0;
-  }
-
   function picker() {
     currentAroma = '';
     document.getElementById('picker').hidden = false;
@@ -106,11 +89,10 @@
       });
       aroma = aroma
     }
-    aroma.aromas.sort(compare);
     initial = false;
     warms = false;
     inappropriate = false;
-    aroma.updateHandler();
+    aroma.updateHandler(true);
   }
 
   function clear(index) {

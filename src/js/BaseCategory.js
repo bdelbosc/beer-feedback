@@ -1,3 +1,21 @@
+const categoryRank = function (category) {
+  if (category === "malt") return 100;
+  if (category === "hops") return 90;
+  if (category === "fermentation") return 80;
+  if (category === "others") return 70;
+  if (category === "flaws") return 50;
+  return 10;
+}
+
+const compareCategory = function compare(a, b) {
+  const aa = categoryRank(a.category) + a.level;
+  const bb = categoryRank(b.category) + b.level;
+  if (bb > aa) return 1;
+  if (aa > bb) return -1;
+  return 0;
+}
+
+
 class BaseCategory {
 
   constructor() {
@@ -33,4 +51,4 @@ class BaseCategory {
   }
 }
 
-export {BaseCategory};
+export {BaseCategory, compareCategory};

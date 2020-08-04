@@ -1,5 +1,5 @@
 <script>
-  import Srm from "./Srm.svelte";
+  import Srm from "./comp/Srm.svelte";
   import {
     HEAD_OPTIONS, RETENTION_OPTIONS, CLARITY_OPTIONS, HUE_OPTIONS, TEXTURE_OPTIONS
   } from './js/Appearance';

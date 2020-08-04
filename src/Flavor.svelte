@@ -1,12 +1,12 @@
 <script>
-  import flavorData from './flavor-data.json';
-  import flavorLayout from './flavor-layout.json';
-  import SunburstPicker from './SunburstPicker.svelte';
-  import Level from './Level.svelte';
+  import flavorData from './data/flavor-data.json';
+  import flavorLayout from './data/flavor-layout.json';
+  import SunburstPicker from './comp/SunburstPicker.svelte';
+  import Level from './comp/Level.svelte';
   import AromaProperties from './AromaProperties.svelte';
   import {onMount} from 'svelte';
-  import SvgIcon from "./SvgIcon.svelte";
-  import SelectCheck from "./SelectCheck.svelte";
+  import SvgIcon from "./comp/SvgIcon.svelte";
+  import SelectCheck from "./comp/SelectCheck.svelte";
   import {BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS} from './js/Flavor';
   import {
     hopsIcon,
@@ -21,7 +21,7 @@
     editIcon,
     checkmarkIcon,
     nextIcon
-  } from './AppIcons'
+  } from './js/AppIcons'
 
   export let flavor;
 

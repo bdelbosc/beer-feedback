@@ -1,6 +1,6 @@
 <script>
   import SvgIcon from './SvgIcon.svelte'
-  import {lowIcon, mediumHighIcon, mediumIcon, mediumLowIcon, highIcon, noneIcon} from './AppIcons'
+  import {lowIcon, mediumHighIcon, mediumIcon, mediumLowIcon, highIcon, noneIcon} from '../js/AppIcons'
 
   const levels = ["None", "Low", "Medium Low", "Medium", "Medium High", "High"];
   const icons = [noneIcon, lowIcon, mediumLowIcon, mediumIcon, mediumHighIcon, highIcon];

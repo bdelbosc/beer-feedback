@@ -1,11 +1,11 @@
 <script>
-  import aromaData from './aroma-data.json';
-  import aromaLayout from './aroma-layout.json';
-  import SunburstPicker from './SunburstPicker.svelte';
-  import Level from './Level.svelte';
+  import aromaData from './data/aroma-data.json';
+  import aromaLayout from './data/aroma-layout.json';
+  import SunburstPicker from './comp/SunburstPicker.svelte';
+  import Level from './comp/Level.svelte';
   import AromaProperties from './AromaProperties.svelte';
   import {onMount} from 'svelte';
-  import SvgIcon from "./SvgIcon.svelte";
+  import SvgIcon from "./comp/SvgIcon.svelte";
   import {
     hopsIcon,
     maltIcon,
@@ -19,7 +19,7 @@
     initialIcon,
     editIcon,
     checkmarkIcon,
-  } from './AppIcons'
+  } from './js/AppIcons'
 
   export let aroma;
   let currentAroma = '';

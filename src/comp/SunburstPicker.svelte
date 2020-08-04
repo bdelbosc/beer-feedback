@@ -6,7 +6,7 @@
 <script>
 	import {onMount} from 'svelte';
 	import SvgIcon from "./SvgIcon.svelte";
-	import {checkmarkIcon, editIcon} from './AppIcons'
+	import {checkmarkIcon, editIcon} from '../js/AppIcons'
 
 	export let value = '';
 	let selected = '';

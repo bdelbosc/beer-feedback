@@ -1,16 +1,15 @@
 <svelte:head>
   <script src="/hnl.mobileConsole.1.3.js"></script>
-  <!--  <meta name="viewport" content="width=320, initial-scale=1.0">-->
 </svelte:head>
 <script>
-  import Tabs from "./Tabs.svelte";
+  import Tabs from "./comp/Tabs.svelte";
   import Aroma from './Aroma.svelte';
   import Appearance from './Appearance.svelte';
   import Flavor from './Flavor.svelte';
-  import SvgIcon from "./SvgIcon.svelte";
+  import SvgIcon from "./comp/SvgIcon.svelte";
   import {
     nextIcon
-  } from './AppIcons'
+  } from './js/AppIcons'
 
   import {AromaDto} from './js/Aroma'
   import {AppearanceDto} from './js/Appearance'

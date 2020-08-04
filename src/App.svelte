@@ -18,9 +18,9 @@
 
   export let name = "Beer feedback";
 
-  let aromas = new AromaDto();
+  let aroma = new AromaDto();
   let appearance = new AppearanceDto();
-  let flavors = new FlavorDto();
+  let flavor = new FlavorDto();
 
   let start = new Date();
   let mytime = new Date();
@@ -37,11 +37,11 @@
     mytime = new Date();
     elapsed = Math.round((mytime - start) / 1000);
     let updated = false;
-    if (aromas.isUpdated()) {
-      tabItems[0].comment = getComment(aromas);
+    if (aroma.isUpdated()) {
+      tabItems[0].comment = getComment(aroma);
       updated = true;
       console.log("Saving aromas");
-      console.log(aromas);
+      console.log(aroma);
     }
     if (appearance.isUpdated()) {
       tabItems[1].comment = getComment(appearance);
@@ -49,11 +49,11 @@
       console.log("Saving appearance");
       console.log(appearance);
     }
-    if (flavors.isUpdated()) {
-      tabItems[2].comment = getComment(flavors);
+    if (flavor.isUpdated()) {
+      tabItems[2].comment = getComment(flavor);
       updated = true;
       console.log("Saving flavors");
-      console.log(flavors);
+      console.log(flavor);
     }
     if (mouthfeel.updated) {
       console.log("Saving mouthfeel");
@@ -98,9 +98,9 @@
   let currentTab = 1;
 
   function submit() {
-    console.log(aromas);
+    console.log(aroma);
     console.log(appearance);
-    console.log(flavors);
+    console.log(flavor);
     console.log(mouthfeel);
     console.log(overall);
   }
@@ -131,11 +131,11 @@
 <div class="main">
   <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
   {#if 1 === currentTab}
-    <Aroma aromas={aromas}/>
+    <Aroma aroma={aroma}/>
   {:else if 2 === currentTab}
     <Appearance appearance={appearance}/>
   {:else if 3 === currentTab}
-    <Flavor flavors={flavors}/>
+    <Flavor flavor={flavor}/>
   {:else if 4 === currentTab}
     Mouthfeel
   {:else if 5 === currentTab}

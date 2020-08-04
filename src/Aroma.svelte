@@ -21,7 +21,7 @@
     checkmarkIcon,
   } from './AppIcons'
 
-  export let aromas;
+  export let aroma;
   let currentAroma = '';
   let inappropriate = false;
   let initial = false;
@@ -65,11 +65,11 @@
   }
 
   function edit(index) {
-    currentAroma = 'Aroma/' + aromas.aromas[index].category + "/" + aromas.aromas[index].trait;
-    initial = aromas.aromas[index].initial;
-    inappropriate = aromas.aromas[index].inappropriate;
-    warms = aromas.aromas[index].warms;
-    level = aromas.aromas[index].level;
+    currentAroma = 'Aroma/' + aroma.aromas[index].category + "/" + aroma.aromas[index].trait;
+    initial = aroma.aromas[index].initial;
+    inappropriate = aroma.aromas[index].inappropriate;
+    warms = aroma.aromas[index].warms;
+    level = aroma.aromas[index].level;
     editEntry = index;
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
@@ -78,45 +78,45 @@
   function add() {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
-    var boom = currentAroma.split('/');
-    var category = boom[1].toLocaleLowerCase();
-    var aroma = boom[2];
-    for (var i = 3; i < boom.length; i++) {
-      aroma += "/";
-      aroma += boom[i];
+    const boom = currentAroma.split('/');
+    const category = boom[1].toLocaleLowerCase();
+    let description = boom[2];
+    for (let i = 3; i < boom.length; i++) {
+      description += "/";
+      description += boom[i];
     }
     if (editEntry >= 0) {
-      aromas.aromas[editEntry] = {
+      aroma.aromas[editEntry] = {
         level: level,
         category: category,
-        trait: aroma,
+        trait: description,
         initial: initial,
         warms: warms,
         inappropriate: inappropriate
       };
       editEntry = -1;
     } else {
-      aromas.aromas.push({
+      aroma.aromas.push({
         level: level,
         category: category,
-        trait: aroma,
+        trait: description,
         initial: initial,
         warms: warms,
         inappropriate: inappropriate
       });
-      aromas = aromas;
+      aroma = aroma
     }
-    aromas.aromas.sort(compare);
+    aroma.aromas.sort(compare);
     initial = false;
     warms = false;
     inappropriate = false;
-    aromas.updated = true;
+    aroma.updateHandler();
   }
 
   function clear(index) {
-    aromas.aromas.splice(index, 1);
-    aromas = aromas;
-    aromas.updated = true;
+    aroma.aromas.splice(index, 1);
+    aroma = aroma;
+    aroma.updateHandler();
   }
 
   $: selecting = currentAroma.length > 0;
@@ -194,24 +194,24 @@
 </div>
 
 <div id="list">
-  {#each aromas.aromas as aroma, i}
+  {#each aroma.aromas as item, i}
     <div class="item">
       <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
-      {#if aroma.category === 'hops'}
+      {#if item.category === 'hops'}
         <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="darkolivegreen"/></span>
-      {:else if aroma.category === 'malt'}
+      {:else if item.category === 'malt'}
         <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="orange"/></span>
-      {:else if aroma.category === 'fermentation'}
+      {:else if item.category === 'fermentation'}
         <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="chocolate"/></span>
-      {:else if aroma.category === 'flaws'}
+      {:else if item.category === 'flaws'}
         <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="darkorange"/></span>
       {:else}
         <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="darkgray"/></span>
       {/if}
-      <Level value={aroma.level}/>
-      <span on:click={() => edit(i)}>{aroma.trait}</span>
-      <AromaProperties inappropriate={aroma.inappropriate} initial={aroma.initial} warms={aroma.warms}/>
+      <Level value={item.level}/>
+      <span on:click={() => edit(i)}>{item.trait}</span>
+      <AromaProperties inappropriate={item.inappropriate} initial={item.initial} warms={item.warms}/>
     </div>
   {/each}
   <div class="buttons">

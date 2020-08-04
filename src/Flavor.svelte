@@ -23,7 +23,7 @@
     nextIcon
   } from './AppIcons'
 
-  export let flavors;
+  export let flavor;
 
   let currentFlavor = '';
   let inappropriate = false;
@@ -102,10 +102,10 @@
   }
 
   function edit(index) {
-    currentFlavor = 'Aroma/' + flavors.flavors[index].category + "/" + flavors.flavors[index].trait;
-    inappropriate = flavors.flavors[index].inappropriate;
-    aftertaste = flavors.flavors[index].aftertaste;
-    level = flavors.flavors[index].level;
+    currentFlavor = 'Aroma/' + flavor.flavors[index].category + "/" + flavor.flavors[index].trait;
+    inappropriate = flavor.flavors[index].inappropriate;
+    aftertaste = flavor.flavors[index].aftertaste;
+    level = flavor.flavors[index].level;
     editEntry = index;
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
@@ -122,7 +122,7 @@
       aroma += boom[i];
     }
     if (editEntry >= 0) {
-      flavors.flavors[editEntry] = {
+      flavor.flavors[editEntry] = {
         level: level,
         category: category,
         trait: aroma,
@@ -131,30 +131,30 @@
       };
       editEntry = -1;
     } else {
-      flavors.flavors.push({
+      flavor.flavors.push({
         level: level,
         category: category,
         trait: aroma,
         inappropriate: inappropriate,
         aftertaste: aftertaste
       });
-      flavors = flavors;
+      flavor = flavor;
     }
-    flavors.flavors.sort(compare);
+    flavor.flavors.sort(compare);
     // aromas = aromas;
     inappropriate = false;
     aftertaste = false;
-    flavors.updateHandler();
+    flavor.updateHandler();
   }
 
   function clear(index) {
-    flavors.flavors.splice(index, 1);
-    flavors = flavors;
-    flavors.updateHandler();
+    flavor.flavors.splice(index, 1);
+    flavor = flavor;
+    flavor.updateHandler();
   }
 
   function updateHandler() {
-    flavors.updateHandler()
+    flavor.updateHandler()
   }
 
   $: selecting = currentFlavor.length > 0;
@@ -223,7 +223,7 @@
 </div>
 
 <div id="list">
-  {#each flavors.flavors as item, i}
+  {#each flavor.flavors as item, i}
     <div class="item">
       <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
@@ -251,8 +251,8 @@
   </div>
 
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={flavors.bitterness} options={bitterness}
-                 bind:checked={flavors.bitternessInappropriate}>
+    <SelectCheck on:change={updateHandler} bind:value={flavor.bitterness} options={bitterness}
+                 bind:checked={flavor.bitternessInappropriate}>
       Bitterness
       <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
@@ -260,16 +260,16 @@
 
 
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={flavors.balance} options={balances}
-                 bind:checked={flavors.balanceInappropriate}>
+    <SelectCheck on:change={updateHandler} bind:value={flavor.balance} options={balances}
+                 bind:checked={flavor.balanceInappropriate}>
       Balance
       <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
   </div>
 
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={flavors.finish} options={dryness}
-                 bind:checked={flavors.finishInappropriate}>
+    <SelectCheck on:change={updateHandler} bind:value={flavor.finish} options={dryness}
+                 bind:checked={flavor.finishInappropriate}>
       Finish
       <span slot="checkbox">Inappropriate</span>
     </SelectCheck>

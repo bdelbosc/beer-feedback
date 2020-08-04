@@ -1,54 +1,14 @@
 <script>
   import Srm from "./Srm.svelte";
+  import {
+    HEAD_OPTIONS, RETENTION_OPTIONS, CLARITY_OPTIONS, HUE_OPTIONS, TEXTURE_OPTIONS
+  } from './js/Appearance';
 
   export let appearance;
-
-  const heads = [
-    {id: undefined, text: ''},
-    {id: 'white', text: `White`},
-    {id: 'ivory', text: `Ivory`},
-    {id: 'beige', text: `Beige`},
-    {id: 'tan', text: `Tan`},
-    {id: 'brown', text: `Brown`}
-  ];
-
-  const hues = [
-    {id: 'none', text: ''},
-    {id: 'copper', text: `Copper`},
-    {id: 'red', text: `Red`},
-    {id: 'garnet', text: `Garnet`},
-  ];
-
-  const clarities = [
-    {id: undefined, text: ''},
-    {id: 'brillant', text: `Brillant`},
-    {id: 'clear', text: `Clear`},
-    {id: 'hazy', text: `Hazy`},
-    {id: 'cloudy', text: `Cloudy`},
-    {id: 'opaque', text: `Opaque`}
-  ];
-
-  const retentions = [
-    {id: undefined, text: ''},
-    {id: 1, text: `Poor`},
-    {id: 3, text: `Average`},
-    {id: 5, text: `Long lasting`}
-  ];
-
-  const textures = [
-    {id: undefined, text: ''},
-    {id: 'thin', text: `Thin`},
-    {id: 'frothy', text: `Frothy`},
-    {id: 'creamy', text: `Creamy`},
-    {id: 'dense', text: `Dense`},
-    {id: 'rocky', text: `Rocky`},
-    {id: 'bigbubbles', text: `Big bubbles`}
-  ];
 
   function updateHandler() {
     appearance.updateHandler();
   }
-
 </script>
 <style>
   span.label {
@@ -59,8 +19,9 @@
   span.missing {
     float: left;
     width: 100px;
-    color:  orangered;
+    color: orangered;
   }
+
   select {
     width: 10em;
   }
@@ -70,7 +31,7 @@
 </div>
 <div><span class="label" id="clarity">Clarity</span>
   <select on:change={updateHandler} bind:value={appearance.clarity}>
-    {#each clarities as item}
+    {#each CLARITY_OPTIONS as item}
       <option value={item.id}>
         {item.text}
       </option>
@@ -79,7 +40,7 @@
 </div>
 <div><span class="label">Hue</span>
   <select on:change={() => updateHandler} bind:value={appearance.hue}>
-    {#each hues as item}
+    {#each HUE_OPTIONS as item}
       <option value={item.id}>
         {item.text}
       </option>
@@ -88,7 +49,7 @@
 </div>
 <div><span class="label">Head</span>
   <select on:change={updateHandler} bind:value={appearance.head}>
-    {#each heads as item}
+    {#each HEAD_OPTIONS as item}
       <option value={item.id}>
         {item.text}
       </option>
@@ -97,7 +58,7 @@
 </div>
 <div><span class="label">Retention</span>
   <select on:change={updateHandler} bind:value={appearance.retention}>
-    {#each retentions as item}
+    {#each RETENTION_OPTIONS as item}
       <option value={item.id}>
         {item.text}
       </option>
@@ -106,7 +67,7 @@
 </div>
 <div><span class="label">Texture</span>
   <select on:change={updateHandler} bind:value={appearance.texture}>
-    {#each textures as item}
+    {#each TEXTURE_OPTIONS as item}
       <option value={item.id}>
         {item.text}
       </option>

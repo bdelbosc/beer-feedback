@@ -7,7 +7,7 @@
   import {onMount} from 'svelte';
   import SvgIcon from "./SvgIcon.svelte";
   import SelectCheck from "./SelectCheck.svelte";
-
+  import {BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS} from './js/Flavor';
   import {
     hopsIcon,
     maltIcon,
@@ -33,38 +33,6 @@
   let editEntry = -1;
 
   let mounted = false;
-
-  const bitterness = [
-    {id: undefined, text: ''},
-    {id: 0, text: 'None'},
-    {id: 1, text: `Low`},
-    {id: 2, text: 'Medium Low'},
-    {id: 3, text: 'Medium'},
-    {id: 4, text: 'Medium-High'},
-    {id: 5, text: 'High'}
-  ];
-
-  const balances = [
-    {id: undefined, text: ''},
-    {id: 'malty', text: `Malty`},
-    {id: 'slightly-malt', text: `Slightly Malty`},
-    {id: 'even', text: `Even`},
-    {id: 'slightly-hoppy', text: `Slightly Hoppy`},
-    {id: 'hoppy', text: `Hoppy`},
-    {id: 'sligthly-sour', text: `Slightly Sour`},
-    {id: 'sour', text: `Sour`}
-  ];
-
-  const dryness = [
-    {id: undefined, text: ''},
-    {id: 0, text: `Bone Dry`},
-    {id: 1, text: `Dry`},
-    {id: 2, text: `Balanced`},
-    {id: 3, text: `Somewhat sweet`},
-    {id: 4, text: `Sweet`},
-    {id: 5, text: `Cloying`},
-  ];
-
 
   onMount(async () => {
     document.getElementById('picker').hidden = true;
@@ -251,7 +219,7 @@
   </div>
 
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={flavor.bitterness} options={bitterness}
+    <SelectCheck on:change={updateHandler} bind:value={flavor.bitterness} options={BITTERNESS_OPTIONS}
                  bind:checked={flavor.bitternessInappropriate}>
       Bitterness
       <span slot="checkbox">Inappropriate</span>
@@ -260,7 +228,7 @@
 
 
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={flavor.balance} options={balances}
+    <SelectCheck on:change={updateHandler} bind:value={flavor.balance} options={BALANCE_OPTIONS}
                  bind:checked={flavor.balanceInappropriate}>
       Balance
       <span slot="checkbox">Inappropriate</span>
@@ -268,7 +236,7 @@
   </div>
 
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={flavor.finish} options={dryness}
+    <SelectCheck on:change={updateHandler} bind:value={flavor.finish} options={DRYNESS_OPTIONS}
                  bind:checked={flavor.finishInappropriate}>
       Finish
       <span slot="checkbox">Inappropriate</span>

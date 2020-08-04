@@ -1,5 +1,37 @@
-const fields = ['bitterness', 'balance', 'finish'];
 import {BaseCategory} from './BaseCategory';
+
+const fields = ['bitterness', 'balance', 'finish'];
+
+const BITTERNESS_OPTIONS = [
+  {id: undefined, text: ''},
+  {id: 0, text: 'None'},
+  {id: 1, text: `Low`},
+  {id: 2, text: 'Medium Low'},
+  {id: 3, text: 'Medium'},
+  {id: 4, text: 'Medium-High'},
+  {id: 5, text: 'High'}
+];
+
+const BALANCE_OPTIONS = [
+  {id: undefined, text: ''},
+  {id: 'malty', text: `Malty`},
+  {id: 'slightly-malt', text: `Slightly Malty`},
+  {id: 'even', text: `Even`},
+  {id: 'slightly-hoppy', text: `Slightly Hoppy`},
+  {id: 'hoppy', text: `Hoppy`},
+  {id: 'sligthly-sour', text: `Slightly Sour`},
+  {id: 'sour', text: `Sour`}
+];
+
+const DRYNESS_OPTIONS = [
+  {id: undefined, text: ''},
+  {id: 0, text: `Bone Dry`},
+  {id: 1, text: `Dry`},
+  {id: 2, text: `Balanced`},
+  {id: 3, text: `Somewhat sweet`},
+  {id: 4, text: `Sweet`},
+  {id: 5, text: `Cloying`},
+];
 
 class Flavor extends BaseCategory {
 
@@ -47,4 +79,4 @@ class Flavor extends BaseCategory {
   }
 }
 
-export {Flavor as FlavorDto}
+export {Flavor as FlavorDto, BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS}

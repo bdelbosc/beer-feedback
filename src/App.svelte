@@ -1,4 +1,5 @@
 <svelte:head>
+  <script src="/hnl.mobileConsole.1.3.js"></script>
   <!--  <meta name="viewport" content="width=320, initial-scale=1.0">-->
 </svelte:head>
 <script>
@@ -11,9 +12,7 @@
     nextIcon
   } from './AppIcons'
 
-  import {
-    isAppearanceCompleted
-  } from './main.js'
+  import {AppearanceDto} from './js/Appearance'
 
   export let name = "Beer feedback";
   let start = new Date();
@@ -33,12 +32,10 @@
       updated = true;
       console.log(tabItems);
     }
-    if (appearance.updated) {
-      appearance.updated = false;
-      appearance.completed = isAppearanceCompleted(appearance);
+    if (appearance.isUpdated()) {
+      tabItems[1].completed = appearance.isCompleted();
       console.log("Saving appearance");
       console.log(appearance);
-      tabItems[1].completed = appearance.completed;
     }
     if (flavors.updated) {
       console.log("Saving flavors");
@@ -105,13 +102,7 @@
     ]
   };
 
-  let appearance = {
-    'type': 'appearance',
-    'completed': false,
-    'updated': false,
-    'laces': false,
-    'legs': false,
-  };
+  let appearance = new AppearanceDto();
 
   let flavors = {
     'type': 'flavors',
@@ -137,7 +128,7 @@
 
   let tabItems = [
     {label: "Aroma", shortLabel: "A", value: 1, completed: aromas.completed},
-    {label: "Appearance", shortLabel: "A", value: 2, completed: appearance.completed},
+    {label: "Appearance", shortLabel: "A", value: 2, completed: appearance.isCompleted()},
     {label: "Flavors", shortLabel: "F", value: 3, completed: flavors.completed},
     {label: "Moothfeel", shortLabel: "M", value: 4, completed: mouthfeel.completed},
     {label: "Overall", shortLabel: "O", value: 5, completed: overall.completed}

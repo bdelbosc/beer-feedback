@@ -8,14 +8,3 @@ const app = new App({
 });
 
 export default app;
-
-export function isAppearanceCompleted(appearance) {
-	if (appearance.head === undefined) return false;
-	if (appearance.clarity === undefined) return false;
-	if (appearance.hue === undefined) return false;
-	if (appearance.retention === undefined) return false;
-	if (appearance.texture === undefined) return false;
-	if (appearance.legs === undefined) return false;
-	if (appearance.laces === undefined) return false;
-	return true;
-}

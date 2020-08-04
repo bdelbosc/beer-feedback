@@ -46,10 +46,12 @@
   ];
 
   const changeHandler = function () {
-    appearance.updated = true;
+    appearance.update();
   };
 
+  let comment;
 
+  $: comment = appearance.getRequired();
 </script>
 <style>
   span.label {
@@ -61,7 +63,8 @@
     width: 10em;
   }
 </style>
-<div><span class="label">Color</span>
+<div class="comment">{comment}</div>
+<div on:click={changeHandler}><span class="label">Color</span>
   <Srm bind:value={appearance['color']}/>
 </div>
 <div><span class="label">Clarity</span>
@@ -110,8 +113,8 @@
   </select>
 </div>
 <div>
-  <label><span class="label">Laces</span><input on:change={changeHandler} type=checkbox
-                                                bind:checked={appearance.laces}></label>
-  <label><span class="label">Legs</span><input on:change={changeHandler} type=checkbox
-                                               bind:checked={appearance.legs}></label>
+  <label for="laces"><span class="label">Laces</span><input id="laces" on:change={changeHandler} type=checkbox
+                                                            bind:checked={appearance.laces}></label>
+  <label for="legs"><span class="label">Legs</span><input id="legs" on:change={changeHandler} type=checkbox
+                                                          bind:checked={appearance.legs}></label>
 </div>

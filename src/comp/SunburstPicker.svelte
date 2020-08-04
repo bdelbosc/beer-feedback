@@ -1,5 +1,5 @@
 <svelte:head>
-	<script src="https://cdn.plot.ly/plotly-latest.min.js" type="text/javascript" on:load={plotlyLoaded}></script>
+	<script src="/plotly-latest.min.js" type="text/javascript" on:load={plotlyLoaded}></script>
 </svelte:head>
 
 

@@ -1,5 +1,5 @@
 <svelte:head>
-  <script src="/hnl.mobileConsole.1.3.js"></script>
+<!--  <script src="/hnl.mobileConsole.1.3.js"></script>-->
 </svelte:head>
 <script>
   import Tabs from "./comp/Tabs.svelte";

@@ -225,8 +225,7 @@
       <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
   </div>
-
-</div>
-<div>
-  <Score on:change={updateHandler} bind:value={flavor.score} max="20" min="5">Score</Score>
+  <div>
+    <Score on:change={updateHandler} bind:value={flavor.score} max="20" min="5">Score</Score>
+  </div>
 </div>

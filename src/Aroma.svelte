@@ -206,8 +206,7 @@
       <span title="Add new Aroma"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
     </button>
   </div>
-
-</div>
-<div>
-  <Score on:change={updateHandler} bind:value={aroma.score} max="12" min="4">Score</Score>
+  <div>
+    <Score on:change={updateHandler} bind:value={aroma.score} max="12" min="4">Score</Score>
+  </div>
 </div>

@@ -6,6 +6,7 @@ class Appearance extends BaseCategory {
   constructor() {
     super();
     // fields with default values
+    this.hue = 'none';
     this.laces = false;
     this.legs = false;
   }

@@ -12,11 +12,13 @@
     nextIcon
   } from './AppIcons'
 
+  import {AromaDto} from './js/Aroma'
   import {AppearanceDto} from './js/Appearance'
   import {FlavorDto} from './js/Flavor'
 
   export let name = "Beer feedback";
 
+  let aromas = new AromaDto();
   let appearance = new AppearanceDto();
   let flavors = new FlavorDto();
 
@@ -28,20 +30,18 @@
     if (item.isCompleted()) {
       return '';
     }
-    return "Missing: " + item.getRequired();
+    return 'Comment on: ' + item.getRequired().join(', ') + '.';
   }
 
   const interval = setInterval(() => {
     mytime = new Date();
     elapsed = Math.round((mytime - start) / 1000);
     let updated = false;
-    if (aromas.updated) {
+    if (aromas.isUpdated()) {
+      tabItems[0].comment = getComment(aromas);
+      updated = true;
       console.log("Saving aromas");
       console.log(aromas);
-      aromas.updated = false;
-      tabItems[0].comment = 'not impl';
-      console.log(tabItems);
-      updated = true;
     }
     if (appearance.isUpdated()) {
       tabItems[1].comment = getComment(appearance);
@@ -75,46 +75,6 @@
 
     // console.log(appearance);
   }, 3000);
-
-  let aromas = {
-    'type': 'aromas',
-    'completed': true,
-    'updated': false,
-    "aromas": [
-      {
-        "trait": "Chocolate",
-        "category": "malt",
-        "inappropriate": true,
-        "level": 3,
-        "initial": true,
-        "warms": false
-      },
-      {
-        "trait": "Framboise",
-        "category": "hops",
-        "inappropriate": false,
-        "level": 5,
-        "initial": false,
-        "warms": true
-      },
-      {
-        "trait": "Esters/Pear",
-        "category": "fermentation",
-        "level": 2
-      },
-      {
-        "trait": "A long description",
-        "category": "others",
-        "level": 0
-      },
-      {
-        "trait": "Oxydation/Cherry",
-        "category": "flaws",
-        "level": 1
-      }
-    ]
-  };
-
 
   let mouthfeel = {
     'type': 'mouthfeel',
@@ -154,6 +114,7 @@
 
 
 </script>
+
 
 <style>
   div.main {

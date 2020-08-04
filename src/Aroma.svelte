@@ -19,10 +19,9 @@
     initialIcon,
     editIcon,
     checkmarkIcon,
-    nextIcon
   } from './AppIcons'
 
-  export let aromas = undefined;
+  export let aromas;
   let currentAroma = '';
   let inappropriate = false;
   let initial = false;
@@ -30,12 +29,10 @@
   let level = 3;
   let selecting = true;
   let editEntry = -1;
-  let comment = '';
 
   onMount(async () => {
     document.getElementById('picker').hidden = true;
     document.getElementById('list').hidden = false;
-    computeComment(aromas.aromas);
   });
 
   function getCategoryRank(category) {
@@ -122,40 +119,8 @@
     aromas.updated = true;
   }
 
-  function computeComment(aromaList) {
-    var categories = [];
-    for (var i = 0; i < aromaList.length; i++) {
-      if (!categories.includes((aromaList[i].category))) {
-        categories.push(aromaList[i].category);
-      }
-    }
-    var text = '';
-    if (!categories.includes("malt")) {
-      text += 'malt';
-    }
-    if (!categories.includes("hops")) {
-      if (text) {
-        text += ', ';
-      }
-      text += "hops";
-    }
-    if (!categories.includes("fermentation")) {
-      if (text) {
-        text += ', ';
-      }
-      text += 'fermentation';
-    }
-    if (text) {
-      aromas.completed = false;
-      return "Please, add " + text + " and others aromatics";
-    }
-    aromas.completed = true;
-    return "ok";
-  }
-
   $: selecting = currentAroma.length > 0;
 
-  $: comment = computeComment(aromas.aromas);
 </script>
 <style>
   body {
@@ -179,12 +144,6 @@
 
   button.cancel {
     float: right;
-  }
-
-  .comment {
-    clear: both;
-    font-style: italic;
-    color: orangered;
   }
 
   .buttons, .item {
@@ -235,9 +194,6 @@
 </div>
 
 <div id="list">
-  {#if comment !== "ok"}
-    <div class="comment">{comment}</div>
-  {/if}
   {#each aromas.aromas as aroma, i}
     <div class="item">
       <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>

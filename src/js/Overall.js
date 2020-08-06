@@ -48,18 +48,15 @@ class Overall extends BaseCategory {
   }
 
   checkCompletion() {
-    console.log("checkCompletion mouthfeel");
     this.required.length = 0;
     // check other props
     for (let i = 0; i < fields.length; i++) {
       if (!this.hasOwnProperty(fields[i])) {
         this.required.push(fields[i]);
-        console.log(fields[i] + " no props");
         continue;
       }
       if (this[fields[i]] === undefined) {
         this.required.push(fields[i]);
-        console.log(fields[i] + " undefined");
       }
     }
     this.completed = (this.required.length === 0);

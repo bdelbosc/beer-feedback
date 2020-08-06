@@ -9,17 +9,14 @@ class Aroma extends BaseCategory {
   }
 
   checkCompletion() {
-    console.log("checkCompletion aroma");
     this.required.length = 0;
     for (let i = 0; i < fields.length; i++) {
       if (!this.hasOwnProperty(fields[i])) {
         this.required.push(fields[i]);
-        console.log(fields[i] + " no props");
         continue;
       }
       if (this[fields[i]] === undefined) {
         this.required.push(fields[i]);
-        console.log(fields[i] + " undefined");
       }
     }
     // check for aromas categories

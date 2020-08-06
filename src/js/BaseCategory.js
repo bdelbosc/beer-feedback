@@ -42,8 +42,6 @@ class BaseCategory {
 
   updateHandler() {
     this.updated = true;
-    console.log("Update");
-    console.log(this);
   }
 
   checkCompletion() {

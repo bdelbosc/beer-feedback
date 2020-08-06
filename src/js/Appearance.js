@@ -13,9 +13,12 @@ const HEAD_OPTIONS = [
 
 const HUE_OPTIONS = [
   {id: 'none', text: ''},
+  {id: 'orange', text: 'Orange'},
   {id: 'copper', text: `Copper`},
   {id: 'red', text: `Red`},
+  {id: 'ruby', text: `Ruby`},
   {id: 'garnet', text: `Garnet`},
+  {id: 'amber', text: `Amber`},
 ];
 
 const CLARITY_OPTIONS = [
@@ -29,8 +32,11 @@ const CLARITY_OPTIONS = [
 
 const RETENTION_OPTIONS = [
   {id: undefined, text: ''},
+  {id: 0, text: `None`},
   {id: 1, text: `Poor`},
+  {id: 2, text: `Less`},
   {id: 3, text: `Average`},
+  {id: 4, text: `Good`},
   {id: 5, text: `Long lasting`}
 ];
 

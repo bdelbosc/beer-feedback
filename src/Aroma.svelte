@@ -192,9 +192,9 @@
       {:else if item.category === 'fermentation'}
         <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="chocolate"/></span>
       {:else if item.category === 'flaws'}
-        <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="darkorange"/></span>
+        <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="OrangeRed"/></span>
       {:else}
-        <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="darkgray"/></span>
+        <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="LightBlue"/></span>
       {/if}
       <Level value={item.level}/>
       <span on:click={() => edit(i)}>{item.trait}</span>

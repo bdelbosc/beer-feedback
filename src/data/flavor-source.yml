@@ -1,0 +1,183 @@
+- Malt:
+    - Grainy:
+        - Husky
+        - Oat
+        - Rice
+    - Bready:
+        - Bread
+        - Bread Crust
+        - Sourdough
+        - Biscuit
+        - Craker
+        - Toast
+    - Nutty:
+        - Hazelnut
+        - Almond
+        - Walnut
+    - Sweety:
+        - Honey
+        - Caramel
+        - Molasse
+        - Toffee
+        - Chocolate
+    - Roasty:
+        - Coffee
+        - Burnt Sugar
+        - Smoke
+    - Fruity:
+        - Raisin
+        - Prune
+        - Date
+    - Not Found | _1
+- Hops:
+    - Citrusy:
+        - Grapefruit
+        - Orange
+        - Mandarin
+        - Tangerine
+        - Lemon
+        - Lime
+    - Tropical | _2:
+        - Papaya
+        - Pineapple
+        - Mango
+        - Passion Fruit
+        - Lychee
+    - Floral:
+        - Perfumey
+        - Rose
+        - Geranium
+        - Lavender
+        - Jasmin
+        - Chamomile
+    - Herbal:
+        - Hay
+        - Thyme
+        - Minty
+        - Grassy
+        - Oregano
+        - Lemongrass
+    - Woody:
+        - Pine
+        - Resinous
+        - Eucalyptus
+        - Marijuana
+    - Berry | _2:
+        - Grape
+        - Raspberry
+    - Earthy | _2:
+        - Cheesy
+        - Catty
+    - Spicy
+    - Not Found | _2
+- Fermentation:
+    - Esters:
+        - Pear
+        - Banana
+        - Ripe Apple
+        - Bubblegum
+        - Apricot
+        - Quince
+        - Berry
+        - Citrus
+        - Dried Fruit  | _1
+        - Grape
+    - Phenols:
+        - Clove
+        - Black Pepper
+        - White Pepper
+        - Nutmeg
+        - Hot Spicy | Capsicum
+    - Wild:
+        - Brett
+        - Barnyard
+        - Musty | _1
+        - Soil | _1
+        - Beet
+    - Clean | Clean Fermentation
+- Others:
+    - Acid:
+        - Lactic
+        - Acetic | Vinegar
+        - Cidery
+        - Citric
+    - Mineral:
+        - Gypsum | plaster
+        - Chalky
+        - Salty
+    - Sugar:
+        - Turbinado
+        - Molasse | _3
+    - Spicy | _3:
+        - Coriander
+        - Celery
+        - Ginger
+        - Licorice
+        - Fennel
+        - Star anise
+        - Pepper
+        - Grains of paradise
+        - Vanilla
+    - Vinous | _3:
+        - Maderized
+        - Winey | _4
+    - Wood:
+        - Oak
+        - Rosewood
+- Flaws:
+    - Acetaldehyde:
+        - Fresh-cut Green Apple
+        - Notes of Grass
+        - Notes of Green leaves
+        - Latex paint
+    - Alcoholic | _3:
+        - Spicy | _4
+        - Vinous character
+        - Fusel
+    - Diacetyl:
+        - Artificial Butter
+        - Butterscotch | _3
+        - Toffee
+    - DMS/Vegetal:
+        - Cooked Corn
+        - Cooked Celery
+        - Cabbage
+        - Cooked Onion
+    - Estery:
+        - Rose
+        - Fruits | _3
+    - Grassy | _1:
+        - Fresh cut grass
+    - Ligth-Struck
+    - Earthy:
+        - Mushroom
+        - Beet | _2
+        - Moldy
+    - Oxidized:
+        - Stale
+        - Winy/vinous
+        - Cardboard
+        - Sherry like
+    - Phenolic:
+        - Spicy | _5
+        - Smoky
+        - Plastic
+        - Adhesive strip
+        - Medicinal
+    - Solvent:
+        - Fusel | _3
+        - Acetone
+        - Lacquer thinner
+    - Sulfur:
+        - Rotten Eggs
+        - Burning Matches
+    - Vegetal:
+        - Cooked
+        - Canned
+        - Rotten
+        - Cabbage, Onion, Celery
+    - Yeasty:
+        - Bready | _1
+        - Sulfury
+        - Yeast like
+    - Not Found | _3

@@ -1,5 +1,5 @@
 <svelte:head>
-<!--  <script src="/hnl.mobileConsole.1.3.js"></script>-->
+  <!--  <script src="/hnl.mobileConsole.1.3.js"></script>-->
 </svelte:head>
 <script>
   import Tabs from "./comp/Tabs.svelte";
@@ -21,7 +21,6 @@
 
   export const name = "Beer feedback";
 
-  let totalScore;
 
   let aroma = new AromaDto();
   let appearance = new AppearanceDto();
@@ -29,6 +28,7 @@
   let mouthfeel = new MouthfeelDto();
   let overall = new OverallDto();
 
+  let totalScore;
   let start = new Date();
   let mytime = new Date();
   let elapsed = 0;

@@ -39,15 +39,15 @@
   </SelectCheck>
 </div>
 <div>
-  <SelectCheck on:change={updateHandler} bind:value={overall.intangible} options={INTANGIBLE_OPTIONS}
-               noCheck="true">
-    Intangible
-  </SelectCheck>
-</div>
-<div>
   <SelectCheck on:change={updateHandler} bind:value={overall.drinkability} options={DRINKABILITY_OPTIONS}
                noCheck="true">
     Drinkability
+  </SelectCheck>
+</div>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={overall.intangible} options={INTANGIBLE_OPTIONS}
+               noCheck="true">
+    Intangible
   </SelectCheck>
 </div>
 <div>

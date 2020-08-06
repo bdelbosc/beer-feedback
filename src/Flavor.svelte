@@ -179,15 +179,15 @@
       <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
       {#if item.category === 'hops'}
-        <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="darkolivegreen"/></span>
+        <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="YellowGreen"/></span>
       {:else if item.category === 'malt'}
-        <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="orange"/></span>
+        <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="#FFC300"/></span>
       {:else if item.category === 'fermentation'}
-        <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="chocolate"/></span>
+        <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="BurlyWood"/></span>
       {:else if item.category === 'flaws'}
-        <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="darkorange"/></span>
+        <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="OrangeRed"/></span>
       {:else}
-        <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="darkgray"/></span>
+        <span title="Others"><SvgIcon d={moreIcon} size="1em" boxSize=32 fill="LightBlue"/></span>
       {/if}
       <Level value={item.level}/>
       <span on:click={() => edit(i)}>{item.trait}</span>

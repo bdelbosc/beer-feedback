@@ -14,10 +14,9 @@ const ACCURACY_OPTIONS = [
 
 const TECHNICAL_OPTIONS = [
   {id: undefined, text: ''},
-  {id: 0, text: 'Significant flaws'},
-  {id: 1, text: `Many flaws`},
+  {id: 1, text: 'Significant Flaws'},
   {id: 3, text: 'Few Flaws'},
-  {id: 4, text: 'Flaws for the style'},
+  {id: 4, text: 'Minor Flaw'},
   {id: 5, text: 'Flawless'}
 ];
 
@@ -25,15 +24,14 @@ const INTANGIBLE_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'Lifeless'},
   {id: 1, text: `Poor`},
-  {id: 2, text: `Average poor`},
-  {id: 3, text: 'Average'},
-  {id: 4, text: 'Nice'},
+  {id: 2, text: `Average`},
+  {id: 3, text: 'Good'},
+  {id: 4, text: 'Great'},
   {id: 5, text: 'Wonderful'}
 ];
 
 const DRINKABILITY_OPTIONS = [
   {id: undefined, text: ''},
-  {id: 1, text: "No idea"},
   {id: 2, text: `I would finish this sample`},
   {id: 3, text: `I would drink a pint`},
   {id: 4, text: 'I would pay money'},

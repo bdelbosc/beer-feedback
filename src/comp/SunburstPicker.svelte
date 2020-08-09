@@ -21,11 +21,13 @@
 
 	function plotlyLoaded() {
 		let plotDiv = document.getElementById(plotId);
-		// plotDiv.hidden = false;
+		// plotDiv.hidden = false
+		data[0]["level"] = '67030865';
 		Plotly.newPlot(plotDiv, data, layout, {showSendToCloud: false});
 		plotDiv.on('plotly_sunburstclick', function (data) {
 			selected = data["points"][0]["currentPath"] + data["points"][0]["label"];
 		});
+		console.log(plotDiv.data);
 	}
 
 	function validate() {
@@ -45,6 +47,12 @@
 				document.getElementById(plotId + "Selected").hidden = true;
 				document.getElementById(plotId + "Edit").hidden = false;
 				// TODO here we want to reset the plot or select the root element
+				let plotDiv = document.getElementById(plotId);
+				if (plotDiv.data !== undefined) {
+					console.log("REDRAW");
+					data[0].level = '';
+					Plotly.redraw(plotDiv, data, layout);
+				}
 			} else {
 				document.getElementById(plotId + "Selected").hidden = false;
 				document.getElementById(plotId + "Edit").hidden = true;

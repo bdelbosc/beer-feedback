@@ -21,7 +21,6 @@
 
   export const name = "Beer feedback";
 
-
   let aroma = new AromaDto();
   let appearance = new AppearanceDto();
   let flavor = new FlavorDto();

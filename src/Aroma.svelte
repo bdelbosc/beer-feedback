@@ -145,11 +145,6 @@
     </button>
   </SunburstPicker>
   {#if selecting}
-    <div>
-      Intensity:
-      <Level edit=true bind:value={level}/>
-    </div>
-
     <div class="inputRow">
       <input type="checkbox" id="inappropriate" bind:checked={inappropriate}/>
       <label for="inappropriate">
@@ -169,6 +164,11 @@
       <label for="warms">
         <SvgIcon d={warmsIcon}/>
         When the beer warms</label>
+    </div>
+
+    <div>
+      Intensity:
+      <Level edit=true bind:value={level}/>
     </div>
 
     <button on:click={() => add()}>

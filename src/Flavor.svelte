@@ -145,11 +145,6 @@
     </button>
   </SunburstPicker>
   {#if selecting}
-    <div>
-      Intensity:
-      <Level edit=true bind:value={level}/>
-    </div>
-
     <div class="inputRow">
       <input type="checkbox" id="inappropriate" bind:checked={inappropriate}/>
       <label for="inappropriate">
@@ -162,6 +157,11 @@
       <label for="aftertaste">
         <SvgIcon d={aftertasteIcon} fill="orange"/>
         Aftertaste</label>
+    </div>
+
+    <div>
+      Intensity:
+      <Level edit=true bind:value={level}/>
     </div>
 
     <button on:click={() => add()}>
@@ -205,7 +205,6 @@
     <SelectCheck on:change={updateHandler} bind:value={flavor.bitterness} options={BITTERNESS_OPTIONS}
                  bind:checked={flavor.bitternessInappropriate}>
       Bitterness
-      <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
   </div>
 
@@ -214,7 +213,6 @@
     <SelectCheck on:change={updateHandler} bind:value={flavor.balance} options={BALANCE_OPTIONS}
                  bind:checked={flavor.balanceInappropriate}>
       Balance
-      <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
   </div>
 
@@ -222,7 +220,6 @@
     <SelectCheck on:change={updateHandler} bind:value={flavor.finish} options={DRYNESS_OPTIONS}
                  bind:checked={flavor.finishInappropriate}>
       Finish
-      <span slot="checkbox">Inappropriate</span>
     </SelectCheck>
   </div>
   <div>

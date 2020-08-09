@@ -1,10 +1,13 @@
 <script>
+  import SvgIcon from "./SvgIcon.svelte";
+
   export let value = undefined;
   export let checked = false;
   export let options = [];
   export let noCheck = false;
 
   import {createEventDispatcher} from 'svelte';
+  import {alertIcon, checkmarkIcon} from '../js/AppIcons'
 
   const dispatch = createEventDispatcher();
 
@@ -13,15 +16,15 @@
     dispatch('change');
   }
 
+  function check() {
+    // propagate change event
+    checked = !checked;
+  }
+
 </script>
 <style>
   select {
     width: 10em;
-  }
-
-  span.check {
-    display: flex;
-    flex-direction: row;
   }
 
   span.label {
@@ -29,9 +32,6 @@
     width: 100px;
   }
 
-  input#checkbox {
-    margin-right: 5px;
-  }
 </style>
 
 <span class="label"><slot/></span>
@@ -43,12 +43,11 @@
   {/each}
 </select>
 {#if !noCheck}
-<br/>
-<span class="check">
-  <span class="label">&nbsp</span>
-  <label>
-    <input on:change={eventHandler} type="checkbox" bind:checked={checked}/>
-    <slot name="checkbox"/>
-  </label>
-</span>
+  <button on:change={eventHandler} type="checkbox" on:click={() => check()}>
+    {#if checked}
+      <span title="Inappropriate"><SvgIcon d={alertIcon} fill="orange"/></span>
+    {:else}
+      <span title="Ok"><SvgIcon d={checkmarkIcon} fill="lightgray"/></span>
+    {/if}
+  </button>
 {/if}

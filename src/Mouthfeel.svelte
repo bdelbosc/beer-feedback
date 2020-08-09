@@ -31,35 +31,30 @@
   <SelectCheck on:change={updateHandler} bind:value={mouthfeel.body} options={BODY_OPTIONS}
                bind:checked={mouthfeel.bodyInappropriate}>
     Body
-    <span slot="checkbox">Inappropriate</span>
   </SelectCheck>
 </div>
 <div>
   <SelectCheck on:change={updateHandler} bind:value={mouthfeel.carbonation} options={CARBONATION_OPTIONS}
                bind:checked={mouthfeel.carbonationInappropriate}>
     Carbonation
-    <span slot="checkbox">Inappropriate</span>
   </SelectCheck>
 </div>
 <div>
   <SelectCheck on:change={updateHandler} bind:value={mouthfeel.warmth} options={WARMTH_OPTIONS}
                bind:checked={mouthfeel.warmthInappropriate}>
     Warmth
-    <span slot="checkbox">Inappropriate</span>
   </SelectCheck>
 </div>
 <div>
   <SelectCheck on:change={updateHandler} bind:value={mouthfeel.creaminess} options={CREAMINESS_OPTIONS}
                bind:checked={mouthfeel.creaminessInappropriate}>
     Creaminess
-    <span slot="checkbox">Inappropriate</span>
   </SelectCheck>
 </div>
 <div>
   <SelectCheck on:change={updateHandler} bind:value={mouthfeel.astringency} options={ASTRINGENCY_OPTIONS}
                bind:checked={mouthfeel.astringencyInappropriate}>
     Astringency
-    <span slot="checkbox">Inappropriate</span>
   </SelectCheck>
 </div>
 <div>

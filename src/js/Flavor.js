@@ -6,7 +6,7 @@ const BITTERNESS_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'None'},
   {id: 1, text: `Low`},
-  {id: 2, text: 'Medium Low'},
+  {id: 2, text: 'Medium-Low'},
   {id: 3, text: 'Medium'},
   {id: 4, text: 'Medium-High'},
   {id: 5, text: 'High'}

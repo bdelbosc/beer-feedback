@@ -30,7 +30,7 @@
 <div>
   <SelectCheck on:change={updateHandler} bind:value={mouthfeel.body} options={BODY_OPTIONS}
                bind:checked={mouthfeel.bodyInappropriate}>
-    Mouthfeel
+    Body
     <span slot="checkbox">Inappropriate</span>
   </SelectCheck>
 </div>

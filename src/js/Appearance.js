@@ -12,7 +12,7 @@ const HEAD_OPTIONS = [
 ];
 
 const HUE_OPTIONS = [
-  {id: 'none', text: ''},
+  {id: 'none', text: 'None'},
   {id: 'orange', text: 'Orange'},
   {id: 'copper', text: `Copper`},
   {id: 'red', text: `Red`},
@@ -34,7 +34,7 @@ const RETENTION_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: `None`},
   {id: 1, text: `Poor`},
-  {id: 2, text: `Less`},
+  {id: 2, text: `Medium-Low`},
   {id: 3, text: `Average`},
   {id: 4, text: `Good`},
   {id: 5, text: `Long lasting`}

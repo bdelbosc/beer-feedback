@@ -4,10 +4,10 @@ const fields = ['accuracy', 'technical', 'intangible', 'drinkability', 'feedback
 
 const ACCURACY_OPTIONS = [
   {id: undefined, text: ''},
-  {id: 0, text: `Enter in a wrong category`},
-  {id: 1, text: 'Not to style'},
-  {id: 2, text: 'Style deficiency'},
-  {id: 3, text: 'Almost on target'},
+  {id: 0, text: `Wrong Category`},
+  {id: 1, text: 'Not to Style'},
+  {id: 2, text: 'Style Deficiency'},
+  {id: 3, text: 'Almost on Target'},
   {id: 4, text: 'Classic'},
   {id: 5, text: 'World class'}
 ];
@@ -16,14 +16,14 @@ const TECHNICAL_OPTIONS = [
   {id: undefined, text: ''},
   {id: 1, text: 'Significant Flaws'},
   {id: 3, text: 'Few Flaws'},
-  {id: 4, text: 'Minor Flaw'},
+  {id: 4, text: 'Minor Flaws'},
   {id: 5, text: 'Flawless'}
 ];
 
 const INTANGIBLE_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'Lifeless'},
-  {id: 1, text: `Poor`},
+  {id: 1, text: `Missing Complexity`},
   {id: 2, text: `Average`},
   {id: 3, text: 'Good'},
   {id: 4, text: 'Great'},

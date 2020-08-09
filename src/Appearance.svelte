@@ -4,6 +4,7 @@
     HEAD_OPTIONS, RETENTION_OPTIONS, CLARITY_OPTIONS, HUE_OPTIONS, TEXTURE_OPTIONS
   } from './js/Appearance';
   import Score from "./comp/Score.svelte";
+  import SelectCheck from "./comp/SelectCheck.svelte";
 
   export let appearance;
 
@@ -16,59 +17,41 @@
     float: left;
     width: 100px;
   }
-
-  select {
-    width: 10em;
-  }
 </style>
 <div on:click={updateHandler}><span class="label" id="color">Color</span>
   <Srm bind:value={appearance['color']}/>
 </div>
-<div><span class="label" id="clarity">Clarity</span>
-  <select on:change={updateHandler} bind:value={appearance.clarity}>
-    {#each CLARITY_OPTIONS as item}
-      <option value={item.id}>
-        {item.text}
-      </option>
-    {/each}
-  </select>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={appearance.clarity} options={CLARITY_OPTIONS}
+               noCheck="true">
+    Clarity
+  </SelectCheck>
 </div>
-<div><span class="label">Hue</span>
-  <select on:change={() => updateHandler} bind:value={appearance.hue}>
-    {#each HUE_OPTIONS as item}
-      <option value={item.id}>
-        {item.text}
-      </option>
-    {/each}
-  </select>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={appearance.hue} options={HUE_OPTIONS}
+               noCheck="true">
+    Hue
+  </SelectCheck>
 </div>
-<div><span class="label">Head</span>
-  <select on:change={updateHandler} bind:value={appearance.head}>
-    {#each HEAD_OPTIONS as item}
-      <option value={item.id}>
-        {item.text}
-      </option>
-    {/each}
-  </select>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={appearance.head} options={HEAD_OPTIONS}
+               noCheck="true">
+    Head
+  </SelectCheck>
 </div>
-<div><span class="label">Retention</span>
-  <select on:change={updateHandler} bind:value={appearance.retention}>
-    {#each RETENTION_OPTIONS as item}
-      <option value={item.id}>
-        {item.text}
-      </option>
-    {/each}
-  </select>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={appearance.retention} options={RETENTION_OPTIONS}
+               noCheck="true">
+    Retention
+  </SelectCheck>
 </div>
-<div><span class="label">Texture</span>
-  <select on:change={updateHandler} bind:value={appearance.texture}>
-    {#each TEXTURE_OPTIONS as item}
-      <option value={item.id}>
-        {item.text}
-      </option>
-    {/each}
-  </select>
+<div>
+  <SelectCheck on:change={updateHandler} bind:value={appearance.texture} options={TEXTURE_OPTIONS}
+               noCheck="true">
+    Texture
+  </SelectCheck>
 </div>
+
 <div>
   <label for="laces"><span class="label">Laces</span><input id="laces" on:change={updateHandler} type=checkbox
                                                             bind:checked={appearance.laces}></label>

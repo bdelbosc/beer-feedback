@@ -16,7 +16,7 @@ const CARBONATION_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'None'},
   {id: 1, text: `Low`},
-  {id: 2, text: 'Medium Low'},
+  {id: 2, text: 'Medium-Low'},
   {id: 3, text: 'Medium'},
   {id: 4, text: 'Medium-High'},
   {id: 5, text: 'High'}
@@ -26,9 +26,9 @@ const WARMTH_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'None'},
   {id: 1, text: `Low`},
-  {id: 2, text: `Medium Low`},
+  {id: 2, text: `Medium-Low`},
   {id: 3, text: 'Medium'},
-  {id: 4, text: 'Medium Hot'},
+  {id: 4, text: 'Medium-Hot'},
   {id: 5, text: 'Hot'},
 ];
 
@@ -36,7 +36,7 @@ const CREAMINESS_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'None'},
   {id: 1, text: `Low`},
-  {id: 2, text: 'Medium Low'},
+  {id: 2, text: 'Medium-Low'},
   {id: 3, text: 'Medium'},
   {id: 4, text: 'Medium-High'},
   {id: 5, text: 'High'}
@@ -45,7 +45,7 @@ const CREAMINESS_OPTIONS = [
 const ASTRINGENCY_OPTIONS = [
   {id: 0, text: 'None'},
   {id: 1, text: `Low`},
-  {id: 2, text: 'Medium Low'},
+  {id: 2, text: 'Medium-Low'},
   {id: 3, text: 'Medium'},
   {id: 4, text: 'Medium-High'},
   {id: 5, text: 'Harsh'}

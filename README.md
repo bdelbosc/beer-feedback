@@ -2,120 +2,35 @@
 
 ## About
 
-Beer feedback aims to provide the quick and detailed beer evaluation that home brewers deserve.
+`beer-feedback` is intended to provide a quick and detailed assessment of the beer that homebrewers deserve.
 
-The evaluation is based on the BJCP Scoresheet and should be familiar to any BJCP Judge.
+It can be used wherever there is a beer and a smartphone
+(Internet is required for the first time to download the app as well as to share your review).
 
-Evaluations can be done on any beer you drink, but they can also be used for a contest.
+The evaluation is based on the [BJCP Scoresheet](https://dev.bjcp.org/news/structured-scoresheets-for-aha-nhc/) and should be familiar to [BJCP](https://dev.bjcp.org/) Judges.
 
-By comparing your evaluation with others, you can improve your judging skills.
+The result is a PDF scoresheet.
 
 **This is a work in progress**
 
-## UI
+## Try it
 
-### User
+http://beer-feedback.surge.sh/
 
-- Create
-    - name
-    - rank
-    - secret
-    created:
-    - uuid
-
-### Beer
-- Create
-    - beer name
-    - category subcategory
-    - special ingredients
-    - brewer/brewery
-    - ABV
-    - IBU
-    - OG
-    - FG
-    - URL
-    - creation date
-    - comment
-    constraint: uniq(brewer, beer name)
-    created:
-    - buuid beer uniq id
-    - created date
-    - author    
-    
-- Search fulltext:
-    - on all text fields
-
-- Result list:
-    - line: CAT, beer name
-
-- View Beer:
-    - all fields
-      actions: 
-        - View Evaluations
-        - Evaluate
-        - Update (if author or admin)
-        - Delete (if author or admin)
-
-
-### Evaluation
-
-state: 
-1. draft: some required fields are missing
-2. filled: all required fields are filled, can be edited to add more feedback
-3. validated: user acknowledge the evaluation, can be edited to find a consensus
-4. completed: read only
-
-5. uncompleted: missing fields, no user acknowledge
-
-
-- Create
-    - buid if done from a beer
-    - flight and entry id if done from a contest
-    - state = draft
-
-- update AAFMO objects
-
-    
-    
-    
-### Admin home page
-
-### Evaluation edition
-
-For an entry fill all the sections:
-- Aroma
-- Appearance
-- Flavor
-- Mouthfeel
-- Overall Impression
-
-Provide feedback on what is missing (malt, core ...).
-
-### Evaluation rendering
-
-
-
-
-### Contest
+Fill out all the forms until there are no more red tab titles, then click the PDF button.
  
-## Technical Overview
+## TODO
 
-Constraint:
-- 0 installation on client side
-- Work on any smartphone or computer with a recent browser
-- Contest may happen in a place without internet connection
+- Persist the Scoresheet data locally
+- Embed the JSON data inside the PDF
+ 
+## Design choices
+
+- 0 installation
 - 0 cloud
+- Work on any smartphone or computer with a recent browser
 
-Design choices:
-- Single Page Application
-- Server should be able to run on RPI providing a Wifi AP
-- Websocket
-- OpenAPI
- 
-Technical solution:
-- Use Svelte for UI
-- Use Plotly sunburst to pickup aromas and flavors
-- Use MongoDB for storage
-- Use VertX 
-
-
+Technical choices:
+- [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application)
+- [Svelte](https://svelte.dev/) UI
+- Use [Plotly Sunburst](https://plot.ly/javascript/sunburst-charts/) to pickup aromas and flavors

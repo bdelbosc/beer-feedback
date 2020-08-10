@@ -69,15 +69,13 @@
       user = user;
       mainComment = getComment(user, 'Missing: ');
       completed = user.isCompleted();
-      console.log("Saving user");
-      console.log(user);
+      user.save();
     }
     if (beer.isUpdated()) {
       beer = beer;
       mainComment = getComment(beer, 'Missing: ');
       completed = completed && beer.isCompleted();
-      console.log("Saving beer");
-      console.log(beer);
+      beer.save();
       if (beer.isCompleted()) start = new Date();
     }
     if (aroma.isUpdated()) {

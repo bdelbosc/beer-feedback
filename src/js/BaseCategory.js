@@ -49,6 +49,7 @@ class BaseCategory {
   checkCompletion() {
     alert("Not implemented");
   }
+
 }
 
 export {BaseCategory, compareCategory, LEVELS};

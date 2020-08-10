@@ -21,8 +21,14 @@ class User extends BaseCategory {
 
   constructor() {
     super();
-    // fields with default values
-    this.rank = 0;
+    const username = localStorage.getItem('userName')
+    if (username) this.name = username;
+    const rank = localStorage.getItem('userRank')
+    if (rank)
+      this.rank =  parseInt(rank);
+    else
+      this.rank = 0;
+    console.log("rank :" + this.rank  + " " + rank)
   }
 
   checkCompletion() {
@@ -44,9 +50,13 @@ class User extends BaseCategory {
 
   updateHandler(sort = false) {
     super.updateHandler();
-    if (sort) {
-      this.flavors.sort(compareCategory);
-    }
+  }
+
+  save() {
+    console.log("Saving user");
+    console.log(user);
+    localStorage.setItem('userName', this.name);
+    localStorage.setItem('userRank', this.rank.toString());
   }
 }
 

@@ -135,9 +135,20 @@ class Beer extends BaseCategory {
 
   constructor() {
     super();
-    // fields with default values
-    this.special = '';
-    this.comment = '';
+    const entry = localStorage.getItem('beerEntry')
+    if (entry) this.entry = entry;
+    const category = localStorage.getItem('beerCategory')
+    if (category) this.category = category;
+    const special = localStorage.getItem('beerSpecial')
+    if (category)
+      this.special = special;
+    else
+      this.special = '';
+    const comment = localStorage.getItem('beerComment')
+    if (category)
+      this.comment = comment;
+    else
+      this.comment = '';
   }
 
   checkCompletion() {
@@ -162,6 +173,21 @@ class Beer extends BaseCategory {
     if (sort) {
       this.flavors.sort(compareCategory);
     }
+  }
+
+  save() {
+    console.log("Saving beer");
+    console.log(beer);
+    localStorage.setItem('beerEntry', this.entry);
+    localStorage.setItem('beerCategory', this.category);
+    if (this.special)
+      localStorage.setItem('beerSpecial', this.special);
+    else
+      localStorage.removeItem('beerSpecial');
+    if (this.comment)
+      localStorage.setItem('beerComment', this.comment);
+    else
+      localStorage.removeItem('beerComment')
   }
 }
 

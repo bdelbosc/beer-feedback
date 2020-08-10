@@ -68,6 +68,7 @@
   }
 
   .comment {
+    font-size: 0.9em;
     clear: both;
     font-style: italic;
     color: orangered;

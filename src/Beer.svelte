@@ -21,7 +21,7 @@
     width: 10em;
   }
 </style>
-<h3>Enter a beer to evaluate</h3>
+<h3>Which beer do you want to evaluate?</h3>
 <div>
   <span class="label">Entry</span>
   <input on:change={updateHandler} type=text bind:value={beer.entry}/>

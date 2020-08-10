@@ -60,18 +60,15 @@
 
 </script>
 <style>
-  #wrapper {
-    display: inline;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
+  input {
+    width: 270px;
   }
 </style>
 <div id="{plotId}Edit">
   <div>
     <input bind:value="{selected}"/>
     <button on:click={validate} disabled={selected.length == 0}>
-      <SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
+      <SvgIcon d={checkmarkIcon} fill="green" size="20px"/>
     </button>
   </div>
   <div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>

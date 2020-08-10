@@ -100,7 +100,7 @@ class PdfRenderer {
     this.doc.setFontStyle("normal");
     for (let i = 0; i < text.length; i++) {
       if (text[i] !== undefined) {
-        this.doc.text(text[i], this.defaultX + 40, this.y);
+        this.doc.text(text[i], this.defaultX + 35, this.y);
         this.y += 6;
       }
     }

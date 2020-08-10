@@ -214,6 +214,11 @@
     color: #444;
   }
 
+  div.statusLine {
+    font-size: 0.8em;
+    font-color: #bbb;
+  }
+
 </style>
 <div class="top" id="top">
   <button on:click={() => userEdit()}>
@@ -240,7 +245,7 @@
   </div>
 
   <div id="evaluation">
-    Elapsed: {elapsed} seconds, Score: {totalScore}
+    <div class="statusLine">Elapsed: {elapsed} seconds, Score: {totalScore}</div>
     <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
     {#if 1 === currentTab}
       <Aroma aroma={aroma}/>

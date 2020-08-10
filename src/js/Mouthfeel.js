@@ -82,8 +82,13 @@ class Mouthfeel extends BaseCategory {
 
 }
 
+function renderMouthfeel(renderer, mouthfeel) {
+  renderer.addSection('Mouthfeel', mouthfeel.score, 5);
+}
+
 export {
   Mouthfeel as MouthfeelDto,
+  renderMouthfeel,
   ASTRINGENCY_OPTIONS,
   BODY_OPTIONS,
   CARBONATION_OPTIONS,

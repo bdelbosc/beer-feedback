@@ -50,6 +50,30 @@ const TEXTURE_OPTIONS = [
   {id: 'bigbubbles', text: `Big bubbles`}
 ];
 
+function getLabel(options, id) {
+  for (let i = 0; i < options.length; i++) {
+    if (options[i].id === id) {
+      return options[i].text;
+    }
+  }
+  return id;
+}
+
+function getColor(srm) {
+  if (srm <= 2) return 'Pale Straw';
+  if (srm == 3) return 'Straw';
+  if (srm == 4) return 'Pale Gold';
+  if (srm <= 6) return 'Deep Gold';
+  if (srm <= 9) return 'Pale Amber';
+  if (srm <= 12) return 'Medium Amber';
+  if (srm <= 15) return 'Deep Amber';
+  if (srm <= 18) return 'Amber-Brown';
+  if (srm <= 20) return 'Brown';
+  if (srm <= 24) return 'Ruby Brown';
+  if (srm <= 30) return 'Deep Brown';
+  return 'Black';
+}
+
 class Appearance extends BaseCategory {
 
   constructor() {
@@ -75,4 +99,32 @@ class Appearance extends BaseCategory {
   }
 }
 
-export {Appearance as AppearanceDto, CLARITY_OPTIONS, HEAD_OPTIONS, HUE_OPTIONS, RETENTION_OPTIONS, TEXTURE_OPTIONS}
+function renderAppearance(renderer, appearance) {
+  renderer.addSection('Appearance', appearance.score, 3);
+  let color = [];
+  if (appearance.color !== undefined) color.push(getColor(appearance.color) + " (" + appearance.color + ' SRM)');
+  if (appearance.hue !== 'none') color.push(getLabel(HUE_OPTIONS, appearance.hue) + ' hue');
+  renderer.addHeadline('Color', color);
+  let clarity = [];
+  if (appearance.clarity !== undefined) clarity.push(getLabel(CLARITY_OPTIONS, appearance.clarity));
+  renderer.addHeadline('Clarity', clarity);
+  let head = [];
+  if (appearance.head !== undefined) head.push(getLabel(HEAD_OPTIONS, appearance.head));
+  if (appearance.texture !== undefined) head.push(getLabel(TEXTURE_OPTIONS, appearance.texture) + ' texture');
+  if (appearance.retention !== undefined) head.push(getLabel(RETENTION_OPTIONS, appearance.retention) + ' retention');
+  renderer.addHeadline('Head', head);
+  let other = [];
+  if (appearance.laces) other.push('Laces clings on the glass');
+  if (appearance.legs) other.push('Legs');
+  renderer.addHeadline('Other', other);
+}
+
+export {
+  Appearance as AppearanceDto,
+  renderAppearance,
+  CLARITY_OPTIONS,
+  HEAD_OPTIONS,
+  HUE_OPTIONS,
+  RETENTION_OPTIONS,
+  TEXTURE_OPTIONS
+}

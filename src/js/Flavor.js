@@ -83,4 +83,25 @@ class Flavor extends BaseCategory {
   }
 }
 
-export {Flavor as FlavorDto, BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS}
+function renderFlavor(renderer, flavor) {
+  renderer.addSection('Flavor', flavor.score, 20);
+  let items = [];
+  flavor.flavors.filter(a => a.category === 'malt').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Malt', items);
+  items.length = 0;
+  flavor.flavors.filter(a => a.category === 'hops').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Hops', items);
+  items.length = 0;
+  flavor.flavors.filter(a => a.category === 'fermentation').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Fermentation', items);
+  items.length = 0;
+  flavor.flavors.filter(a => a.category === 'others').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Other', items);
+  items.length = 0;
+  flavor.flavors.filter(a => a.category === 'flaws').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Flaws', items);
+
+
+}
+
+export {Flavor as FlavorDto, renderFlavor, BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS}

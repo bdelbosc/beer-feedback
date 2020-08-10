@@ -2,7 +2,7 @@
   import SvgIcon from './SvgIcon.svelte'
   import {lowIcon, mediumHighIcon, mediumIcon, mediumLowIcon, highIcon, noneIcon} from '../js/AppIcons'
 
-  const levels = ["None", "Low", "Medium Low", "Medium", "Medium High", "High"];
+  const levels = ["None", "Low", "Medium-Low", "Medium", "Medium-High", "High"];
   const icons = [noneIcon, lowIcon, mediumLowIcon, mediumIcon, mediumHighIcon, highIcon];
   export let value = 3;
   export let edit = false;

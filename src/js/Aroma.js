@@ -1,6 +1,8 @@
 const fields = ['score'];
 import {BaseCategory, compareCategory} from './BaseCategory';
 
+const levels = ["None", "Low", "Medium-Low", "Medium", "Medium-High", "High"];
+
 class Aroma extends BaseCategory {
 
   constructor() {
@@ -46,4 +48,23 @@ class Aroma extends BaseCategory {
   }
 }
 
-export {Aroma as AromaDto}
+function renderAroma(renderer, aroma) {
+  renderer.addSection('Aroma', aroma.score, 12);
+  let items = [];
+  aroma.aromas.filter(a => a.category === 'malt').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Malt', items);
+  items.length = 0;
+  aroma.aromas.filter(a => a.category === 'hops').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Hops', items);
+  items.length = 0;
+  aroma.aromas.filter(a => a.category === 'fermentation').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Fermentation', items);
+  items.length = 0;
+  aroma.aromas.filter(a => a.category === 'others').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Other', items);
+  items.length = 0;
+  aroma.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  renderer.addHeadline('Flaws', items);
+}
+
+export {Aroma as AromaDto, renderAroma}

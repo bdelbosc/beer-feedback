@@ -1,104 +1,121 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# beer-feedback
 
----
+## About
 
-# svelte app
+Beer feedback aims to provide the quick and detailed beer evaluation that home brewers deserve.
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+The evaluation is based on the BJCP Scoresheet and should be familiar to any BJCP Judge.
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+Evaluations can be done on any beer you drink, but they can also be used for a contest.
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
+By comparing your evaluation with others, you can improve your judging skills.
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+**This is a work in progress**
+
+## UI
+
+### User
+
+- Create
+    - name
+    - rank
+    - secret
+    created:
+    - uuid
+
+### Beer
+- Create
+    - beer name
+    - category subcategory
+    - special ingredients
+    - brewer/brewery
+    - ABV
+    - IBU
+    - OG
+    - FG
+    - URL
+    - creation date
+    - comment
+    constraint: uniq(brewer, beer name)
+    created:
+    - buuid beer uniq id
+    - created date
+    - author    
+    
+- Search fulltext:
+    - on all text fields
+
+- Result list:
+    - line: CAT, beer name
+
+- View Beer:
+    - all fields
+      actions: 
+        - View Evaluations
+        - Evaluate
+        - Update (if author or admin)
+        - Delete (if author or admin)
 
 
-## Get started
+### Evaluation
 
-Install the dependencies...
+state: 
+1. draft: some required fields are missing
+2. filled: all required fields are filled, can be edited to add more feedback
+3. validated: user acknowledge the evaluation, can be edited to find a consensus
+4. completed: read only
 
-```bash
-cd svelte-app
-npm install
-```
-
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+5. uncompleted: missing fields, no user acknowledge
 
 
-## Building and running in production mode
+- Create
+    - buid if done from a beer
+    - flight and entry id if done from a contest
+    - state = draft
 
-To create an optimised version of the app:
+- update AAFMO objects
 
-```bash
-npm run build
-```
+    
+    
+    
+### Admin home page
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+### Evaluation edition
+
+For an entry fill all the sections:
+- Aroma
+- Appearance
+- Flavor
+- Mouthfeel
+- Overall Impression
+
+Provide feedback on what is missing (malt, core ...).
+
+### Evaluation rendering
 
 
-## Single-page app mode
 
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
 
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
+### Contest
+ 
+## Technical Overview
 
-```js
-"start": "sirv public --single"
-```
+Constraint:
+- 0 installation on client side
+- Work on any smartphone or computer with a recent browser
+- Contest may happen in a place without internet connection
+- 0 cloud
 
-## Using TypeScript
+Design choices:
+- Single Page Application
+- Server should be able to run on RPI providing a Wifi AP
+- Websocket
+- OpenAPI
+ 
+Technical solution:
+- Use Svelte for UI
+- Use Plotly sunburst to pickup aromas and flavors
+- Use MongoDB for storage
+- Use VertX 
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
 
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```

@@ -13,11 +13,12 @@
     nextIcon
   } from './js/AppIcons'
 
-  import {AromaDto} from './js/Aroma'
-  import {AppearanceDto} from './js/Appearance'
-  import {FlavorDto} from './js/Flavor'
-  import {MouthfeelDto} from './js/Mouthfeel'
-  import {OverallDto} from './js/Overall'
+  import {AromaDto, renderAroma} from './js/Aroma';
+  import {AppearanceDto, renderAppearance} from './js/Appearance';
+  import {FlavorDto, renderFlavor} from './js/Flavor';
+  import {MouthfeelDto, renderMouthfeel} from './js/Mouthfeel';
+  import {OverallDto, renderOverall} from './js/Overall';
+  import {PdfRenderer} from './js/PdfRenderer';
 
   export const name = "Beer feedback";
 
@@ -107,6 +108,15 @@
     console.log(flavor);
     console.log(mouthfeel);
     console.log(overall);
+
+    let renderer = new PdfRenderer("Beer Feedback", totalScore);
+    renderAroma(renderer, aroma);
+    renderAppearance(renderer, appearance);
+    renderFlavor(renderer, flavor);
+    renderMouthfeel(renderer, mouthfeel);
+    renderOverall(renderer, overall);
+
+    renderer.produce('scoresheet.pdf');
   }
 
   const formatter = new Intl.DateTimeFormat('en', {

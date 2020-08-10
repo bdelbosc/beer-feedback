@@ -21,8 +21,6 @@
 
 	function plotlyLoaded() {
 		let plotDiv = document.getElementById(plotId);
-		// plotDiv.hidden = false
-		data[0]["level"] = '67030865';
 		Plotly.newPlot(plotDiv, data, layout, {showSendToCloud: false});
 		plotDiv.on('plotly_sunburstclick', function (data) {
 			selected = data["points"][0]["currentPath"] + data["points"][0]["label"];

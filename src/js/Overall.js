@@ -64,8 +64,13 @@ class Overall extends BaseCategory {
 
 }
 
+function renderOverall(renderer, mouthfeel) {
+  renderer.addSection('Overall Impression', mouthfeel.score, 10);
+}
+
 export {
   Overall as OverallDto,
+  renderOverall,
   ACCURACY_OPTIONS,
   DRINKABILITY_OPTIONS,
   INTANGIBLE_OPTIONS,

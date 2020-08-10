@@ -1,4 +1,5 @@
 import {BaseCategory} from './BaseCategory';
+import {getLabel} from "./PdfRenderer";
 
 const fields = ['color', 'head', 'clarity', 'hue', 'retention', 'texture', 'legs', 'laces', 'score'];
 
@@ -49,15 +50,6 @@ const TEXTURE_OPTIONS = [
   {id: 'rocky', text: `Rocky`},
   {id: 'bigbubbles', text: `Big bubbles`}
 ];
-
-function getLabel(options, id) {
-  for (let i = 0; i < options.length; i++) {
-    if (options[i].id === id) {
-      return options[i].text;
-    }
-  }
-  return id;
-}
 
 function getColor(srm) {
   if (srm <= 2) return 'Pale Straw';

@@ -1,4 +1,5 @@
-import {BaseCategory, compareCategory} from './BaseCategory';
+import {BaseCategory, compareCategory, LEVELS} from './BaseCategory';
+import {getLabel} from "./PdfRenderer";
 
 const fields = ['bitterness', 'balance', 'finish', 'score'];
 
@@ -83,24 +84,34 @@ class Flavor extends BaseCategory {
   }
 }
 
+function getFlavor(flavor, flaws = false) {
+  let desc = LEVELS[flavor.level] + ' ' + flavor.trait;
+  if (flavor.aftertaste) desc += ' Aftertaste';
+  if (flavor.inappropriate || flaws) desc += ' INAPPROPRIATE';
+  return desc;
+}
+
 function renderFlavor(renderer, flavor) {
   renderer.addSection('Flavor', flavor.score, 20);
   let items = [];
-  flavor.flavors.filter(a => a.category === 'malt').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  flavor.flavors.filter(f => f.category === 'malt').forEach(f => items.push(getFlavor(f)));
   renderer.addHeadline('Malt', items);
   items.length = 0;
-  flavor.flavors.filter(a => a.category === 'hops').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  flavor.flavors.filter(f => f.category === 'hops').forEach(f => items.push(getFlavor(f)));
   renderer.addHeadline('Hops', items);
   items.length = 0;
-  flavor.flavors.filter(a => a.category === 'fermentation').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  flavor.flavors.filter(f => f.category === 'fermentation').forEach(f => items.push(getFlavor(f)));
   renderer.addHeadline('Fermentation', items);
   items.length = 0;
-  flavor.flavors.filter(a => a.category === 'others').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  flavor.flavors.filter(f => f.category === 'others').forEach(f => items.push(getFlavor(f)));
   renderer.addHeadline('Other', items);
   items.length = 0;
-  flavor.flavors.filter(a => a.category === 'flaws').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  flavor.flavors.filter(f => f.category === 'flaws').forEach(f => items.push(getFlavor(f, true)));
   renderer.addHeadline('Flaws', items);
 
+  renderer.addHeadline('Bitterness', [getLabel(BITTERNESS_OPTIONS, flavor.bitterness, flavor.bitternessInappropriate)]);
+  renderer.addHeadline('Balance', [getLabel(BALANCE_OPTIONS, flavor.balance, flavor.balanceInappropriate)]);
+  renderer.addHeadline('Finish', [getLabel(DRYNESS_OPTIONS, flavor.finish, flavor.finishInappropriate)]);
 
 }
 

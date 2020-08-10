@@ -1,7 +1,5 @@
 const fields = ['score'];
-import {BaseCategory, compareCategory} from './BaseCategory';
-
-const levels = ["None", "Low", "Medium-Low", "Medium", "Medium-High", "High"];
+import {BaseCategory, compareCategory, LEVELS} from './BaseCategory';
 
 class Aroma extends BaseCategory {
 
@@ -48,22 +46,30 @@ class Aroma extends BaseCategory {
   }
 }
 
+function getAroma(aroma, flaws = false) {
+  let desc = LEVELS[aroma.level] + ' ' + aroma.trait;
+  if (aroma.initial) desc += ' on first nose';
+  if (aroma.warms) desc += ' when the beer warms';
+  if (aroma.inappropriate || flaws) desc += ' INAPPROPRIATE';
+  return desc;
+}
+
 function renderAroma(renderer, aroma) {
   renderer.addSection('Aroma', aroma.score, 12);
   let items = [];
-  aroma.aromas.filter(a => a.category === 'malt').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  aroma.aromas.filter(a => a.category === 'malt').forEach(a => items.push(getAroma(a)));
   renderer.addHeadline('Malt', items);
   items.length = 0;
-  aroma.aromas.filter(a => a.category === 'hops').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  aroma.aromas.filter(a => a.category === 'hops').forEach(a => items.push(getAroma(a)));
   renderer.addHeadline('Hops', items);
   items.length = 0;
-  aroma.aromas.filter(a => a.category === 'fermentation').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  aroma.aromas.filter(a => a.category === 'fermentation').forEach(a => items.push(getAroma(a)));
   renderer.addHeadline('Fermentation', items);
   items.length = 0;
-  aroma.aromas.filter(a => a.category === 'others').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  aroma.aromas.filter(a => a.category === 'others').forEach(a => items.push(getAroma(a)));
   renderer.addHeadline('Other', items);
   items.length = 0;
-  aroma.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(levels[a.level] + ' ' + a.trait));
+  aroma.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(getAroma(a, true)));
   renderer.addHeadline('Flaws', items);
 }
 

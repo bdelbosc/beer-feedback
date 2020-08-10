@@ -1,3 +1,5 @@
+const LEVELS = ["None", "Low", "Medium-Low", "Medium", "Medium-High", "High"];
+
 const categoryRank = function (category) {
   if (category === "malt") return 100;
   if (category === "hops") return 90;
@@ -49,4 +51,4 @@ class BaseCategory {
   }
 }
 
-export {BaseCategory, compareCategory};
+export {BaseCategory, compareCategory, LEVELS};

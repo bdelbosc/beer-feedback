@@ -109,7 +109,7 @@
     console.log(mouthfeel);
     console.log(overall);
 
-    let renderer = new PdfRenderer("Beer Feedback", totalScore);
+    let renderer = new PdfRenderer("Beer Scoresheet Feedback", totalScore);
     renderAroma(renderer, aroma);
     renderAppearance(renderer, appearance);
     renderFlavor(renderer, flavor);

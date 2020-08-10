@@ -1,4 +1,5 @@
 import {BaseCategory} from './BaseCategory';
+import {getLabel} from "./PdfRenderer";
 
 const fields = ['body', 'carbonation', 'warmth', 'creaminess', 'astringency', 'other', 'score'];
 
@@ -84,6 +85,13 @@ class Mouthfeel extends BaseCategory {
 
 function renderMouthfeel(renderer, mouthfeel) {
   renderer.addSection('Mouthfeel', mouthfeel.score, 5);
+  renderer.addHeadline('Body', [getLabel(BODY_OPTIONS, mouthfeel.body, mouthfeel.bodyInappropriate)]);
+  renderer.addHeadline('Carbonation', [getLabel(CARBONATION_OPTIONS, mouthfeel.carbonation, mouthfeel.carbonationInappropriate)]);
+  renderer.addHeadline('Warmth', [getLabel(WARMTH_OPTIONS, mouthfeel.warmth, mouthfeel.warmthInappropriate)]);
+  renderer.addHeadline('Creaminess', [getLabel(CREAMINESS_OPTIONS, mouthfeel.creaminess, mouthfeel.creaminessInappropriate)]);
+  renderer.addHeadline('Astringency', [getLabel(ASTRINGENCY_OPTIONS, mouthfeel.astringency, mouthfeel.astringencyInappropriate)]);
+  renderer.addHeadline('Other', [(mouthfeel.other !== undefined ? mouthfeel.other : '')]);
+
 }
 
 export {

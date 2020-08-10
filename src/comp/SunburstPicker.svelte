@@ -21,7 +21,7 @@
 
   function plotlyLoaded() {
     let plotDiv = document.getElementById(plotId);
-    Plotly.newPlot(plotDiv, data, layout, {showSendToCloud: false});
+    Plotly.newPlot(plotDiv, data, layout, {displayModeBar: false});
     plotDiv.on('plotly_sunburstclick', function (data) {
       selected = data["points"][0]["currentPath"] + data["points"][0]["label"];
     });
@@ -49,7 +49,7 @@
         if (plotDiv.data !== undefined) {
           console.log("REDRAW");
           data[0].level = '';
-          Plotly.redraw(plotDiv, data, layout);
+          Plotly.redraw(plotDiv, data, layout, {displayModeBar: false});
         }
       } else {
         document.getElementById(plotId + "Selected").hidden = false;
@@ -60,16 +60,21 @@
 
 </script>
 <style>
-  input {
-    width: 320px;
+  #wrapper {
+    display: inline;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
   }
 </style>
 <div id="{plotId}Edit">
-  <input bind:value="{selected}" size="28"/>
+  <div>
+    <input bind:value="{selected}"/>
+    <button on:click={validate} disabled={selected.length == 0}>
+      <SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
+    </button>
+  </div>
   <div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>
-  <button on:click={validate} disabled={selected.length == 0}>
-    <SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
-  </button>
   <slot/>
 </div>
 <div id="{plotId}Selected">

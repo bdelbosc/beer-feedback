@@ -22,6 +22,13 @@ function getScoreDescription(score) {
   return 'INVALID';
 }
 
+const formatter = new Intl.DateTimeFormat('default', {
+  year: 'numeric', month: 'numeric', day: 'numeric',
+  hour12: false,
+  hour: 'numeric',
+  minute: '2-digit',
+  second: '2-digit'
+});
 
 class PdfRenderer {
 
@@ -45,16 +52,16 @@ class PdfRenderer {
     this.doc.setFontSize(12);
     this.doc.text('/50', this.scoreX, 20);
     this.doc.setFont("helvetica");
-    this.doc.setFontSize(12);
     if (score > 0) this.doc.text(getScore(score), this.scoreX, 13, null, null, "right");
     this.y = 45;
   }
 
-  addUser(name, rank) {
+  addUser(name, rank, start) {
     this.doc.setFontSize(12);
     this.doc.text('Judge Name: ' + name, 10, 20);
     this.doc.setFontSize(9);
     this.doc.text('Status: ' + rank, 10, 25);
+    this.doc.text('Date: ' + formatter.format(start), 10, 30);
   }
 
   addBeer(entry, category, special, comment) {
@@ -68,21 +75,25 @@ class PdfRenderer {
 
   addSection(title, score, max) {
     this.y += 2;
+    this.doc.setFont("helvetica");
     this.doc.setFontStyle("bold");
     this.doc.setFontSize(14);
     this.doc.text(title, 20, this.y);
     this.doc.setFontSize(12);
     this.doc.setFont("courier");
+    this.doc.setFontStyle("bold");
     this.doc.text(score === undefined ? '-' : score.toString(), this.scoreX, this.y, null, null, "right");
+    this.doc.setFontSize(10);
     this.doc.setFontStyle("normal");
     this.doc.text("/" + max, this.scoreX, this.y);
-    this.doc.setFont("helvetica");
     this.doc.setLineWidth(0.15);
     this.doc.line(10, this.y + 2, 200, this.y + 2);
+    this.doc.setFont("helvetica");
     this.y += 6;
   }
 
   addHeadline(head, text) {
+    this.doc.setFont("helvetica");
     this.doc.setFontSize(10);
     this.doc.setFontStyle("bold");
     this.doc.text(head, this.defaultX + 30, this.y, null, null, "right");

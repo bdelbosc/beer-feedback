@@ -35,7 +35,7 @@ class User extends BaseCategory {
         this.required.push(fields[i]);
         continue;
       }
-      if (this[fields[i]] === undefined) {
+      if (this[fields[i]] === undefined || this[fields[i]].length == 0) {
         this.required.push(fields[i]);
       }
     }

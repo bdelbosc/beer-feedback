@@ -6,7 +6,7 @@ const BODY_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'Watery'},
   {id: 1, text: `Thin`},
-  {id: 2, text: 'Light'},
+  {id: 2, text: 'Medium-Light'},
   {id: 3, text: 'Medium'},
   {id: 4, text: 'Medium-Full'},
   {id: 5, text: 'Full'}

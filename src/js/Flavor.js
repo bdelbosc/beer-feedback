@@ -28,7 +28,7 @@ const DRYNESS_OPTIONS = [
   {id: 0, text: `Biting`},
   {id: 1, text: `Dry`},
   {id: 2, text: `Balanced`},
-  {id: 3, text: `Somewhat sweet`},
+  {id: 3, text: `Soft`},
   {id: 4, text: `Sweet`},
   {id: 5, text: `Cloying`},
 ];

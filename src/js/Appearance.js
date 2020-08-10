@@ -14,11 +14,11 @@ const HEAD_OPTIONS = [
 const HUE_OPTIONS = [
   {id: 'none', text: 'None'},
   {id: 'orange', text: 'Orange'},
+  {id: 'amber', text: `Amber`},
   {id: 'copper', text: `Copper`},
   {id: 'red', text: `Red`},
   {id: 'ruby', text: `Ruby`},
   {id: 'garnet', text: `Garnet`},
-  {id: 'amber', text: `Amber`},
 ];
 
 const CLARITY_OPTIONS = [

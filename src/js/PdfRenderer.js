@@ -34,15 +34,36 @@ class PdfRenderer {
 
     this.doc.setFont("helvetica");
     this.doc.setFontSize(18);
-    this.doc.text(title, this.defaultX, 10);
-    this.doc.setFontSize(14);
+    this.doc.text(title, 105, 10, null, null, "center");
+    this.doc.setFontSize(12);
+    this.doc.text('Score:', this.scoreX - 20, 20);
     this.doc.setFont("courier");
-    this.doc.text((score > 0 ? score.toString() : '-'), this.scoreX, 30, null, null, "right");
-    this.doc.text('/50', this.scoreX, 30);
+    this.doc.setFontStyle("bold");
+    this.doc.setFontSize(14);
+    this.doc.text((score > 0 ? score.toString() : '-'), this.scoreX, 20, null, null, "right");
+    this.doc.setFontStyle("normal");
+    this.doc.setFontSize(12);
+    this.doc.text('/50', this.scoreX, 20);
     this.doc.setFont("helvetica");
     this.doc.setFontSize(12);
-    if (score > 0) this.doc.text(getScore(score) + ": " + getScoreDescription(score), 25, 30);
+    if (score > 0) this.doc.text(getScore(score), this.scoreX, 13, null, null, "right");
     this.y = 45;
+  }
+
+  addUser(name, rank) {
+    this.doc.setFontSize(12);
+    this.doc.text('Judge Name: ' + name, 10, 20);
+    this.doc.setFontSize(9);
+    this.doc.text('Status: ' + rank, 10, 25);
+  }
+
+  addBeer(entry, category, special, comment) {
+    this.doc.setFontSize(12);
+    this.doc.text('Entry: ' + entry, 90, 20);
+    this.doc.text('Category: ' + category, 90, 25);
+    this.doc.setFontSize(9);
+    this.doc.text('Special ingredients: ' + special, 90, 30);
+    this.doc.text('Comments: ' + comment, 90, 35);
   }
 
   addSection(title, score, max) {
@@ -53,6 +74,7 @@ class PdfRenderer {
     this.doc.setFontSize(12);
     this.doc.setFont("courier");
     this.doc.text(score === undefined ? '-' : score.toString(), this.scoreX, this.y, null, null, "right");
+    this.doc.setFontStyle("normal");
     this.doc.text("/" + max, this.scoreX, this.y);
     this.doc.setFont("helvetica");
     this.doc.setLineWidth(0.15);

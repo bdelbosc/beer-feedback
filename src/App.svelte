@@ -2,7 +2,10 @@
   <!--  <script src="/hnl.mobileConsole.1.3.js"></script>-->
 </svelte:head>
 <script>
+  import {onMount} from "svelte";
   import Tabs from "./comp/Tabs.svelte";
+  import User from './User.svelte';
+  import Beer from './Beer.svelte';
   import Aroma from './Aroma.svelte';
   import Appearance from './Appearance.svelte';
   import Flavor from './Flavor.svelte';
@@ -10,7 +13,7 @@
   import Overall from './Overall.svelte';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {
-    nextIcon
+    nextIcon, userIcon, beerIcon
   } from './js/AppIcons'
 
   import {AromaDto, renderAroma} from './js/Aroma';
@@ -18,26 +21,32 @@
   import {FlavorDto, renderFlavor} from './js/Flavor';
   import {MouthfeelDto, renderMouthfeel} from './js/Mouthfeel';
   import {OverallDto, renderOverall} from './js/Overall';
+  import {UserDto, renderUser} from './js/User';
+  import {BeerDto, renderBeer} from './js/Beer';
   import {PdfRenderer} from './js/PdfRenderer';
+
 
   export const name = "Beer feedback";
 
+  let user = new UserDto();
+  let beer = new BeerDto();
   let aroma = new AromaDto();
   let appearance = new AppearanceDto();
   let flavor = new FlavorDto();
   let mouthfeel = new MouthfeelDto();
   let overall = new OverallDto();
 
+  let mainComment;
   let totalScore;
   let start = new Date();
   let mytime = new Date();
   let elapsed = 0;
 
-  function getComment(item) {
+  function getComment(item, header = 'Comment on: ') {
     if (item.isCompleted()) {
       return '';
     }
-    return 'Comment on: ' + item.getRequired().join(', ') + '.';
+    return header + item.getRequired().join(', ') + '.';
   }
 
   function computeScore() {
@@ -54,6 +63,18 @@
     mytime = new Date();
     elapsed = Math.round((mytime - start) / 1000);
     let updated = false;
+    if (user.isUpdated()) {
+      user = user;
+      mainComment = getComment(user, 'Missing: ');
+      console.log("Saving user");
+      console.log(user);
+    }
+    if (beer.isUpdated()) {
+      beer = beer;
+      mainComment = getComment(beer, 'Missing: ');
+      console.log("Saving beer");
+      console.log(beer);
+    }
     if (aroma.isUpdated()) {
       tabItems[0].comment = getComment(aroma);
       updated = true;
@@ -109,7 +130,9 @@
     console.log(mouthfeel);
     console.log(overall);
 
-    let renderer = new PdfRenderer("Beer Scoresheet Feedback", totalScore);
+    let renderer = new PdfRenderer("Beer Scoresheet", totalScore);
+    renderUser(renderer, user);
+    renderBeer(renderer, beer);
     renderAroma(renderer, aroma);
     renderAppearance(renderer, appearance);
     renderFlavor(renderer, flavor);
@@ -127,6 +150,32 @@
   });
 
 
+  function beerEdit() {
+    document.getElementById("evaluation").hidden = true;
+    document.getElementById("user").hidden = true;
+    document.getElementById("beer").hidden = false;
+
+  }
+
+  function userEdit() {
+    document.getElementById("evaluation").hidden = true;
+    document.getElementById("user").hidden = false;
+    document.getElementById("beer").hidden = true;
+  }
+
+  function evaluationEdit() {
+    document.getElementById("evaluation").hidden = false;
+    document.getElementById("user").hidden = true;
+    document.getElementById("beer").hidden = true;
+  }
+
+  onMount(() => {
+    if (!user.isCompleted()) userEdit();
+    else if (!beer.isCompleted()) beerEdit();
+    else evaluationEdit();
+  });
+
+
 </script>
 
 
@@ -134,30 +183,61 @@
   div.main {
     max-width: 320px;
     margin: auto;
+    clear: both;
+  }
+
+  div.top {
+    max-width: 320px;
+    margin: auto;
+    float: right;
   }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
 </style>
+<div class="top">
+  <button on:click={userEdit}>
+    <span title="Edit user"><SvgIcon d={userIcon} size="1em" fill="blue"/>{user.name}</span>
+  </button>
+  <button on:click={beerEdit}>
+    <span title="Edit beer"><SvgIcon d={beerIcon} boxSize="512" size="1em" fill="darkbrown"/>{beer.entry}</span>
+  </button>
+</div>
 
-Elapsed: {elapsed} seconds, Score: {totalScore}
 <div class="main">
-  <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
-  {#if 1 === currentTab}
-    <Aroma aroma={aroma}/>
-  {:else if 2 === currentTab}
-    <Appearance appearance={appearance}/>
-  {:else if 3 === currentTab}
-    <Flavor flavor={flavor}/>
-  {:else if 4 === currentTab}
-    <Mouthfeel mouthfeel={mouthfeel}/>
-  {:else if 5 === currentTab}
-    <Overall overall={overall}/>
-  {/if}
+  <div id="user">
+    <User user={user}/>
+    <button on:click={() => beerEdit()}>
+      <span title="Beer"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
+    </button>
+  </div>
+
+  <div id="beer">
+    <Beer beer={beer}/>
+    <button on:click={() => evaluationEdit()}>
+      <span title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
+    </button>
+  </div>
+
+  <div id="evaluation">
+    Elapsed: {elapsed} seconds, Score: {totalScore}
+    <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
+    {#if 1 === currentTab}
+      <Aroma aroma={aroma}/>
+    {:else if 2 === currentTab}
+      <Appearance appearance={appearance}/>
+    {:else if 3 === currentTab}
+      <Flavor flavor={flavor}/>
+    {:else if 4 === currentTab}
+      <Mouthfeel mouthfeel={mouthfeel}/>
+    {:else if 5 === currentTab}
+      <Overall overall={overall}/>
+    {/if}
+    <button on:click={() => submit()} class="submit">
+      <span title="PDF"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
+    </button>
+  </div>
 
 </div>
 
-<button on:click={submit} class="submit">
-  <span title="Next Section"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
-</button>

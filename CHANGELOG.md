@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/bdelbosc/beer-feedback/compare/v1.1.0...v1.2.0) (2020-08-11)
+
+
+### Features
+
+* Add json data as keyword property ([829fb74](https://github.com/bdelbosc/beer-feedback/commit/829fb746e7ff9643f1c1edbbd79212163ff05a3d))
+
 ## [1.1.0](https://github.com/bdelbosc/beer-feedback/compare/v1.0.1...v1.1.0) (2020-08-11)
 
 

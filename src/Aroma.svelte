@@ -12,7 +12,6 @@
     fermentationIcon,
     moreIcon,
     trashIcon,
-    cancelIcon,
     addIcon,
     alertIcon,
     warmsIcon,
@@ -40,12 +39,6 @@
     currentAroma = '';
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
-  }
-
-  function cancel() {
-    document.getElementById('picker').hidden = true;
-    document.getElementById('list').hidden = false;
-    editEntry = -1;
   }
 
   function edit(index) {
@@ -110,9 +103,6 @@
 
 </script>
 <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
 
   div.inputRow {
     display: flex;
@@ -129,41 +119,36 @@
     color: white;
   }
 
-  button.cancel {
-    float: right;
-  }
-
   .buttons, .item {
     clear: both;
   }
 
 </style>
 <div id="picker">
-  <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker">
-    <button class="cancel" on:click={() => cancel()}>
-      <SvgIcon d={cancelIcon} size="2em" fill="gray"/>
-    </button>
-  </SunburstPicker>
+  <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker"/>
   {#if selecting}
     <div class="inputRow">
-      <input type="checkbox" id="inappropriate" bind:checked={inappropriate}/>
-      <label for="inappropriate">
+      <label>
+        <input type="checkbox" bind:checked={inappropriate}/>
         <SvgIcon d={alertIcon} fill="orange"/>
-        Inappropriate</label>
+        Inappropriate
+      </label>
     </div>
 
     <div class="inputRow">
-      <input type="checkbox" id="initial" bind:checked={initial}/>
-      <label for="initial">
+      <label>
+        <input type="checkbox" bind:checked={initial}/>
         <SvgIcon d={initialIcon}/>
-        Initial aroma</label>
+        Initial aroma
+      </label>
     </div>
 
     <div class="inputRow">
-      <input type="checkbox" id="warms" bind:checked={warms}/>
-      <label for="warms">
+      <label>
+        <input type="checkbox" bind:checked={warms}/>
         <SvgIcon d={warmsIcon}/>
-        When the beer warms</label>
+        When the beer warms
+      </label>
     </div>
 
     <div>
@@ -173,9 +158,6 @@
 
     <button on:click={() => add()}>
       <SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
-    </button>
-    <button class="cancel" on:click={() => cancel()}>
-      <SvgIcon d={cancelIcon} size="2em" fill="gray"/>
     </button>
   {/if}
 </div>

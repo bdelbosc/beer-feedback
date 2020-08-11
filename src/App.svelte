@@ -24,7 +24,7 @@
   import {UserDto, renderUser} from './js/User';
   import {BeerDto, renderBeer} from './js/Beer';
   import {PdfRenderer} from './js/PdfRenderer';
-
+  import pkg from '../package.json'
 
   export const name = "Beer feedback";
 
@@ -75,9 +75,10 @@
       beer = beer;
       mainComment = getComment(beer, 'Missing: ');
       completed = completed && beer.isCompleted();
+      start = new Date();
       beer.save();
-      if (beer.isCompleted()) start = new Date();
     }
+    if (start == undefined && beer.isCompleted()) start = new Date();
     if (aroma.isUpdated()) {
       tabItems[0].comment = getComment(aroma);
       completed = completed && aroma.isCompleted();
@@ -148,8 +149,9 @@
     renderAppearance(renderer, appearance);
     renderFlavor(renderer, flavor);
     renderMouthfeel(renderer, mouthfeel);
-    renderOverall(renderer, overall);
-    renderer.produce('scoresheet.pdf');
+    renderOverall(renderer, overall, totalScore);
+    let name = 'scoresheet-' + start.toISOString().slice(0, 10).replace(/-/g, "") + '-' + beer.entry.replace(/\W/g, '_') + '-' + user.name.replace(/\W/g, '_') + '.pdf';
+    renderer.produce(name);
   }
 
   function beerEdit() {
@@ -192,8 +194,27 @@
 
   div.top {
     max-width: 320px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    clear: both;
+  }
+
+  .right {
     float: right;
+    margin: 0 0 0 0;
+    clear: both;
+  }
+
+  button.settings {
+    border: 0px;
+    background-color: #fff;
+    color: #444;
+  }
+
+  .settings > span {
+    font-size: 0.8em;
   }
 
   body {
@@ -201,9 +222,8 @@
   }
 
   button[disabled] {
-    border: 1px dotted #ccc;
-    background-color: #fff;
-    color: #ccc;
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   button {
@@ -217,13 +237,22 @@
     font-color: #bbb;
   }
 
+  div.footLine {
+    font-size: 0.5em;
+    font-color: #ccc;
+    float: right;
+  }
+
 </style>
 <div class="top" id="top">
-  <button on:click={() => userEdit()}>
-    <span title="Edit user"><SvgIcon d={userIcon} size="0.8em" fill="blue"/>{user.name}</span>
+  <button class="settings" on:click={() => userEdit()}>
+    <span title="Edit User"><SvgIcon d={userIcon} fill="blue"/>{user.name}</span>
   </button>
-  <button on:click={() => beerEdit()}>
-    <span title="Edit beer"><SvgIcon d={beerIcon} boxSize="2206" size="0.8em" fill="orange"/>{beer.entry}</span>
+  <button class="settings" on:click={() => beerEdit()}>
+    <span title="Edit Beer"><SvgIcon d={beerIcon} boxSize="2206" fill="orange"/>{beer.entry}</span>
+  </button>
+  <button on:click={() => submit()} class="right">
+    <span title="Export PDF">PDF</span>
   </button>
 </div>
 
@@ -256,10 +285,8 @@
     {:else if 5 === currentTab}
       <Overall overall={overall}/>
     {/if}
-    <button on:click={() => submit()} class="submit">
-      <span title="PDF">PDF</span>
-    </button>
   </div>
-
+  <div class="footLine">{pkg.name} {pkg.version}</div>
 </div>
+
 

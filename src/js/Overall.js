@@ -1,5 +1,5 @@
 import {BaseCategory} from './BaseCategory';
-import {getLabel} from "./PdfRenderer";
+import {getLabel, getScore, getScoreDescription} from "./PdfRenderer";
 
 const fields = ['accuracy', 'technical', 'intangible', 'drinkability', 'feedback', 'score'];
 
@@ -65,12 +65,13 @@ class Overall extends BaseCategory {
 
 }
 
-function renderOverall(renderer, overall) {
+function renderOverall(renderer, overall, score) {
   renderer.addSection('Overall Impression', overall.score, 10);
   renderer.addHeadline('Accuracy', [getLabel(ACCURACY_OPTIONS, overall.accuracy)]);
   renderer.addHeadline('Technical Merit', [getLabel(TECHNICAL_OPTIONS, overall.technical)]);
   renderer.addHeadline('Drinkability', [getLabel(DRINKABILITY_OPTIONS, overall.drinkability)]);
   renderer.addHeadline('Intangible', [getLabel(INTANGIBLE_OPTIONS, overall.intangible)]);
+  renderer.addHeadline('Scoring Guide', [getScore(score) + ': ' + getScoreDescription(score)]);
   renderer.addHeadline('Feedback', [overall.feedback !== undefined ? overall.feedback : '']);
 }
 

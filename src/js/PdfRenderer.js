@@ -44,6 +44,7 @@ class PdfRenderer {
     this.doc.setFontStyle("bolditalic");
     this.doc.text(title, 105, 10, null, null, "center");
     this.doc.setFontSize(12);
+    this.doc.setFontStyle("normal");
     this.doc.text('Score:', this.scoreX - 20, 20);
     this.doc.setFont("courier");
     this.doc.setFontStyle("bold");

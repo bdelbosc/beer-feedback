@@ -23,8 +23,8 @@
     width: 10em;
   }
 </style>
+<SvgIcon d={beerIcon} boxSize="2206" fill="orange" size="2em"/>
 <h3>
-  <SvgIcon d={beerIcon} boxSize="2206" fill="orange"/>
   Which beer do you want to evaluate?
 </h3>
 <div>

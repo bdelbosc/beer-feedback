@@ -28,7 +28,7 @@
   Which beer do you want to evaluate?
 </h3>
 <div>
-  <span class="label">Entry</span>
+  <span class="label">Entry #</span>
   <input on:change={updateHandler} type=text bind:value={beer.entry}/>
 </div>
 

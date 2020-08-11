@@ -142,7 +142,20 @@
     console.log(mouthfeel);
     console.log(overall);
 
-    let renderer = new PdfRenderer("Beer Scoresheet", totalScore);
+    let renderer = new PdfRenderer("BEER SCORESHEET", totalScore);
+    let json = JSON.stringify({
+      'user': user,
+      'beer': beer,
+      'aroma': aroma,
+      'appearance': appearance,
+      'flavor': flavor,
+      'mouthfeel': mouthfeel,
+      'overall': overall,
+      'start': start,
+      'score': totalScore
+    });
+    renderer.addMetdata(pkg.version, user.name, beer.entry, beer.category, json);
+    renderer.addVersion(pkg.version);
     renderUser(renderer, user, start);
     renderBeer(renderer, beer);
     renderAroma(renderer, aroma);
@@ -150,7 +163,10 @@
     renderFlavor(renderer, flavor);
     renderMouthfeel(renderer, mouthfeel);
     renderOverall(renderer, overall, totalScore);
-    let name = 'scoresheet-' + start.toISOString().slice(0, 10).replace(/-/g, "") + '-' + beer.entry.replace(/\W/g, '_') + '-' + user.name.replace(/\W/g, '_') + '.pdf';
+    let name = 'scoresheet-' + start.toISOString().slice(0, 10).replace(/-/g, "");
+    name += '-' + beer.entry.replace(/\W/g, '_');
+    name += '-' + beer.category.replace(/\W/g, '_');
+    name += '-' + user.name.replace(/\W/g, '_') + '.pdf';
     renderer.produce(name);
   }
 

@@ -177,7 +177,6 @@ class Beer extends BaseCategory {
 
   save() {
     console.log("Saving beer");
-    console.log(beer);
     localStorage.setItem('beerEntry', this.entry);
     localStorage.setItem('beerCategory', this.category);
     if (this.special)

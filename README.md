@@ -22,7 +22,6 @@ Fill out all the forms until there are no more red tab titles, then click the PD
 ## TODO
 
 - Persist the Scoresheet data locally
-- Embed the JSON data inside the PDF
  
 ## Design choices
 

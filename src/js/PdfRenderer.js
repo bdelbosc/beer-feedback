@@ -41,6 +41,7 @@ class PdfRenderer {
 
     this.doc.setFont("helvetica");
     this.doc.setFontSize(18);
+    this.doc.setFontStyle("bolditalic");
     this.doc.text(title, 105, 10, null, null, "center");
     this.doc.setFontSize(12);
     this.doc.text('Score:', this.scoreX - 20, 20);
@@ -66,7 +67,7 @@ class PdfRenderer {
 
   addBeer(entry, category, special, comment) {
     this.doc.setFontSize(12);
-    this.doc.text('Entry: ' + entry, 90, 20);
+    this.doc.text('Entry # ' + entry, 90, 20);
     this.doc.text('Category: ' + category, 90, 25);
     this.doc.setFontSize(9);
     this.doc.text('Special ingredients: ' + (special ? special : ''), 90, 30);
@@ -109,9 +110,23 @@ class PdfRenderer {
     }
   }
 
+  addVersion(version) {
+    this.doc.setFont("helvetica");
+    this.doc.setFontSize(6);
+    this.doc.text("beer-feedback version " + version, 200, 280, null, null, "right");
+  }
+
+  addMetdata(version, username, entry, category, json) {
+    this.doc.setProperties({
+      'author': username,
+      'subject': 'Entry # ' + entry + ' Category:' + category,
+      'creator': 'beer-feedback v' + version,
+      'keywords': json
+    });
+  }
+
   produce(name) {
-
-
+    this.doc.setProperties({'title': name.replace('.pdf', '')});
     this.doc.save(name);
   }
 }

@@ -36,7 +36,7 @@ class PdfRenderer {
     this.doc = new jsPDF();
     this.y = 10;
     this.defaultX = 25;
-    this.scoreX = 180;
+    this.scoreX = 185;
     this.score = score;
 
     this.doc.setFont("helvetica");
@@ -61,17 +61,17 @@ class PdfRenderer {
     this.doc.setFontSize(12);
     this.doc.text('Judge Name: ' + name, 10, 20);
     this.doc.setFontSize(9);
-    this.doc.text('Status: ' + rank, 10, 25);
+    this.doc.text('Rank: ' + rank, 10, 25);
     this.doc.text('Date: ' + formatter.format(start), 10, 30);
   }
 
   addBeer(entry, category, special, comment) {
     this.doc.setFontSize(12);
-    this.doc.text('Entry # ' + entry, 90, 20);
-    this.doc.text('Category: ' + category, 90, 25);
+    this.doc.text('Entry # ' + entry, 85, 20);
+    this.doc.text('Category: ' + category, 85, 25);
     this.doc.setFontSize(9);
-    this.doc.text('Special ingredients: ' + (special ? special : ''), 90, 30);
-    this.doc.text('Comments: ' + (comment ? comment : ''), 90, 35);
+    this.doc.text('Special ingredients: ' + (special ? special : ''), 85, 30);
+    this.doc.text('Comments: ' + (comment ? comment : ''), 85, 35);
   }
 
   addSection(title, score, max) {
@@ -79,7 +79,7 @@ class PdfRenderer {
     this.doc.setFont("helvetica");
     this.doc.setFontStyle("bold");
     this.doc.setFontSize(14);
-    this.doc.text(title, 20, this.y);
+    this.doc.text(title, 18, this.y);
     this.doc.setFontSize(12);
     this.doc.setFont("courier");
     this.doc.setFontStyle("bold");
@@ -93,15 +93,15 @@ class PdfRenderer {
     this.y += 6;
   }
 
-  addHeadline(head, text) {
+  addHeadline(head, text, x=this.defaultX) {
     this.doc.setFont("helvetica");
     this.doc.setFontSize(10);
     this.doc.setFontStyle("bold");
-    this.doc.text(head, this.defaultX + 30, this.y, null, null, "right");
+    this.doc.text(head, x + 30, this.y, null, null, "right");
     this.doc.setFontStyle("normal");
     for (let i = 0; i < text.length; i++) {
       if (text[i] !== undefined) {
-        this.doc.text(text[i], this.defaultX + 35, this.y);
+        this.doc.text(text[i], x + 35, this.y);
         this.y += 6;
       }
     }
@@ -109,6 +109,12 @@ class PdfRenderer {
       this.y += 6;
     }
   }
+
+  addHeadline2(head, text) {
+    this.y -= 6;
+    this.addHeadline(head, text,  110);
+  }
+
 
   addVersion(version) {
     this.doc.setFont("helvetica");

@@ -35,7 +35,7 @@ const DRINKABILITY_OPTIONS = [
   {id: undefined, text: ''},
   {id: 2, text: `I would finish this sample`},
   {id: 3, text: `I would drink a pint`},
-  {id: 4, text: 'I would pay money'},
+  {id: 4, text: 'I would drink a yard glass'},
   {id: 5, text: 'Send me the recipe'}
 ];
 
@@ -68,9 +68,9 @@ class Overall extends BaseCategory {
 function renderOverall(renderer, overall, score) {
   renderer.addSection('Overall Impression', overall.score, 10);
   renderer.addHeadline('Accuracy', [getLabel(ACCURACY_OPTIONS, overall.accuracy)]);
-  renderer.addHeadline('Technical Merit', [getLabel(TECHNICAL_OPTIONS, overall.technical)]);
+  renderer.addHeadline2('Technical Merit', [getLabel(TECHNICAL_OPTIONS, overall.technical)]);
   renderer.addHeadline('Drinkability', [getLabel(DRINKABILITY_OPTIONS, overall.drinkability)]);
-  renderer.addHeadline('Intangible', [getLabel(INTANGIBLE_OPTIONS, overall.intangible)]);
+  renderer.addHeadline2('Intangible', [getLabel(INTANGIBLE_OPTIONS, overall.intangible)]);
   renderer.addHeadline('Scoring Guide', [getScore(score) + ': ' + getScoreDescription(score)]);
   renderer.addHeadline('Feedback', [overall.feedback !== undefined ? overall.feedback : '']);
 }

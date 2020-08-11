@@ -21,7 +21,8 @@ const BALANCE_OPTIONS = [
   {id: 'slightly-hoppy', text: `Slightly Hoppy`},
   {id: 'hoppy', text: `Hoppy`},
   {id: 'sligthly-sour', text: `Slightly Sour`},
-  {id: 'sour', text: `Sour`}
+  {id: 'sour', text: `Sour`},
+  {id: 'fermentation', text: `Fermentation Forward`},
 ];
 
 const DRYNESS_OPTIONS = [
@@ -86,7 +87,9 @@ class Flavor extends BaseCategory {
 
 function getFlavor(flavor, flaws = false) {
   let desc = LEVELS[flavor.level] + ' ' + flavor.trait;
-  if (flavor.aftertaste) desc += ' Aftertaste';
+  if (flavor.trait.trim() === 'Not Found') desc = 'Not detected';
+  if (flavor.trait.trim() === 'Clean') desc = 'Clean';
+  if (flavor.aftertaste) desc += ' aftertaste';
   if (flavor.inappropriate || flaws) desc += ' INAPPROPRIATE';
   return desc;
 }
@@ -110,7 +113,7 @@ function renderFlavor(renderer, flavor) {
   renderer.addHeadline('Flaws', items);
 
   renderer.addHeadline('Bitterness', [getLabel(BITTERNESS_OPTIONS, flavor.bitterness, flavor.bitternessInappropriate)]);
-  renderer.addHeadline('Balance', [getLabel(BALANCE_OPTIONS, flavor.balance, flavor.balanceInappropriate)]);
+  renderer.addHeadline2('Balance', [getLabel(BALANCE_OPTIONS, flavor.balance, flavor.balanceInappropriate)]);
   renderer.addHeadline('Finish', [getLabel(DRYNESS_OPTIONS, flavor.finish, flavor.finishInappropriate)]);
 
 }

@@ -48,6 +48,8 @@ class Aroma extends BaseCategory {
 
 function getAroma(aroma, flaws = false) {
   let desc = LEVELS[aroma.level] + ' ' + aroma.trait;
+  if (aroma.trait.trim() === 'Not Found') desc = 'Not detected';
+  if (aroma.trait.trim() === 'Clean') desc = 'Clean';
   if (aroma.initial) desc += ' on first nose';
   if (aroma.warms) desc += ' when the beer warms';
   if (aroma.inappropriate || flaws) desc += ' INAPPROPRIATE';

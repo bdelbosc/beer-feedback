@@ -86,10 +86,10 @@ class Mouthfeel extends BaseCategory {
 function renderMouthfeel(renderer, mouthfeel) {
   renderer.addSection('Mouthfeel', mouthfeel.score, 5);
   renderer.addHeadline('Body', [getLabel(BODY_OPTIONS, mouthfeel.body, mouthfeel.bodyInappropriate)]);
+  renderer.addHeadline2('Creaminess', [getLabel(CREAMINESS_OPTIONS, mouthfeel.creaminess, mouthfeel.creaminessInappropriate)]);
   renderer.addHeadline('Carbonation', [getLabel(CARBONATION_OPTIONS, mouthfeel.carbonation, mouthfeel.carbonationInappropriate)]);
+  renderer.addHeadline2('Astringency', [getLabel(ASTRINGENCY_OPTIONS, mouthfeel.astringency, mouthfeel.astringencyInappropriate)]);
   renderer.addHeadline('Warmth', [getLabel(WARMTH_OPTIONS, mouthfeel.warmth, mouthfeel.warmthInappropriate)]);
-  renderer.addHeadline('Creaminess', [getLabel(CREAMINESS_OPTIONS, mouthfeel.creaminess, mouthfeel.creaminessInappropriate)]);
-  renderer.addHeadline('Astringency', [getLabel(ASTRINGENCY_OPTIONS, mouthfeel.astringency, mouthfeel.astringencyInappropriate)]);
   renderer.addHeadline('Other', [(mouthfeel.other !== undefined ? mouthfeel.other : '')]);
 
 }

@@ -63,12 +63,17 @@
   input {
     width: 270px;
   }
+  button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
 </style>
 <div id="{plotId}Edit">
   <div>
     <input bind:value="{selected}"/>
     <button on:click={validate} disabled={selected.length == 0}>
-      <SvgIcon d={checkmarkIcon} fill="green" size="20px"/>
+      <SvgIcon d={checkmarkIcon} fill="green" />
     </button>
   </div>
   <div id="{plotId}"><!-- Plotly chart will be drawn inside this DIV --></div>

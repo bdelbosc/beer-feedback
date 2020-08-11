@@ -9,11 +9,13 @@ It can be used wherever there is a beer and a smartphone
 
 The evaluation is based on the [BJCP Scoresheet](https://dev.bjcp.org/news/structured-scoresheets-for-aha-nhc/) and should be familiar to [BJCP](https://dev.bjcp.org/) Judges.
 
-The result is a PDF scoresheet.
+The result is a PDF document that can be saved, shared or printed.
 
 **This is a work in progress**
 
 ## Try it
+
+Use your smartphone or any browser:
 
 http://beer-feedback.surge.sh/
 
@@ -22,7 +24,6 @@ Fill out all the forms until there are no more red tab titles, then click the PD
 ## TODO
 
 - Persist the Scoresheet data locally
-- Embed the JSON data inside the PDF
  
 ## Design choices
 

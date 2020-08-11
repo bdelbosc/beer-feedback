@@ -23,9 +23,11 @@
     display: flex;
     flex-wrap: wrap;
     padding-left: 0;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
+    margin-top: 2px;
     list-style: none;
     border-bottom: 1px solid #dee2e6;
+    clear: both;
   }
 
   span {
@@ -42,7 +44,8 @@
   }
 
   li.active > span {
-    color: red;
+    color: orangered;
+    font-weight: bold;
     background-color: #fff;
     /*border-color: #dee2e6 #dee2e6 #fff;*/
     border-color: darkgrey darkgrey #fff;
@@ -50,13 +53,14 @@
 
   li.activeCompleted > span {
     color: darkgreen;
+    font-weight: bold;
     background-color: #fff;
     /*border-color: #dee2e6 #dee2e6 #fff;*/
     border-color: darkgrey darkgrey #fff;
   }
 
   li.inactive > span {
-    color: red;
+    color: orangered;
     background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff;
   }
@@ -68,7 +72,7 @@
   }
 
   .comment {
-    font-size: 0.9em;
+    font-size: 0.8em;
     clear: both;
     font-style: italic;
     color: orangered;
@@ -91,5 +95,5 @@
     {/each}
   {/if}
 </ul>
-
 <div class="comment">{comment}</div>
+

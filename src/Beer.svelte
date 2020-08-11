@@ -3,6 +3,8 @@
   import {
     CATEGORY_OPTIONS
   } from './js/Beer';
+  import SvgIcon from "./comp/SvgIcon.svelte";
+  import {beerIcon} from "./js/AppIcons";
 
   export let beer;
 
@@ -21,9 +23,12 @@
     width: 10em;
   }
 </style>
-<h3>Which beer do you want to evaluate?</h3>
+<h3>
+  <SvgIcon d={beerIcon} boxSize="2206" fill="orange"/>
+  Which beer do you want to evaluate?
+</h3>
 <div>
-  <span class="label">Entry</span>
+  <span class="label">Entry #</span>
   <input on:change={updateHandler} type=text bind:value={beer.entry}/>
 </div>
 

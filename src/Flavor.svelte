@@ -14,7 +14,6 @@
     fermentationIcon,
     moreIcon,
     trashIcon,
-    cancelIcon,
     addIcon,
     alertIcon,
     aftertasteIcon,
@@ -45,12 +44,6 @@
     currentFlavor = '';
     document.getElementById('picker').hidden = false;
     document.getElementById('list').hidden = true;
-  }
-
-  function cancel() {
-    document.getElementById('picker').hidden = true;
-    document.getElementById('list').hidden = false;
-    editEntry = -1;
   }
 
   function edit(index) {
@@ -128,10 +121,6 @@
     color: white;
   }
 
-  button.cancel {
-    float: right;
-  }
-
   .buttons, .item {
     clear: both;
   }
@@ -139,24 +128,22 @@
 
 </style>
 <div id="picker">
-  <SunburstPicker bind:value={currentFlavor} data={flavorData} layout={flavorLayout} plotId="flavorPicker">
-    <button class="cancel" on:click={() => cancel()}>
-      <SvgIcon d={cancelIcon} size="2em" fill="gray"/>
-    </button>
-  </SunburstPicker>
+  <SunburstPicker bind:value={currentFlavor} data={flavorData} layout={flavorLayout} plotId="flavorPicker"/>
   {#if selecting}
     <div class="inputRow">
-      <input type="checkbox" id="inappropriate" bind:checked={inappropriate}/>
-      <label for="inappropriate">
+      <label>
+        <input type="checkbox" bind:checked={inappropriate}/>
         <SvgIcon d={alertIcon} fill="orange"/>
-        Inappropriate</label>
+        Inappropriate
+      </label>
     </div>
 
     <div class="inputRow">
-      <input type="checkbox" id="aftertaste" bind:checked={aftertaste}/>
-      <label for="aftertaste">
+      <label>
+        <input type="checkbox" bind:checked={aftertaste}/>
         <SvgIcon d={aftertasteIcon} fill="orange"/>
-        Aftertaste</label>
+        Aftertaste
+      </label>
     </div>
 
     <div>
@@ -166,9 +153,6 @@
 
     <button on:click={() => add()}>
       <SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
-    </button>
-    <button class="cancel" on:click={() => cancel()}>
-      <SvgIcon d={cancelIcon} size="2em" fill="gray"/>
     </button>
   {/if}
 </div>

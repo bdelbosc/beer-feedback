@@ -52,7 +52,7 @@
 </div>
 <div>
   <span class="label">Feedback</span>
-  <input on:change={updateHandler} type=text bind:value={overall.feedback}/>
+  <textarea on:change={updateHandler} type=text bind:value={overall.feedback}/>
 </div>
 <div>
   <Score on:change={updateHandler} bind:value={overall.score} max="10" min="1">Score</Score>

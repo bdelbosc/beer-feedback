@@ -14,7 +14,7 @@ function getScore(score) {
 function getScoreDescription(score) {
   if (score === undefined || score == 0) return '';
   if (score <= 13) return "Major off flavors and aromas dominate";
-  if (score <= 20) return "Off flavors/aromas or major style dficiencies";
+  if (score <= 20) return "Off flavors/aromas or major style deficiencies";
   if (score <= 29) return "Misses the mark on style and/or minor flaws";
   if (score <= 37) return "Generally within style parameters, minor flaws";
   if (score <= 44) return "Examplifies style well, requires minor fine-tuning";
@@ -41,6 +41,7 @@ class PdfRenderer {
 
     this.doc.setFont("helvetica");
     this.doc.setFontSize(18);
+    this.doc.setFontStyle("bolditalic");
     this.doc.text(title, 105, 10, null, null, "center");
     this.doc.setFontSize(12);
     this.doc.text('Score:', this.scoreX - 20, 20);
@@ -66,11 +67,11 @@ class PdfRenderer {
 
   addBeer(entry, category, special, comment) {
     this.doc.setFontSize(12);
-    this.doc.text('Entry: ' + entry, 90, 20);
+    this.doc.text('Entry # ' + entry, 90, 20);
     this.doc.text('Category: ' + category, 90, 25);
     this.doc.setFontSize(9);
-    this.doc.text('Special ingredients: ' + special, 90, 30);
-    this.doc.text('Comments: ' + comment, 90, 35);
+    this.doc.text('Special ingredients: ' + (special ? special : ''), 90, 30);
+    this.doc.text('Comments: ' + (comment ? comment : ''), 90, 35);
   }
 
   addSection(title, score, max) {
@@ -109,9 +110,23 @@ class PdfRenderer {
     }
   }
 
+  addVersion(version) {
+    this.doc.setFont("helvetica");
+    this.doc.setFontSize(6);
+    this.doc.text("beer-feedback version " + version, 200, 280, null, null, "right");
+  }
+
+  addMetdata(version, username, entry, category, json) {
+    this.doc.setProperties({
+      'author': username,
+      'subject': 'Entry # ' + entry + ' Category:' + category,
+      'creator': 'beer-feedback v' + version,
+      'keywords': json
+    });
+  }
+
   produce(name) {
-
-
+    this.doc.setProperties({'title': name.replace('.pdf', '')});
     this.doc.save(name);
   }
 }
@@ -127,5 +142,5 @@ function getLabel(options, id, inappropriate = false) {
   return id + suffix;
 }
 
-export {PdfRenderer, getLabel};
+export {PdfRenderer, getLabel, getScore, getScoreDescription};
 

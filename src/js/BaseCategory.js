@@ -17,7 +17,6 @@ const compareCategory = function compare(a, b) {
   return 0;
 }
 
-
 class BaseCategory {
 
   constructor() {
@@ -50,6 +49,15 @@ class BaseCategory {
     alert("Not implemented");
   }
 
+  flushFields(fields) {
+    for (let i=0; i<fields.length; i++) {
+      if (this.hasOwnProperty(fields[i])) {
+        delete this[fields[i]];
+      }
+    }
+    this.updated = true;
+    this.completed = false;
+  }
 }
 
 export {BaseCategory, compareCategory, LEVELS};

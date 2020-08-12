@@ -44,8 +44,22 @@ class Overall extends BaseCategory {
 
   constructor() {
     super();
-    // fields with default values
+    this.flush();
+  }
+
+  flush() {
+    this.flushFields(fields);
     this.feedback = '';
+  }
+
+  load(json) {
+    this.score = json.score;
+    this.feedback = json.feedback;
+    this.accuracy = json.accuracy;
+    this.technical = json.technical;
+    this.intangible = json.intangible;
+    this.drinkability = json.drinkability;
+    this.updateHandler();
   }
 
   checkCompletion() {

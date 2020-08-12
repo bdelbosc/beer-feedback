@@ -28,13 +28,13 @@
 
   export const name = "Beer feedback";
 
-  let user = new UserDto();
-  let beer = new BeerDto();
-  let aroma = new AromaDto();
-  let appearance = new AppearanceDto();
-  let flavor = new FlavorDto();
-  let mouthfeel = new MouthfeelDto();
-  let overall = new OverallDto();
+  const user = new UserDto();
+  const beer = new BeerDto();
+  const aroma = new AromaDto();
+  const appearance = new AppearanceDto();
+  const flavor = new FlavorDto();
+  const mouthfeel = new MouthfeelDto();
+  const overall = new OverallDto();
 
   let mainComment;
   let totalScore;
@@ -152,7 +152,8 @@
       'mouthfeel': mouthfeel,
       'overall': overall,
       'start': start,
-      'score': totalScore
+      'score': totalScore,
+      'version': pkg.version
     });
     renderer.addMetdata(pkg.version, user.name, beer.entry, beer.category, json);
     renderer.addVersion(pkg.version);
@@ -312,10 +313,11 @@
   </div>
 
   <div id="beer">
-    <Beer beer={beer}/>
-    <button on:click={() => evaluationEdit()} disabled={!beer.isCompleted()}>
-      <span title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
-    </button>
+    <Beer beer={beer} aroma={aroma} appearance={appearance} flavor={flavor} mouthfeel={mouthfeel} overall={overall}>
+      <button on:click={() => evaluationEdit()} disabled={!beer.isCompleted()}>
+        <span title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
+      </button>
+    </Beer>
   </div>
 
   <div id="evaluation">

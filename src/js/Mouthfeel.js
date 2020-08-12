@@ -56,7 +56,11 @@ class Mouthfeel extends BaseCategory {
 
   constructor() {
     super();
-    // fields with default values
+    this.flush();
+  }
+
+  flush() {
+    this.flushFields(fields);
     this.other = '';
     this.astringency = 0;
     this.bodyInappropriate = false;
@@ -64,6 +68,22 @@ class Mouthfeel extends BaseCategory {
     this.warmthInappropriate = false;
     this.creaminessInappropriate = false;
     this.astringencyInappropriate = false;
+  }
+
+  load(json) {
+    this.score = json.score;
+    this.other = json.other;
+    this.body = json.body;
+    this.carbonation = json.carbonation;
+    this.warmth = json.warmth;
+    this.creaminess = json.creaminess;
+    this.astringency = json.astringency;
+    this.bodyInappropriate = json.bodyInappropriate;
+    this.carbonationInappropriate = json.carbonationInappropriate;
+    this.warmthInappropriate = json.warmthInappropriate;
+    this.creaminessInappropriate = json.creaminessInappropriate;
+    this.astringencyInappropriate = json.astringencyInappropriate;
+    this.updateHandler();
   }
 
   checkCompletion() {

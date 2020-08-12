@@ -5,8 +5,20 @@ class Aroma extends BaseCategory {
 
   constructor() {
     super();
+    this.flush();
+  }
+
+  flush() {
+    this.flushFields(fields);
     this.aromas = [];
   }
+
+  load(json) {
+    this.aromas = json.aromas;
+    this.score = json.score;
+    this.updateHandler();
+  }
+
 
   checkCompletion() {
     this.required.length = 0;

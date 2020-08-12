@@ -70,10 +70,27 @@ class Appearance extends BaseCategory {
 
   constructor() {
     super();
-    // fields with default values
+    this.flush();
+  }
+
+  flush() {
+    this.flushFields(fields);
     this.hue = 'none';
     this.laces = false;
     this.legs = false;
+  }
+
+  load(json) {
+    this.score = json.score;
+    this.hue = json.hue;
+    this.legs = json.legs;
+    this.laces = json.laces;
+    this.color = json.color;
+    this.head = json.head;
+    this.retention = json.retention;
+    this.texture = json.texture;
+    this.clarity = json.clarity;
+    this.updateHandler();
   }
 
   checkCompletion() {

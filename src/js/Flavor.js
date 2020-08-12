@@ -39,11 +39,27 @@ class Flavor extends BaseCategory {
 
   constructor() {
     super();
-    // fields with default values
+    this.flush();
+  }
+
+  flush() {
+    this.flushFields(fields);
     this.flavors = [];
     this.bitternessInappropriate = false;
     this.balanceInappropriate = false;
     this.finishInappropriate = false;
+  }
+
+  load(json) {
+    this.flavors = json.flavors;
+    this.bitterness = json.bitterness;
+    this.bitternessInappropriate = json.bitternessInappropriate;
+    this.balance = json.balance;
+    this.balanceInappropriate = json.balanceInappropriate;
+    this.finish = json.finish;
+    this.finishInappropriate = json.finishInappropriate;
+    this.score = json.score;
+    this.updateHandler();
   }
 
   checkCompletion() {

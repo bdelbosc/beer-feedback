@@ -140,15 +140,29 @@ class Beer extends BaseCategory {
     const category = localStorage.getItem('beerCategory')
     if (category) this.category = category;
     const special = localStorage.getItem('beerSpecial')
-    if (category)
+    if (special)
       this.special = special;
     else
       this.special = '';
     const comment = localStorage.getItem('beerComment')
-    if (category)
+    if (comment)
       this.comment = comment;
     else
       this.comment = '';
+  }
+
+  flush() {
+    this.flushFields(fields);
+    this.comment = '';
+    this.special = '';
+  }
+
+  load(json) {
+    this.entry = json.entry;
+    this.category = json.category;
+    this.special = json.special;
+    this.comment = json.comment;
+    this.updateHandler();
   }
 
   checkCompletion() {

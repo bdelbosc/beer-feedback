@@ -149,5 +149,21 @@ function getLabel(options, id, inappropriate = false) {
   return id + suffix;
 }
 
-export {PdfRenderer, getLabel, getScore, getScoreDescription};
+function parsePDF(text, updateData) {
+  if (! text.startsWith('%PDF-1.3')) {
+    console.log("Not a PDF file abort");
+    return;
+  }
+  var lines = text.split('\n');
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i].startsWith('/Keywords (')) {
+      console.log("Got: " + lines[i].slice(11, -1));
+      updateData(JSON.parse(lines[i].slice(11, -1)));
+      return;
+    }
+  }
+  console.log("JSON Keyword not found in PDF file!");
+}
+
+export {PdfRenderer, getLabel, getScore, getScoreDescription, parsePDF};
 

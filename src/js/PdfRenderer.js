@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 
+
 function getScore(score) {
   if (score === undefined || score == 0) return '';
   if (score <= 13) return "Problematic";
@@ -22,6 +23,33 @@ function getScoreDescription(score) {
   return 'INVALID';
 }
 
+function getScoreLongDescription(score) {
+  if (score === undefined || score == 0) return '';
+  if (score <= 13) return "A beer with a major problem (usually " +
+    "contamination) that overwhelms all other flavors and aromas. " +
+    "Often barely palatable, may be undrinkable.";
+  if (score <= 20) return "This beer has its share of problems that may " +
+    "include missing the style parameters, off flavors and aromas, " +
+    "balance problems, contamination, or other major flaws. " +
+    "Scores near the lower end (14) of this range exhibit more major " +
+    "flaws. Unpleasant to drink";
+  if (score <= 29) return "A satisfactory beer that generally fits the style " +
+    "parameters. Scores near the upper end of this range (29) may " +
+    "have only a few minor flaws or be slightly out of style and also " +
+    "may be lacking in balance or complexity. Scores near the " +
+    "lower end of this range (21) tend to have more flaws and are likely " +
+    "to have stylistic inconsistencies as well.";
+  if (score <= 37) return "Beers in this range (30-37) may have a minor " +
+    "flaw (technical or stylistic), or may be lacking in balance or " +
+    "complexity.";
+  if (score <= 44) return "Beers in this range (38-44) may have no flaws " +
+    "but may be missing the intangibles for a world class beer.";
+  if (score <= 50) return "World-class example of the style. " +
+    "A beer with great character and no flaws.";
+  return 'INVALID';
+}
+
+
 const formatter = new Intl.DateTimeFormat('default', {
   year: 'numeric', month: 'numeric', day: 'numeric',
   hour12: false,
@@ -29,6 +57,10 @@ const formatter = new Intl.DateTimeFormat('default', {
   minute: '2-digit',
   second: '2-digit'
 });
+
+function pdfUnescape(value) {
+  return value.replace(/\\\\/g, '\\').replace(/\\\(/g, '(').replace(/\\\)/g, ')');
+}
 
 class PdfRenderer {
 
@@ -128,7 +160,7 @@ class PdfRenderer {
       'author': username,
       'subject': 'Entry # ' + entry + ' Category:' + category,
       'creator': 'beer-feedback v' + version,
-      'keywords': json
+      'keywords': escape(json),
     });
   }
 
@@ -156,13 +188,18 @@ function parsePDF(text, updateData) {
   var lines = text.split('\n');
   for (var i = 0; i < lines.length; i++) {
     if (lines[i].startsWith('/Keywords (')) {
-      console.log("Got: " + lines[i].slice(11, -1));
-      updateData(JSON.parse(lines[i].slice(11, -1)));
+      let json = lines[i].slice(11, -1)
+      console.log("Got data: " + json);
+      if (!json.startsWith('{')) {
+        json = unescape(json);
+        console.log("Got json: " + json);
+      }
+      updateData(JSON.parse(json));
       return;
     }
   }
   throw ("Invalid PDF Scoresheet file, unable to find the JSON data!");
 }
 
-export {PdfRenderer, getLabel, getScore, getScoreDescription, parsePDF};
+export {PdfRenderer, getLabel, getScore, getScoreDescription, getScoreLongDescription, parsePDF};
 

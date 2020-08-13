@@ -131,6 +131,7 @@ function renderAppearance(renderer, appearance) {
 export {
   Appearance as AppearanceDto,
   renderAppearance,
+  getColor,
   CLARITY_OPTIONS,
   HEAD_OPTIONS,
   HUE_OPTIONS,

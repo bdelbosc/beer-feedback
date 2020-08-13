@@ -200,7 +200,6 @@
     else evaluationEdit();
   });
 
-
 </script>
 
 
@@ -296,10 +295,15 @@
 
 <div class="top" id="top">
   <button class="settings" on:click={() => userEdit()}>
-    <span title="Edit User"><SvgIcon d={userIcon} fill="blue" size="1.5em"/>{user.name}</span>
+    <div title="Edit User">
+      <SvgIcon d={userIcon} fill="blue" boxSize="20"/>{user.name}
+    </div>
   </button>
   <button class="settings" on:click={() => beerEdit()}>
-    <span title="Edit Beer"><SvgIcon d={beerIcon} boxSize="2206" fill="orange" size="1.5em"/>{beer.entry}</span>
+    <div title="Edit Beer">
+      <SvgIcon d={beerIcon} boxSize="512" fill="#700000"/>
+      #{beer.entry}
+    </div>
   </button>
   <button on:click={() => submit()} class="right">
     <span title="Export PDF">PDF</span>
@@ -334,7 +338,7 @@
     {:else if 4 === currentTab}
       <Mouthfeel mouthfeel={mouthfeel}/>
     {:else if 5 === currentTab}
-      <Overall overall={overall}/>
+      <Overall overall={overall} score={totalScore}/>
     {/if}
   </div>
   <div class="footLine">{pkg.name} v{pkg.version}</div>

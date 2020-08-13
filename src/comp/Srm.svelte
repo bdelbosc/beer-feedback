@@ -1,5 +1,6 @@
 <script>
   import {onMount} from 'svelte';
+  import {getColor} from '../js/Appearance';
 
   export let value = undefined;
 
@@ -72,6 +73,11 @@
   });
 
 </script>
+<style>
+  span.small {
+    font-size: 0.8em;
+  }
+</style>
 <div id="picker">
   {#each Object.keys(SRM_RGB_MAP) as color}
     <button style="height: 3em; width: 3em; color: {getFontColor(color)}; background-color: {SRM_RGB_MAP[color]}"
@@ -79,4 +85,10 @@
   {/each}
 </div>
 <button id="selection" style="width: 10em; color: {getFontColor(value)}; background-color: {SRM_RGB_MAP[value]}"
-        on:click={() => pickSrm()}>{value}</button>
+        on:click={() => pickSrm()}>
+  {#if value >=0}
+    {getColor(value)} <span class="small">{value} SRM</span>
+  {:else}
+    ...
+  {/if}
+</button>

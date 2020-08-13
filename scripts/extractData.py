@@ -15,7 +15,7 @@ def get_value(a, b):
 def process_label(label):
     if label.startswith('>'):
         return "&#8659;<br>" + label[2:]
-    return label
+    return label.strip()
 
 
 class Map:

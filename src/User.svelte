@@ -24,17 +24,18 @@
   }
 </style>
 <h3>
-  <SvgIcon d={userIcon} fill="blue"/>
+  <SvgIcon d={userIcon} fill="blue" boxSize="20"/>
   Who are you?
 </h3>
 <div>
-  <span class="label">Name</span>
+  <span class=" label
+  ">Name</span>
   <input on:change={updateHandler} type=text bind:value={user.name}/>
-</div>
+  </div>
 
-<div>
-  <SelectCheck on:change={updateHandler} bind:value={user.rank} options={RANK_OPTIONS} noCheck="true">
-    Rank
+  <div>
+    <SelectCheck on:change={updateHandler} bind:value={user.rank} options={RANK_OPTIONS} noCheck="true">
+      Rank
   </SelectCheck>
 </div>
 

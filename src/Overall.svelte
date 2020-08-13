@@ -7,8 +7,10 @@
     DRINKABILITY_OPTIONS
   } from './js/Overall';
   import Score from "./comp/Score.svelte";
+  import {getScore, getScoreDescription} from './js/PdfRenderer';
 
   export let overall;
+  export let score;
 
   function updateHandler() {
     overall.updateHandler()
@@ -23,6 +25,16 @@
 
   input {
     width: 10em;
+  }
+
+  div.scoreDescription {
+    font-size: 0.8em;
+    font-style: italic;
+  }
+
+  div.score {
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 </style>
 
@@ -51,11 +63,18 @@
   </SelectCheck>
 </div>
 <div>
+</div>
+<div>
   <span class="label">Feedback</span>
   <textarea on:change={updateHandler} type=text bind:value={overall.feedback}/>
 </div>
 <div>
   <Score on:change={updateHandler} bind:value={overall.score} max="10" min="1">Score</Score>
 </div>
-
+{#if score > 0}
+  <div class="score">
+    Total score is <b>{score}</b> which is <b>{getScore(score)}</b>
+    <div class="scoreDescription">{getScoreDescription(score)}</div>
+  </div>
+{/if}
 

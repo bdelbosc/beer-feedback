@@ -185,7 +185,9 @@
   {/each}
   <div class="buttons">
     <button on:click={picker}>
-      <span title="Add new Aroma"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
+      <span title="Add new Aroma">
+        <SvgIcon d={addIcon} size="2em" fill="blue"/>
+      </span>
     </button>
   </div>
   <div>

@@ -10,7 +10,7 @@ const ACCURACY_OPTIONS = [
   {id: 2, text: 'Style Deficiency'},
   {id: 3, text: 'Almost on Target'},
   {id: 4, text: 'Classic'},
-  {id: 5, text: 'World class'}
+  {id: 5, text: 'World Class'}
 ];
 
 const TECHNICAL_OPTIONS = [

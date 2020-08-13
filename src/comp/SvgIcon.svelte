@@ -6,7 +6,7 @@
 </script>
 
 <svg class="icon" width={size} height={size} viewBox="0 0 {boxSize} {boxSize}" fill={fill}
-     xmlns="http://www.w3.org/2000/svg">
+     preserveAspectRatio="xMidYMid" xmlns="http://www.w3.org/2000/svg">
   <path d={d} stroke="#4A5568" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 

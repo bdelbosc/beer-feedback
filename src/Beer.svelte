@@ -95,7 +95,7 @@
   }
 </style>
 <h3>
-  <SvgIcon d={beerIcon} boxSize="2206" fill="orange"/>
+  <SvgIcon d={beerIcon} boxSize="512" fill="#700000"/>
   Which beer deserves feedback?
 </h3>
 

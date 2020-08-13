@@ -1,5 +1,6 @@
 import jsPDF from 'jspdf';
 
+
 function getScore(score) {
   if (score === undefined || score == 0) return '';
   if (score <= 13) return "Problematic";
@@ -29,6 +30,10 @@ const formatter = new Intl.DateTimeFormat('default', {
   minute: '2-digit',
   second: '2-digit'
 });
+
+function pdfUnescape(value) {
+  return value.replace(/\\\\/g, '\\').replace(/\\\(/g, '(').replace(/\\\)/g, ')');
+}
 
 class PdfRenderer {
 
@@ -128,7 +133,7 @@ class PdfRenderer {
       'author': username,
       'subject': 'Entry # ' + entry + ' Category:' + category,
       'creator': 'beer-feedback v' + version,
-      'keywords': json
+      'keywords': escape(json),
     });
   }
 
@@ -156,8 +161,13 @@ function parsePDF(text, updateData) {
   var lines = text.split('\n');
   for (var i = 0; i < lines.length; i++) {
     if (lines[i].startsWith('/Keywords (')) {
-      console.log("Got: " + lines[i].slice(11, -1));
-      updateData(JSON.parse(lines[i].slice(11, -1)));
+      let json = lines[i].slice(11, -1)
+      console.log("Got data: " + json);
+      if (!json.startsWith('{')) {
+        json = unescape(json);
+        console.log("Got json: " + json);
+      }
+      updateData(JSON.parse(json));
       return;
     }
   }

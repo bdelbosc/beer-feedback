@@ -43,21 +43,29 @@
   }
 
   function onChooseFile(event) {
-    if (typeof window.FileReader !== 'function')
-      throw ("The file API isn't supported on this browser.");
-    let input = event.target;
-    if (!input)
-      throw ("The browser does not properly implement the event object");
-    if (!input.files)
-      throw ("This browser does not support the `files` property of the file input.");
-    if (!input.files[0])
-      return undefined;
-    let file = input.files[0];
-    let fr = new FileReader();
-    fr.onload = function (e) {
-      parsePDF(e.target.result, uploadData);
-    };
-    fr.readAsText(file);
+    try {
+      if (typeof window.FileReader !== 'function')
+        throw ("The file API isn't supported on this browser.");
+      let input = event.target;
+      if (!input)
+        throw ("The browser does not properly implement the event object");
+      if (!input.files)
+        throw ("This browser does not support the `files` property of the file input.");
+      if (!input.files[0])
+        return undefined;
+      let file = input.files[0];
+      let fr = new FileReader();
+      fr.onload = function (e) {
+        try {
+          parsePDF(e.target.result, uploadData);
+        } catch (err) {
+          alert(err);
+        }
+      };
+      fr.readAsText(file);
+    } catch (err) {
+      alert(err.message);
+    }
   }
 
 </script>
@@ -119,7 +127,7 @@
   </button>
 </div>
 <div class="upload">
-  <label for="upload">You can also upload an existing Scoresheet</label>
+  <label for="upload">You can also load an existing PDF Scoresheet</label>
   <input id='upload' type='file' accept="application/pdf" on:change={() => onChooseFile(event)}/>
 </div>
 

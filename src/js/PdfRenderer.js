@@ -151,8 +151,7 @@ function getLabel(options, id, inappropriate = false) {
 
 function parsePDF(text, updateData) {
   if (! text.startsWith('%PDF-1.3')) {
-    console.log("Not a PDF file abort");
-    return;
+    throw ("Invalid file, a beer-feedback PDF Scoresheet is expected");
   }
   var lines = text.split('\n');
   for (var i = 0; i < lines.length; i++) {
@@ -162,7 +161,7 @@ function parsePDF(text, updateData) {
       return;
     }
   }
-  console.log("JSON Keyword not found in PDF file!");
+  throw ("Invalid PDF Scoresheet file, unable to find the JSON data!");
 }
 
 export {PdfRenderer, getLabel, getScore, getScoreDescription, parsePDF};

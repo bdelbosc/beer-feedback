@@ -186,6 +186,8 @@
   }
 
   function evaluationEdit() {
+    aroma = aroma;
+    currentTab = 1;
     document.getElementById("evaluation").hidden = false;
     document.getElementById("user").hidden = true;
     document.getElementById("beer").hidden = true;

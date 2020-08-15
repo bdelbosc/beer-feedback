@@ -197,8 +197,11 @@
     if (!user.isCompleted()) userEdit();
     else if (!beer.isCompleted()) beerEdit();
     else evaluationEdit();
-  });
 
+    window.onbeforeunload = function() {
+      return "";
+    }
+  });
 </script>
 
 

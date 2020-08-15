@@ -26,6 +26,19 @@ Fill out all the forms until there is no more red tab titles, then click the PDF
 - Work on any smartphone or computer with a recent browser
 
 Technical choices:
-- [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application)
+- Single Page Application or [SPA](https://en.wikipedia.org/wiki/Single-page_application)
 - [Svelte](https://svelte.dev/) UI
 - Use [Plotly Sunburst](https://plot.ly/javascript/sunburst-charts/) to pickup aromas and flavors
+
+## Disclaimer 
+
+This application is just a prototype and is not done for competition of any sort.
+
+This application uses [Beer Judge Certification Program](https://bjcp.org/) terms and derivative output of the 2015 BJCP Style Guide.
+This is only for personal educational purpose.
+
+The BJCP data or any derivative output are protected by the BJCP Copyright and should not be marketed for profit
+or integrated or embedded in websites without the BJCP agreement.
+
+The most current version of the BCJP Style Guide can be found on the [BJCP web site](https://www.bjcp.org/).
+

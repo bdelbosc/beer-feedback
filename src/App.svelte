@@ -26,6 +26,10 @@
   import {PdfRenderer} from './js/PdfRenderer';
   import pkg from '../package.json'
   import Octocat from "./comp/Octocat.svelte";
+  import {fade} from 'svelte/transition';
+  import bjcpGuideline from './data/bjcp-guideline.json';
+
+  let visible = false;
 
   export const name = "Beer feedback";
 
@@ -198,7 +202,7 @@
     else if (!beer.isCompleted()) beerEdit();
     else evaluationEdit();
 
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
       return "";
     }
   });
@@ -320,6 +324,12 @@
     font-style: italic;
     margin-bottom: 5px;
   }
+
+  p.guideline {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
 </style>
 
 <div class="top" id="top">
@@ -359,17 +369,61 @@
     <div class="statusLine">{elapsed}s elapsed, score: {totalScore}</div>
     <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
     {#if 1 === currentTab}
-      <Aroma aroma={aroma}/>
+      {#if visible && beer.category}
+        <p class="guideline" in:fade>
+          {beer.category}: {bjcpGuideline[beer.category].aroma}
+        </p>
+      {:else}
+        <div in:fade>
+          <Aroma aroma={aroma}/>
+        </div>
+      {/if}
     {:else if 2 === currentTab}
-      <Appearance appearance={appearance}/>
+      {#if visible && beer.category}
+        <p class="guideline" in:fade>
+          {beer.category}: {bjcpGuideline[beer.category].appearance}
+        </p>
+      {:else}
+        <div in:fade>
+          <Appearance appearance={appearance}/>
+        </div>
+      {/if}
     {:else if 3 === currentTab}
-      <Flavor flavor={flavor}/>
+      {#if visible && beer.category}
+        <p class="guideline" in:fade>
+          {beer.category}: {bjcpGuideline[beer.category].flavor}
+        </p>
+      {:else}
+        <div in:fade>
+          <Flavor flavor={flavor}/>
+        </div>
+      {/if}
     {:else if 4 === currentTab}
-      <Mouthfeel mouthfeel={mouthfeel}/>
+      {#if visible && beer.category}
+        <p class="guideline" in:fade>
+          {beer.category}: {bjcpGuideline[beer.category].mouthfeel}
+        </p>
+      {:else}
+        <div in:fade>
+          <Mouthfeel mouthfeel={mouthfeel}/>
+        </div>
+      {/if}
     {:else if 5 === currentTab}
-      <Overall overall={overall} score={totalScore}/>
+      {#if visible && beer.category}
+        <p class="guideline" in:fade>
+          {beer.category}: {bjcpGuideline[beer.category].overall}
+        </p>
+      {:else}
+        <div in:fade>
+          <Overall overall={overall} score={totalScore}/>
+        </div>
+      {/if}
     {/if}
   </div>
+  <label>
+    <input type="checkbox" bind:checked={visible}>
+    View BJCP Guideline
+  </label>
   <div class="footLine">{pkg.name} v{pkg.version}</div>
 </div>
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/bdelbosc/beer-feedback/compare/v1.7.0...v1.8.0) (2020-08-15)
+
+
+### Features
+
+* prevent to navigate away and loose the current scoresheet ([30b7cdc](https://github.com/bdelbosc/beer-feedback/commit/30b7cdc5578e0a0ce291747597531ecdd0d6d6be))
+
 ## [1.7.0](https://github.com/bdelbosc/beer-feedback/compare/v1.5.2...v1.7.0) (2020-08-15)
 
 

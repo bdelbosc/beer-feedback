@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.2](https://github.com/bdelbosc/beer-feedback/compare/v1.9.1...v1.9.2) (2020-08-15)
+
+
+### Bug Fixes
+
+* add bjcp disclaimer ([bd29202](https://github.com/bdelbosc/beer-feedback/commit/bd29202de0b2183281f94a3ad810b7537b8b6ae1))
+
 ### [1.9.1](https://github.com/bdelbosc/beer-feedback/compare/v1.9.0...v1.9.1) (2020-08-15)
 
 

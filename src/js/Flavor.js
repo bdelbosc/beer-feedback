@@ -105,6 +105,32 @@ class Flavor extends BaseCategory {
       this.flavors.sort(compareCategory);
     }
   }
+
+  render(renderer) {
+    renderer.addSection('Flavor', this.score, 20);
+    let items = [];
+    this.flavors.filter(f => f.category === 'malt').forEach(f => items.push(getFlavor(f)));
+    renderer.addHeadline('Malt', items);
+    items.length = 0;
+    this.flavors.filter(f => f.category === 'hops').forEach(f => items.push(getFlavor(f)));
+    renderer.addHeadline('Hops', items);
+    items.length = 0;
+    this.flavors.filter(f => f.category === 'fermentation').forEach(f => items.push(getFlavor(f)));
+    renderer.addHeadline('Fermentation', items);
+    items.length = 0;
+    this.flavors.filter(f => f.category === 'others').forEach(f => items.push(getFlavor(f)));
+    renderer.addHeadline('Other', items);
+    items.length = 0;
+    this.flavors.filter(f => f.category === 'flaws').forEach(f => items.push(getFlavor(f, true)));
+    renderer.addHeadline('Flaws', items);
+
+    renderer.addHeadline('Bitterness', [getLabel(BITTERNESS_OPTIONS, this.bitterness, this.bitternessInappropriate)]);
+    renderer.addHeadline2('Balance', [getLabel(BALANCE_OPTIONS, this.balance, this.balanceInappropriate)]);
+    renderer.addHeadline('Finish', [getLabel(DRYNESS_OPTIONS, this.finish, this.finishInappropriate)]);
+    if (this.comment)
+      renderer.addHeadline('Comments', [this.comment]);
+  }
+
 }
 
 function getFlavor(flavor, flaws = false) {
@@ -116,29 +142,4 @@ function getFlavor(flavor, flaws = false) {
   return desc;
 }
 
-function renderFlavor(renderer, flavor) {
-  renderer.addSection('Flavor', flavor.score, 20);
-  let items = [];
-  flavor.flavors.filter(f => f.category === 'malt').forEach(f => items.push(getFlavor(f)));
-  renderer.addHeadline('Malt', items);
-  items.length = 0;
-  flavor.flavors.filter(f => f.category === 'hops').forEach(f => items.push(getFlavor(f)));
-  renderer.addHeadline('Hops', items);
-  items.length = 0;
-  flavor.flavors.filter(f => f.category === 'fermentation').forEach(f => items.push(getFlavor(f)));
-  renderer.addHeadline('Fermentation', items);
-  items.length = 0;
-  flavor.flavors.filter(f => f.category === 'others').forEach(f => items.push(getFlavor(f)));
-  renderer.addHeadline('Other', items);
-  items.length = 0;
-  flavor.flavors.filter(f => f.category === 'flaws').forEach(f => items.push(getFlavor(f, true)));
-  renderer.addHeadline('Flaws', items);
-
-  renderer.addHeadline('Bitterness', [getLabel(BITTERNESS_OPTIONS, flavor.bitterness, flavor.bitternessInappropriate)]);
-  renderer.addHeadline2('Balance', [getLabel(BALANCE_OPTIONS, flavor.balance, flavor.balanceInappropriate)]);
-  renderer.addHeadline('Finish', [getLabel(DRYNESS_OPTIONS, flavor.finish, flavor.finishInappropriate)]);
-  if (flavor.comment)
-    renderer.addHeadline('Comments', [flavor.comment]);
-}
-
-export {Flavor as FlavorDto, renderFlavor, BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS}
+export {Flavor as FlavorDto, BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS}

@@ -60,6 +60,27 @@ class Aroma extends BaseCategory {
       this.aromas.sort(compareCategory);
     }
   }
+
+  render(renderer) {
+    renderer.addSection('Aroma', this.score, 12);
+    let items = [];
+    this.aromas.filter(a => a.category === 'malt').forEach(a => items.push(getAroma(a)));
+    renderer.addHeadline('Malt', items);
+    items.length = 0;
+    this.aromas.filter(a => a.category === 'hops').forEach(a => items.push(getAroma(a)));
+    renderer.addHeadline('Hops', items);
+    items.length = 0;
+    this.aromas.filter(a => a.category === 'fermentation').forEach(a => items.push(getAroma(a)));
+    renderer.addHeadline('Fermentation', items);
+    items.length = 0;
+    this.aromas.filter(a => a.category === 'others').forEach(a => items.push(getAroma(a)));
+    renderer.addHeadline('Other', items);
+    items.length = 0;
+    this.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(getAroma(a, true)));
+    renderer.addHeadline('Flaws', items);
+    if (this.comment)
+      renderer.addHeadline('Comments', [this.comment]);
+  }
 }
 
 function getAroma(aroma, flaws = false) {
@@ -72,25 +93,5 @@ function getAroma(aroma, flaws = false) {
   return desc;
 }
 
-function renderAroma(renderer, aroma) {
-  renderer.addSection('Aroma', aroma.score, 12);
-  let items = [];
-  aroma.aromas.filter(a => a.category === 'malt').forEach(a => items.push(getAroma(a)));
-  renderer.addHeadline('Malt', items);
-  items.length = 0;
-  aroma.aromas.filter(a => a.category === 'hops').forEach(a => items.push(getAroma(a)));
-  renderer.addHeadline('Hops', items);
-  items.length = 0;
-  aroma.aromas.filter(a => a.category === 'fermentation').forEach(a => items.push(getAroma(a)));
-  renderer.addHeadline('Fermentation', items);
-  items.length = 0;
-  aroma.aromas.filter(a => a.category === 'others').forEach(a => items.push(getAroma(a)));
-  renderer.addHeadline('Other', items);
-  items.length = 0;
-  aroma.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(getAroma(a, true)));
-  renderer.addHeadline('Flaws', items);
-  if (aroma.comment)
-    renderer.addHeadline('Comments', [aroma.comment]);
-}
 
-export {Aroma as AromaDto, renderAroma}
+export {Aroma as AromaDto}

@@ -106,35 +106,36 @@ class Appearance extends BaseCategory {
     }
     this.completed = (this.required.length === 0);
   }
+
+  render(renderer) {
+    renderer.addSection('Appearance', this.score, 3);
+    let color = [];
+    if (this.color !== undefined) color.push(getColor(this.color) + " (" + this.color + ' SRM)');
+    if (this.hue !== 'none') color.push(getLabel(HUE_OPTIONS, this.hue) + ' hue');
+    renderer.addHeadline('Color', color);
+    let clarity = [];
+    if (this.clarity !== undefined) clarity.push(getLabel(CLARITY_OPTIONS, this.clarity));
+    renderer.addHeadline2('Clarity', clarity);
+    let head = [];
+    if (this.head !== undefined) head.push(getLabel(HEAD_OPTIONS, this.head));
+    renderer.addHeadline('Head', head);
+    let texture = [];
+    if (this.texture !== undefined) texture.push(getLabel(TEXTURE_OPTIONS, this.texture));
+    renderer.addHeadline2('Texture', texture);
+    let retention = [];
+    if (this.retention !== undefined) retention.push(getLabel(RETENTION_OPTIONS, this.retention));
+    renderer.addHeadline('Retention', retention);
+    let other = [];
+    if (this.laces) other.push('Laces cling on the glass');
+    if (this.legs) other.push('Legs');
+    renderer.addHeadline2('Other', other);
+  }
+
 }
 
-function renderAppearance(renderer, appearance) {
-  renderer.addSection('Appearance', appearance.score, 3);
-  let color = [];
-  if (appearance.color !== undefined) color.push(getColor(appearance.color) + " (" + appearance.color + ' SRM)');
-  if (appearance.hue !== 'none') color.push(getLabel(HUE_OPTIONS, appearance.hue) + ' hue');
-  renderer.addHeadline('Color', color);
-  let clarity = [];
-  if (appearance.clarity !== undefined) clarity.push(getLabel(CLARITY_OPTIONS, appearance.clarity));
-  renderer.addHeadline2('Clarity', clarity);
-  let head = [];
-  if (appearance.head !== undefined) head.push(getLabel(HEAD_OPTIONS, appearance.head));
-  renderer.addHeadline('Head', head);
-  let texture = [];
-  if (appearance.texture !== undefined) texture.push(getLabel(TEXTURE_OPTIONS, appearance.texture));
-  renderer.addHeadline2('Texture', texture);
-  let retention = [];
-  if (appearance.retention !== undefined) retention.push(getLabel(RETENTION_OPTIONS, appearance.retention));
-  renderer.addHeadline('Retention', retention);
-  let other = [];
-  if (appearance.laces) other.push('Laces cling on the glass');
-  if (appearance.legs) other.push('Legs');
-  renderer.addHeadline2('Other', other);
-}
 
 export {
   Appearance as AppearanceDto,
-  renderAppearance,
   getColor,
   CLARITY_OPTIONS,
   HEAD_OPTIONS,

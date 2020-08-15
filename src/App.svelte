@@ -16,13 +16,13 @@
     nextIcon, userIcon, beerIcon
   } from './js/AppIcons'
 
-  import {AromaDto, renderAroma} from './js/Aroma';
-  import {AppearanceDto, renderAppearance} from './js/Appearance';
-  import {FlavorDto, renderFlavor} from './js/Flavor';
-  import {MouthfeelDto, renderMouthfeel} from './js/Mouthfeel';
-  import {OverallDto, renderOverall} from './js/Overall';
-  import {UserDto, renderUser} from './js/User';
-  import {BeerDto, renderBeer} from './js/Beer';
+  import {AromaDto} from './js/Aroma';
+  import {AppearanceDto} from './js/Appearance';
+  import {FlavorDto} from './js/Flavor';
+  import {MouthfeelDto} from './js/Mouthfeel';
+  import {OverallDto} from './js/Overall';
+  import {UserDto} from './js/User';
+  import {BeerDto} from './js/Beer';
   import {PdfRenderer} from './js/PdfRenderer';
   import pkg from '../package.json'
   import Octocat from "./comp/Octocat.svelte";
@@ -156,13 +156,13 @@
     let renderer = new PdfRenderer("BEER SCORESHEET", totalScore);
     renderer.addMetdata(pkg.version, user.name, beer.entry, beer.category, json);
     renderer.addVersion(pkg.version);
-    renderUser(renderer, user, start);
-    renderBeer(renderer, beer);
-    renderAroma(renderer, aroma);
-    renderAppearance(renderer, appearance);
-    renderFlavor(renderer, flavor);
-    renderMouthfeel(renderer, mouthfeel);
-    renderOverall(renderer, overall, totalScore);
+    user.render(renderer);
+    beer.render(renderer);
+    aroma.render(renderer);
+    appearance.render(renderer);
+    flavor.render(renderer);
+    mouthfeel.render(renderer);
+    overall.render(renderer, totalScore);
     let name = 'scoresheet-' + start.toISOString().slice(0, 10).replace(/-/g, "");
     name += '-' + beer.entry.replace(/\W/g, '_');
     name += '-' + beer.category.replace(/\W/g, '_');

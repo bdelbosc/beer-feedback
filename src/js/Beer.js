@@ -208,10 +208,11 @@ class Beer extends BaseCategory {
     else
       localStorage.removeItem('beerComment')
   }
+
+  render(renderer) {
+    renderer.addBeer(this.entry, getLabel(CATEGORY_OPTIONS, this.category), this.special, this.comment);
+  }
+
 }
 
-function renderBeer(renderer, beer) {
-  renderer.addBeer(beer.entry, getLabel(CATEGORY_OPTIONS, beer.category), beer.special, beer.comment);
-}
-
-export {Beer as BeerDto, renderBeer, CATEGORY_OPTIONS}
+export {Beer as BeerDto, CATEGORY_OPTIONS}

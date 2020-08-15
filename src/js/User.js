@@ -60,10 +60,11 @@ class User extends BaseCategory {
     else
       localStorage.removeItem('userRank');
   }
+
+  render(renderer) {
+    renderer.addUser(this.name, getLabel(RANK_OPTIONS, this.rank));
+  }
+
 }
 
-function renderUser(renderer, user) {
-  renderer.addUser(user.name, getLabel(RANK_OPTIONS, user.rank));
-}
-
-export {User as UserDto, renderUser, RANK_OPTIONS}
+export {User as UserDto, RANK_OPTIONS}

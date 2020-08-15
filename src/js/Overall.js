@@ -76,21 +76,20 @@ class Overall extends BaseCategory {
     this.completed = (this.required.length === 0);
   }
 
-}
+  render(renderer, score) {
+    renderer.addSection('Overall Impression', this.score, 10);
+    renderer.addHeadline('Accuracy', [getLabel(ACCURACY_OPTIONS, this.accuracy)]);
+    renderer.addHeadline2('Technical Merit', [getLabel(TECHNICAL_OPTIONS, this.technical)]);
+    renderer.addHeadline('Drinkability', [getLabel(DRINKABILITY_OPTIONS, this.drinkability)]);
+    renderer.addHeadline2('Intangible', [getLabel(INTANGIBLE_OPTIONS, this.intangible)]);
+    renderer.addHeadline('Scoring Guide', [getScore(score) + ': ' + getScoreDescription(score)]);
+    renderer.addHeadline('Feedback', [this.feedback !== undefined ? this.feedback : '']);
+  }
 
-function renderOverall(renderer, overall, score) {
-  renderer.addSection('Overall Impression', overall.score, 10);
-  renderer.addHeadline('Accuracy', [getLabel(ACCURACY_OPTIONS, overall.accuracy)]);
-  renderer.addHeadline2('Technical Merit', [getLabel(TECHNICAL_OPTIONS, overall.technical)]);
-  renderer.addHeadline('Drinkability', [getLabel(DRINKABILITY_OPTIONS, overall.drinkability)]);
-  renderer.addHeadline2('Intangible', [getLabel(INTANGIBLE_OPTIONS, overall.intangible)]);
-  renderer.addHeadline('Scoring Guide', [getScore(score) + ': ' + getScoreDescription(score)]);
-  renderer.addHeadline('Feedback', [overall.feedback !== undefined ? overall.feedback : '']);
 }
 
 export {
   Overall as OverallDto,
-  renderOverall,
   ACCURACY_OPTIONS,
   DRINKABILITY_OPTIONS,
   INTANGIBLE_OPTIONS,

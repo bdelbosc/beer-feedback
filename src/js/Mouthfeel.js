@@ -101,22 +101,21 @@ class Mouthfeel extends BaseCategory {
     this.completed = (this.required.length === 0);
   }
 
-}
+  render(renderer) {
+    renderer.addSection('Mouthfeel', this.score, 5);
+    renderer.addHeadline('Body', [getLabel(BODY_OPTIONS, this.body, this.bodyInappropriate)]);
+    renderer.addHeadline2('Creaminess', [getLabel(CREAMINESS_OPTIONS, this.creaminess, this.creaminessInappropriate)]);
+    renderer.addHeadline('Carbonation', [getLabel(CARBONATION_OPTIONS, this.carbonation, this.carbonationInappropriate)]);
+    renderer.addHeadline2('Astringency', [getLabel(ASTRINGENCY_OPTIONS, this.astringency, this.astringencyInappropriate)]);
+    renderer.addHeadline('Warmth', [getLabel(WARMTH_OPTIONS, this.warmth, this.warmthInappropriate)]);
+    if (this.other)
+      renderer.addHeadline('Other sensations', [(this.other !== undefined ? this.other : '')]);
+  }
 
-function renderMouthfeel(renderer, mouthfeel) {
-  renderer.addSection('Mouthfeel', mouthfeel.score, 5);
-  renderer.addHeadline('Body', [getLabel(BODY_OPTIONS, mouthfeel.body, mouthfeel.bodyInappropriate)]);
-  renderer.addHeadline2('Creaminess', [getLabel(CREAMINESS_OPTIONS, mouthfeel.creaminess, mouthfeel.creaminessInappropriate)]);
-  renderer.addHeadline('Carbonation', [getLabel(CARBONATION_OPTIONS, mouthfeel.carbonation, mouthfeel.carbonationInappropriate)]);
-  renderer.addHeadline2('Astringency', [getLabel(ASTRINGENCY_OPTIONS, mouthfeel.astringency, mouthfeel.astringencyInappropriate)]);
-  renderer.addHeadline('Warmth', [getLabel(WARMTH_OPTIONS, mouthfeel.warmth, mouthfeel.warmthInappropriate)]);
-  if (mouthfeel.other)
-    renderer.addHeadline('Other sensations', [(mouthfeel.other !== undefined ? mouthfeel.other : '')]);
 }
 
 export {
   Mouthfeel as MouthfeelDto,
-  renderMouthfeel,
   ASTRINGENCY_OPTIONS,
   BODY_OPTIONS,
   CARBONATION_OPTIONS,

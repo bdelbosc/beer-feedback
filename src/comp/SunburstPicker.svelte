@@ -25,16 +25,16 @@
     plotDiv.on('plotly_sunburstclick', function (data) {
       selected = data["points"][0]["currentPath"] + data["points"][0]["label"];
     });
-    console.log(plotDiv.data);
+    console.debug(plotDiv.data);
   }
 
   function validate() {
-    console.log("validate");
+    console.debug("validate");
     value = selected;
   }
 
   function edit() {
-    console.log("edit");
+    console.debug("edit");
     selected = value;
     value = '';
   }
@@ -47,7 +47,7 @@
         // TODO here we want to reset the plot or select the root element
         let plotDiv = document.getElementById(plotId);
         if (plotDiv.data !== undefined) {
-          console.log("REDRAW");
+          console.debug("REDRAW");
           data[0].level = '';
           Plotly.redraw(plotDiv, data, layout, {displayModeBar: false});
         }

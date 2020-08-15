@@ -189,10 +189,10 @@ function parsePDF(text, updateData) {
   for (var i = 0; i < lines.length; i++) {
     if (lines[i].startsWith('/Keywords (')) {
       let json = lines[i].slice(11, -1)
-      console.log("Got data: " + json);
+      console.debug("Got data from PDF: " + json);
       if (!json.startsWith('{')) {
         json = unescape(json);
-        console.log("Got json: " + json);
+        console.debug("Got json: " + json);
       }
       updateData(JSON.parse(json));
       return;

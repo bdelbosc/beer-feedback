@@ -83,36 +83,36 @@
       tabItems[0].comment = getComment(aroma);
       completed = completed && aroma.isCompleted();
       updated = true;
-      console.log("Saving aromas");
-      console.log(aroma);
+      console.debug("Aroma updated");
+      console.debug(aroma);
     }
     if (appearance.isUpdated()) {
       tabItems[1].comment = getComment(appearance);
       completed = completed && appearance.isCompleted();
       updated = true;
-      console.log("Saving appearance");
-      console.log(appearance);
+      console.debug("Appearance updated");
+      console.debug(appearance);
     }
     if (flavor.isUpdated()) {
       tabItems[2].comment = getComment(flavor);
       completed = completed && flavor.isCompleted();
       updated = true;
-      console.log("Saving flavors");
-      console.log(flavor);
+      console.debug("Flavor updated");
+      console.debug(flavor);
     }
     if (mouthfeel.isUpdated()) {
       tabItems[3].comment = getComment(mouthfeel);
       completed = completed && mouthfeel.isCompleted();
       updated = true;
-      console.log("Saving mouthfeel");
-      console.log(mouthfeel);
+      console.debug("Mouthfeel updated");
+      console.debug(mouthfeel);
     }
     if (overall.isUpdated()) {
       tabItems[4].comment = getComment(overall);
       completed = completed && overall.isCompleted();
       updated = true;
-      console.log("Saving overall");
-      console.log(overall);
+      console.debug("Overall updated");
+      console.debug(overall);
     }
     if (updated) {
       tabItems = tabItems;
@@ -121,8 +121,7 @@
         showPdf = true;
       }
     }
-
-    // console.log(appearance);
+    // console.debug(appearance);
   }, 1500);
 
 
@@ -136,13 +135,6 @@
   let currentTab = 1;
 
   function submit() {
-    console.log(aroma);
-    console.log(appearance);
-    console.log(flavor);
-    console.log(mouthfeel);
-    console.log(overall);
-
-    let renderer = new PdfRenderer("BEER SCORESHEET", totalScore);
     let json = JSON.stringify({
       'user': user,
       'beer': beer,
@@ -155,6 +147,9 @@
       'score': totalScore,
       'version': pkg.version
     });
+    console.info("Generate PDF");
+    console.info(json);
+    let renderer = new PdfRenderer("BEER SCORESHEET", totalScore);
     renderer.addMetdata(pkg.version, user.name, beer.entry, beer.category, json);
     renderer.addVersion(pkg.version);
     renderUser(renderer, user, start);

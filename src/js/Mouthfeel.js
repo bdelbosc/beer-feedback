@@ -110,8 +110,8 @@ function renderMouthfeel(renderer, mouthfeel) {
   renderer.addHeadline('Carbonation', [getLabel(CARBONATION_OPTIONS, mouthfeel.carbonation, mouthfeel.carbonationInappropriate)]);
   renderer.addHeadline2('Astringency', [getLabel(ASTRINGENCY_OPTIONS, mouthfeel.astringency, mouthfeel.astringencyInappropriate)]);
   renderer.addHeadline('Warmth', [getLabel(WARMTH_OPTIONS, mouthfeel.warmth, mouthfeel.warmthInappropriate)]);
-  renderer.addHeadline('Other', [(mouthfeel.other !== undefined ? mouthfeel.other : '')]);
-
+  if (mouthfeel.other)
+    renderer.addHeadline('Other sensations', [(mouthfeel.other !== undefined ? mouthfeel.other : '')]);
 }
 
 export {

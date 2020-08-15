@@ -125,6 +125,9 @@
     clear: both;
   }
 
+  textarea {
+    width: 100%;
+  }
 
 </style>
 <div id="picker">
@@ -206,6 +209,12 @@
       Finish
     </SelectCheck>
   </div>
+
+  <div>
+    <span class="label">Comment</span>
+    <textarea on:change={updateHandler} type=text bind:value={flavor.comment}/>
+  </div>
+
   <div>
     <Score on:change={updateHandler} bind:value={flavor.score} max="20" min="5">Score</Score>
   </div>

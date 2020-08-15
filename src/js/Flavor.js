@@ -1,16 +1,17 @@
 import {BaseCategory, compareCategory, LEVELS} from './BaseCategory';
 import {getLabel} from "./PdfRenderer";
 
-const fields = ['bitterness', 'balance', 'finish', 'score'];
+const fields = ['bitterness', 'balance', 'finish', 'score', 'comment'];
 
 const BITTERNESS_OPTIONS = [
   {id: undefined, text: ''},
   {id: 0, text: 'None'},
   {id: 1, text: `Low`},
-  {id: 2, text: 'Medium-Low'},
+  {id: 2, text: 'Mild'},
   {id: 3, text: 'Medium'},
   {id: 4, text: 'Medium-High'},
-  {id: 5, text: 'High'}
+  {id: 5, text: 'High'},
+  {id: 6, text: 'Harsh'}
 ];
 
 const BALANCE_OPTIONS = [
@@ -27,11 +28,11 @@ const BALANCE_OPTIONS = [
 
 const DRYNESS_OPTIONS = [
   {id: undefined, text: ''},
-  {id: 0, text: `Biting`},
+  {id: 0, text: `Crisp`},
   {id: 1, text: `Dry`},
   {id: 2, text: `Balanced`},
   {id: 3, text: `Soft`},
-  {id: 4, text: `Sweet`},
+  {id: 4, text: `Mellow`},
   {id: 5, text: `Cloying`},
 ];
 
@@ -45,6 +46,7 @@ class Flavor extends BaseCategory {
   flush() {
     this.flushFields(fields);
     this.flavors = [];
+    this.comment = '';
     this.bitternessInappropriate = false;
     this.balanceInappropriate = false;
     this.finishInappropriate = false;
@@ -59,6 +61,10 @@ class Flavor extends BaseCategory {
     this.finish = json.finish;
     this.finishInappropriate = json.finishInappropriate;
     this.score = json.score;
+    if (json.comment)
+      this.comment = json.comment;
+    else
+      this.comment = '';
     this.updateHandler();
   }
 
@@ -131,7 +137,8 @@ function renderFlavor(renderer, flavor) {
   renderer.addHeadline('Bitterness', [getLabel(BITTERNESS_OPTIONS, flavor.bitterness, flavor.bitternessInappropriate)]);
   renderer.addHeadline2('Balance', [getLabel(BALANCE_OPTIONS, flavor.balance, flavor.balanceInappropriate)]);
   renderer.addHeadline('Finish', [getLabel(DRYNESS_OPTIONS, flavor.finish, flavor.finishInappropriate)]);
-
+  if (flavor.comment)
+    renderer.addHeadline('Comments', [flavor.comment]);
 }
 
 export {Flavor as FlavorDto, renderFlavor, BALANCE_OPTIONS, BITTERNESS_OPTIONS, DRYNESS_OPTIONS}

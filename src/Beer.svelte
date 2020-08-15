@@ -24,6 +24,7 @@
   }
 
   function resetData() {
+    console.info("Resetting Beer and Scoresheet data");
     beer.flush();
     beer = beer;
     aroma.flush();
@@ -34,6 +35,7 @@
   }
 
   function uploadData(json) {
+    console.info("Loading Beer and Scoresheet from json");
     beer.load(json.beer);
     aroma.load(json.aroma);
     appearance.load(json.appearance);
@@ -54,6 +56,7 @@
       if (!input.files[0])
         return undefined;
       let file = input.files[0];
+      console.info('Loading file ' + file.name);
       let fr = new FileReader();
       fr.onload = function (e) {
         try {
@@ -93,6 +96,10 @@
   div.upload {
     margin-top: 3em;
   }
+
+  textarea {
+    width: 100%;
+  }
 </style>
 <h3>
   <SvgIcon d={beerIcon} boxSize="512" fill="#700000"/>
@@ -117,7 +124,7 @@
 
 <div>
   <span class="label">Comment</span>
-  <input on:change={updateHandler} type=text bind:value={beer.comment}/>
+  <textarea on:change={updateHandler} type=text bind:value={beer.comment}/>
 </div>
 
 <div>

@@ -190,9 +190,15 @@ class Beer extends BaseCategory {
   }
 
   save() {
-    console.log("Saving beer");
-    localStorage.setItem('beerEntry', this.entry);
-    localStorage.setItem('beerCategory', this.category);
+    console.debug("Saving beer");
+    if (this.entry)
+      localStorage.setItem('beerEntry', this.entry);
+    else
+      localStorage.removeItem('beerEntry');
+    if (this.category)
+      localStorage.setItem('beerCategory', this.category);
+    else
+      localStorage.removeItem('beerCategory');
     if (this.special)
       localStorage.setItem('beerSpecial', this.special);
     else

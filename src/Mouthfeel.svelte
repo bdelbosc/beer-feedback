@@ -25,6 +25,10 @@
   input {
     width: 10em;
   }
+
+  textarea {
+    width: 100%;
+  }
 </style>
 
 <div>
@@ -58,8 +62,8 @@
   </SelectCheck>
 </div>
 <div>
-  <span class="label">Other</span>
-  <input on:change={updateHandler} type=text bind:value={mouthfeel.other}/>
+  <span>Other palate sensations</span>
+  <textarea on:change={updateHandler} type=text bind:value={mouthfeel.other}/>
 </div>
 <div>
   <Score on:change={updateHandler} bind:value={mouthfeel.score} max="5" min="1">Score</Score>

@@ -4,17 +4,21 @@ import {getLabel} from "./PdfRenderer";
 const fields = ['name', 'rank'];
 
 const RANK_OPTIONS = [
-  {id: 0, text: 'None'},
-  {id: 1, text: `BJCP Novice`},
-  {id: 2, text: `BJCP Apprentice`},
-  {id: 3, text: 'BJCP Rank Pending'},
-  {id: 4, text: `BJCP Recognized`},
-  {id: 5, text: `BJCP Certified`},
-  {id: 6, text: `BJCP National`},
-  {id: 7, text: `BJCP Master`},
-  {id: 8, text: `BJCP Grand Master`},
-  {id: 9, text: 'Cicerone'},
-  {id: 10, text: 'Professional'}
+  {id: undefined, text: ''},
+  {id: 'none', text: 'No Rank'},
+  {id: 'bjcp-novice', text: `BJCP Novice`},
+  {id: 'bjcp-apprentice', text: `BJCP Apprentice`},
+  {id: 'bjcp-pending', text: 'BJCP Rank Pending'},
+  {id: 'bjcp-recognized', text: `BJCP Recognized`},
+  {id: 'bjcp-certified', text: `BJCP Certified`},
+  {id: 'bjcp-national', text: `BJCP National`},
+  {id: 'bjcp-master', text: `BJCP Master`},
+  {id: 'bjcp-grand-master', text: `BJCP Grand Master`},
+  {id: 'gabf-wbc', text: 'GABF/WBC'},
+  {id: 'professinal', text: 'Professional Brewer'},
+  {id: 'cicerone', text: 'Cicerone'},
+  {id: 'beer-sommelier', text: 'Beer Sommelier'},
+  {id: 'other', text: 'Other'}
 ];
 
 class User extends BaseCategory {
@@ -24,18 +28,11 @@ class User extends BaseCategory {
     const username = localStorage.getItem('userName')
     if (username) this.name = username;
     const rank = localStorage.getItem('userRank')
-    if (rank)
-      this.rank =  parseInt(rank);
-    else
-      this.rank = 0;
-    console.log("rank :" + this.rank  + " " + rank)
+    if (rank) this.rank = rank;
   }
 
   checkCompletion() {
     this.required.length = 0;
-    // check for flavors categories
-    let categories = [];
-    // check other props
     for (let i = 0; i < fields.length; i++) {
       if (!this.hasOwnProperty(fields[i])) {
         this.required.push(fields[i]);
@@ -53,10 +50,15 @@ class User extends BaseCategory {
   }
 
   save() {
-    console.log("Saving user");
-    console.log(user);
-    localStorage.setItem('userName', this.name);
-    localStorage.setItem('userRank', this.rank.toString());
+    console.info("Saving user: " + this.name + ", rank: " + this.rank);
+    if (this.name)
+      localStorage.setItem('userName', this.name);
+    else
+      localStorage.removeItem('userName');
+    if (this.rank)
+      localStorage.setItem('userRank', this.rank.toString());
+    else
+      localStorage.removeItem('userRank');
   }
 }
 

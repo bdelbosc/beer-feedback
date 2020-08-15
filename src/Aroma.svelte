@@ -123,6 +123,10 @@
     clear: both;
   }
 
+  textarea {
+    width: 100%;
+  }
+
 </style>
 <div id="picker">
   <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker"/>
@@ -190,6 +194,12 @@
       </span>
     </button>
   </div>
+
+  <div>
+    <span class="label">Comment</span>
+    <textarea on:change={updateHandler} type=text bind:value={aroma.comment}/>
+  </div>
+
   <div>
     <Score on:change={updateHandler} bind:value={aroma.score} max="12" min="4">Score</Score>
   </div>

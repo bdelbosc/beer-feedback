@@ -1,7 +1,7 @@
 <script>
   import {createEventDispatcher} from 'svelte';
 
-  export let value;
+  export let value = undefined;
   export let max = 12;
   export let min = 0;
 

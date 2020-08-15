@@ -1,4 +1,4 @@
-const fields = ['score'];
+const fields = ['score', 'comment'];
 import {BaseCategory, compareCategory, LEVELS} from './BaseCategory';
 
 class Aroma extends BaseCategory {
@@ -11,14 +11,18 @@ class Aroma extends BaseCategory {
   flush() {
     this.flushFields(fields);
     this.aromas = [];
+    this.comment = '';
   }
 
   load(json) {
     this.aromas = json.aromas;
     this.score = json.score;
+    if (json.comment)
+      this.comment = json.comment;
+    else
+      this.comment = '';
     this.updateHandler();
   }
-
 
   checkCompletion() {
     this.required.length = 0;
@@ -85,6 +89,8 @@ function renderAroma(renderer, aroma) {
   items.length = 0;
   aroma.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(getAroma(a, true)));
   renderer.addHeadline('Flaws', items);
+  if (aroma.comment)
+    renderer.addHeadline('Comments', [aroma.comment]);
 }
 
 export {Aroma as AromaDto, renderAroma}

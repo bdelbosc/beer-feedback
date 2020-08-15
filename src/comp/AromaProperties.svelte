@@ -7,8 +7,7 @@
   export let warms = false;
   export let aftertaste = false;
 </script>
-<style>
-</style>
+
 {#if inappropriate}
   <span title="Inappropriate"><SvgIcon d={alertIcon} fill="orange"/></span>
 {/if}

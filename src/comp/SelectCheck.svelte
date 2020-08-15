@@ -22,20 +22,8 @@
   }
 
 </script>
-<style>
-  select {
-    width: 10em;
-  }
-
-  span.label {
-    float: left;
-    width: 100px;
-  }
-
-</style>
-
 <span class="label"><slot/></span>
-<select on:change={eventHandler} bind:value={value}>
+<select class="fixedInput" on:change={eventHandler} bind:value={value}>
   {#each options as item}
     <option value={item.id}>
       {item.text}

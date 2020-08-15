@@ -21,13 +21,6 @@
   input[type=range] {
     width: 320px;
   }
-
-  span.label {
-    float: left;
-    width: 100px;
-  }
-
-
 </style>
 <label>
   <span class="label"><slot/></span>

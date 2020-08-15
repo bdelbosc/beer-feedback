@@ -45,30 +45,32 @@
 
   li.active > span {
     color: orangered;
-    font-weight: bold;
     background-color: #fff;
-    /*border-color: #dee2e6 #dee2e6 #fff;*/
     border-color: darkgrey darkgrey #fff;
+    font-size: 1.1em;
   }
 
   li.activeCompleted > span {
     color: darkgreen;
-    font-weight: bold;
     background-color: #fff;
-    /*border-color: #dee2e6 #dee2e6 #fff;*/
     border-color: darkgrey darkgrey #fff;
+    font-size: 1.1em;
   }
 
   li.inactive > span {
     color: orangered;
-    background-color: #fff;
-    border-color: #dee2e6 #dee2e6 #fff;
+    opacity: 0.5;
+    background-color: #eee;
+    border-color: #dee2e6 #dee2e6 #eee;
+    font-size: 1.1em;
   }
 
   li.inactiveCompleted > span {
     color: darkgreen;
-    background-color: #fff;
-    border-color: #dee2e6 #dee2e6 #fff;
+    opacity: 0.5;
+    background-color: #eee;
+    border-color: #dee2e6 #dee2e6 #eee;
+    font-size: 1.1em;
   }
 
   .comment {
@@ -76,6 +78,8 @@
     clear: both;
     font-style: italic;
     color: orangered;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 
 </style>

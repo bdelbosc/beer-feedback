@@ -84,7 +84,7 @@
             on:click={() => selectSrm(color)}>{color}</button>
   {/each}
 </div>
-<button id="selection" style="width: 10em; color: {getFontColor(value)}; background-color: {SRM_RGB_MAP[value]}"
+<button id="selection" style="width: 170px; color: {getFontColor(value)}; background-color: {SRM_RGB_MAP[value]}"
         on:click={() => pickSrm()}>
   {#if value >=0}
     {getColor(value)} <span class="small">{value} SRM</span>

@@ -104,29 +104,9 @@
 </script>
 <style>
 
-  div.inputRow {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .remove {
-    float: right;
-    clear: both;
-  }
-
-  .remove:hover {
-    background-color: #f44336;
-    color: white;
-  }
-
   .buttons, .item {
     clear: both;
   }
-
-  textarea {
-    width: 100%;
-  }
-
 </style>
 <div id="picker">
   <SunburstPicker bind:value={currentAroma} data={aromaData} layout={aromaLayout} plotId="aromaPicker"/>
@@ -169,7 +149,7 @@
 <div id="list">
   {#each aroma.aromas as item, i}
     <div class="item">
-      <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
+      <button class="delete" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
       {#if item.category === 'hops'}
         <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="darkolivegreen"/></span>
@@ -187,6 +167,9 @@
       <AromaProperties inappropriate={item.inappropriate} initial={item.initial} warms={item.warms}/>
     </div>
   {/each}
+  {#if aroma.aromas.length == 0}
+    Click below to add aromatics
+  {/if}
   <div class="buttons">
     <button on:click={picker}>
       <span title="Add new Aroma">
@@ -196,7 +179,7 @@
   </div>
 
   <div>
-    <span class="label">Comment</span>
+    <span class="longLabel">Additional Comment</span>
     <textarea on:change={updateHandler} type=text bind:value={aroma.comment}/>
   </div>
 

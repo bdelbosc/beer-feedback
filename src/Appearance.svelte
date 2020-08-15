@@ -12,12 +12,6 @@
     appearance.updateHandler();
   }
 </script>
-<style>
-  span.label {
-    float: left;
-    width: 100px;
-  }
-</style>
 <div on:click={updateHandler}><span class="label" id="color">Color</span>
   <Srm bind:value={appearance['color']}/>
 </div>

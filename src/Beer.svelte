@@ -74,31 +74,8 @@
 </script>
 
 <style>
-  span.label {
-    float: left;
-    width: 100px;
-  }
-
-  input[type=text] {
-    width: 10em;
-  }
-
-  .reset {
-    float: right;
-    clear: both;
-  }
-
-  .reset:hover {
-    background-color: #f44336;
-    color: white;
-  }
-
   div.upload {
     margin-top: 3em;
-  }
-
-  textarea {
-    width: 100%;
   }
 </style>
 <h3>
@@ -107,29 +84,29 @@
 </h3>
 
 <div>
-  <span class="label">Entry #</span>
-  <input on:change={updateHandler} type=text bind:value={beer.entry}/>
-</div>
-
-<div>
   <SelectCheck on:change={updateHandler} bind:value={beer.category} options={CATEGORY_OPTIONS} noCheck="true">
     Category
   </SelectCheck>
 </div>
 
 <div>
-  <span class="label">Special Ingredients</span>
-  <input on:change={updateHandler} type=text bind:value={beer.special}/>
+  <span class="label">Entry #</span>
+  <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.entry}/>
 </div>
 
 <div>
-  <span class="label">Comment</span>
-  <textarea on:change={updateHandler} type=text bind:value={beer.comment}/>
+  <span class="label">Special Ingredients</span>
+  <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.special}/>
+</div>
+
+<div>
+  <span class="longLabel">Comment</span>
+  <textarea on:change={updateHandler} type="text" bind:value={beer.comment}/>
 </div>
 
 <div>
   <slot/>
-  <button class="reset" on:click={() => resetData()}>
+  <button class="delete" on:click={() => resetData()}>
     <span title="Reset"><SvgIcon d={trashIcon} size="0.8em"/></span>
   </button>
 </div>

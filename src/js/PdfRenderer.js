@@ -151,8 +151,9 @@ class PdfRenderer {
 
   addVersion(version) {
     this.doc.setFont("helvetica");
-    this.doc.setFontSize(6);
-    this.doc.text("beer-feedback version " + version, 200, 280, null, null, "right");
+    this.doc.setFontSize(7);
+    this.doc.text("Generated with beer-feedback v" + version, 200, 284, null, null, "right");
+    this.doc.text("http://beer-feedback.surge.sh/", 200, 288, null, null, "right");
   }
 
   addMetdata(version, username, entry, category, json) {

@@ -116,16 +116,20 @@ function renderAppearance(renderer, appearance) {
   renderer.addHeadline('Color', color);
   let clarity = [];
   if (appearance.clarity !== undefined) clarity.push(getLabel(CLARITY_OPTIONS, appearance.clarity));
-  renderer.addHeadline('Clarity', clarity);
+  renderer.addHeadline2('Clarity', clarity);
   let head = [];
   if (appearance.head !== undefined) head.push(getLabel(HEAD_OPTIONS, appearance.head));
-  if (appearance.texture !== undefined) head.push(getLabel(TEXTURE_OPTIONS, appearance.texture) + ' texture');
-  if (appearance.retention !== undefined) head.push(getLabel(RETENTION_OPTIONS, appearance.retention) + ' retention');
   renderer.addHeadline('Head', head);
+  let texture = [];
+  if (appearance.texture !== undefined) texture.push(getLabel(TEXTURE_OPTIONS, appearance.texture));
+  renderer.addHeadline2('Texture', texture);
+  let retention = [];
+  if (appearance.retention !== undefined) retention.push(getLabel(RETENTION_OPTIONS, appearance.retention));
+  renderer.addHeadline('Retention', retention);
   let other = [];
-  if (appearance.laces) other.push('Laces clings on the glass');
+  if (appearance.laces) other.push('Laces cling on the glass');
   if (appearance.legs) other.push('Legs');
-  renderer.addHeadline('Other', other);
+  renderer.addHeadline2('Other', other);
 }
 
 export {

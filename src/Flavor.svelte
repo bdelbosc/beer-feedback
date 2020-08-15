@@ -105,30 +105,9 @@
 
 </script>
 <style>
-
-  div.inputRow {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .remove {
-    float: right;
-    clear: both;
-  }
-
-  .remove:hover {
-    background-color: #f44336;
-    color: white;
-  }
-
   .buttons, .item {
     clear: both;
   }
-
-  textarea {
-    width: 100%;
-  }
-
 </style>
 <div id="picker">
   <SunburstPicker bind:value={currentFlavor} data={flavorData} layout={flavorLayout} plotId="flavorPicker"/>
@@ -163,7 +142,7 @@
 <div id="list">
   {#each flavor.flavors as item, i}
     <div class="item">
-      <button class="remove" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
+      <button class="delete" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
       {#if item.category === 'hops'}
         <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="YellowGreen"/></span>
@@ -211,7 +190,7 @@
   </div>
 
   <div>
-    <span class="label">Comment</span>
+    <span>Additional Comment</span>
     <textarea on:change={updateHandler} type=text bind:value={flavor.comment}/>
   </div>
 

@@ -15,22 +15,6 @@
     mouthfeel.updateHandler()
   }
 </script>
-
-<style>
-  span.label {
-    float: left;
-    width: 100px;
-  }
-
-  input {
-    width: 10em;
-  }
-
-  textarea {
-    width: 100%;
-  }
-</style>
-
 <div>
   <SelectCheck on:change={updateHandler} bind:value={mouthfeel.body} options={BODY_OPTIONS}
                bind:checked={mouthfeel.bodyInappropriate}>
@@ -62,7 +46,7 @@
   </SelectCheck>
 </div>
 <div>
-  <span>Other palate sensations</span>
+  <span>Other Palate Sensations</span>
   <textarea on:change={updateHandler} type=text bind:value={mouthfeel.other}/>
 </div>
 <div>

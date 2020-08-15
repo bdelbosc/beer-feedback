@@ -35,8 +35,7 @@ const DRINKABILITY_OPTIONS = [
   {id: undefined, text: ''},
   {id: 2, text: `I would finish this sample`},
   {id: 3, text: `I would drink a pint`},
-  {id: 4, text: 'I would drink a yard glass'},
-  {id: 5, text: 'Send me the recipe'}
+  {id: 4, text: 'I would drink a yard glass'}
 ];
 
 

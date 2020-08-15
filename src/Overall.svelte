@@ -18,15 +18,6 @@
 </script>
 
 <style>
-  span.label {
-    float: left;
-    width: 100px;
-  }
-
-  input {
-    width: 10em;
-  }
-
   div.scoreDescription {
     font-size: 0.8em;
     font-style: italic;
@@ -35,10 +26,6 @@
   div.score {
     margin-top: 1em;
     margin-bottom: 1em;
-  }
-
-  textarea {
-    width: 100%;
   }
 </style>
 
@@ -69,7 +56,7 @@
 <div>
 </div>
 <div>
-  <span class="label">Feedback</span>
+  <span class="longLabel">Feedback</span>
   <textarea on:change={updateHandler} type=text bind:value={overall.feedback}/>
 </div>
 <div>

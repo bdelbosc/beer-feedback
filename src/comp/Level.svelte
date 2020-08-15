@@ -12,7 +12,6 @@
   input[type=range] {
     width: 320px;
   }
-
 </style>
 
 {#if edit}

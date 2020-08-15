@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/bdelbosc/beer-feedback/compare/v1.5.2...v1.7.0) (2020-08-15)
+
+
+### Features
+
+* Accept utf8 in json, cosmetic changes ([13afb2d](https://github.com/bdelbosc/beer-feedback/commit/13afb2d3cb6eef74a8c826ce4c1895ebe855a51d))
+
+
+### Bug Fixes
+
+* console logs ([9bbc5dd](https://github.com/bdelbosc/beer-feedback/commit/9bbc5dd0b2041f08d0553e566a71bafb76de3e88))
+* refactoring a bit, cleaning ([a2d5acd](https://github.com/bdelbosc/beer-feedback/commit/a2d5acd825995ff816d5c5af2af81ac0c8fe635d))
+
 ## [1.6.0](https://github.com/bdelbosc/beer-feedback/compare/v1.5.2...v1.6.0) (2020-08-13)
 
 

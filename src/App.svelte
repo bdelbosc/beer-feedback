@@ -419,11 +419,11 @@
         </div>
       {/if}
     {/if}
+    <label>
+      <input type="checkbox" bind:checked={visible}>
+      View BJCP Guideline
+    </label>
   </div>
-  <label>
-    <input type="checkbox" bind:checked={visible}>
-    View BJCP Guideline
-  </label>
   <div class="footLine">{pkg.name} v{pkg.version}</div>
 </div>
 

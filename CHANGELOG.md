@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/bdelbosc/beer-feedback/compare/v1.10.0...v1.11.0) (2020-08-16)
+
+
+### Features
+
+* add a custom favicon ([ccfe213](https://github.com/bdelbosc/beer-feedback/commit/ccfe2138b0ec9090739eb8e7392ffaac3aa64f63))
+
 ## [1.10.0](https://github.com/bdelbosc/beer-feedback/compare/v1.9.2...v1.10.0) (2020-08-16)
 
 

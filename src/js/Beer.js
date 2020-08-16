@@ -135,20 +135,10 @@ class Beer extends BaseCategory {
 
   constructor() {
     super();
-    const entry = localStorage.getItem('beerEntry')
-    if (entry) this.entry = entry;
-    const category = localStorage.getItem('beerCategory')
-    if (category) this.category = category;
-    const special = localStorage.getItem('beerSpecial')
-    if (special)
-      this.special = special;
-    else
-      this.special = '';
-    const comment = localStorage.getItem('beerComment')
-    if (comment)
-      this.comment = comment;
-    else
-      this.comment = '';
+    this.entry = this.getValue('beerEntry');
+    this.category = this.getValue('beerCategory');
+    this.special = this.getValue('beerSpecial', '');
+    this.comment = this.getValue('beerComment', '');
   }
 
   flush() {
@@ -213,6 +203,17 @@ class Beer extends BaseCategory {
     renderer.addBeer(this.entry, getLabel(CATEGORY_OPTIONS, this.category), this.special, this.comment);
   }
 
+  getValue(name, defaultValue = undefined) {
+    // First params
+    const params = new URLSearchParams(window.location.search);
+    if (params.has(name)) return params.get(name);
+    // Then local storage
+    const value = localStorage.getItem(name);
+    if (value)
+      return value;
+    // unknown
+    return defaultValue;
+  }
 }
 
 export {Beer as BeerDto, CATEGORY_OPTIONS}

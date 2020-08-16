@@ -337,6 +337,10 @@
     color: #444;
   }
 
+  div.bjcpGuideline {
+    color: #999;
+    padding-top: 2em;
+  }
 
 </style>
 
@@ -427,17 +431,25 @@
         </div>
       {/if}
     {/if}
-    <label>
-      <input type="checkbox" bind:checked={visible}>
-      View BJCP Guideline
-    </label>
+    <div class="bjcpGuideline">
+      <label>
+        <input type="checkbox" bind:checked={visible}>
+        View BJCP Guideline
+      </label>
+    </div>
     {#if visible}
       <div in:fade class="bjcpDisclamer">
-        This is an extract of the 2015 BJCP Style Guide used for personal educational purpose.
-        The BJCP data or any derivative output are protected by the BJCP Copyright and should not be marketed for profit
-        or integrated or embedded in websites without the BJCP agreement (pending).
-        The most current version of the BCJP Style Guide can be found on the
-        <a href="https://www.bjcp.org/" rel="noopener" target="_blank">BJCP web site</a>.
+        <p>
+          This is an extract of the 2015 BJCP Style Guide used for personal educational purpose.
+          The BJCP data or any derivative output are protected by the BJCP Copyright and should not
+          be marketed for profit or integrated or embedded in websites without the BJCP agreement (pending).
+          The most current version of the BCJP Style Guide can be found on the
+          <a href="https://www.bjcp.org/" rel="noopener" target="_blank">BJCP web site</a>.
+        </p>
+        <p>
+          <a href="https://dev.bjcp.org/beer-styles/{bjcpGuideline[beer.category].link}/" rel="noopener"
+             target="_blank">View original BJCP {beer.category} description</a>.
+        </p>
       </div>
     {/if}
   </div>

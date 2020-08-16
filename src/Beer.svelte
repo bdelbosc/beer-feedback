@@ -1,5 +1,4 @@
 <script>
-
   import SelectCheck from "./comp/SelectCheck.svelte";
   import {
     CATEGORY_OPTIONS
@@ -71,12 +70,30 @@
     }
   }
 
+  function shareLink() {
+    let link = "http://beer-feedback.surge.sh/?"
+    link += "beerEntry=" + encodeURIComponent(beer.entry)
+    link += "&beerCategory=" + encodeURIComponent(beer.category)
+    link += "&beerSpecial=" + encodeURIComponent(beer.special)
+    link += "&beerComment=" + encodeURIComponent(beer.comment)
+    console.info("Copying link: " + link);
+    let input = document.getElementById("sharedLink");
+    input.value = link;
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+  }
+
 </script>
 
 <style>
   div.upload {
     margin-top: 3em;
   }
+
+  /*input.hidden {*/
+  /*  visibility: hidden;*/
+  /*}*/
 </style>
 <h3>
   <SvgIcon d={beerIcon} boxSize="512" fill="#700000"/>
@@ -111,7 +128,13 @@
   </button>
 </div>
 <div class="upload">
-  <label for="upload">You can also load an existing PDF Scoresheet</label>
-  <input id='upload' type='file' accept="application/pdf" on:change={() => onChooseFile(event)}/>
+  <label>Or load an existing PDF Scoresheet
+    <input id='upload' type='file' accept="application/pdf" on:change={() => onChooseFile(event)}/>
+  </label>
 </div>
 
+<div>
+  Share the link for this beer entry<br/>
+  <input type="text" value="..." id="sharedLink">
+  <button on:click={() => shareLink()}>Copy</button>
+</div>

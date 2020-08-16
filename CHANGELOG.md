@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/bdelbosc/beer-feedback/compare/v1.9.2...v1.10.0) (2020-08-16)
+
+
+### Features
+
+* add direct link to bjcp description, enable to copy link of beer entry ([1633aa3](https://github.com/bdelbosc/beer-feedback/commit/1633aa3b7397646dea9eac8f5aa7657080463b12))
+
 ### [1.9.2](https://github.com/bdelbosc/beer-feedback/compare/v1.9.1...v1.9.2) (2020-08-15)
 
 

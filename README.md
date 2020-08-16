@@ -1,23 +1,27 @@
-# beer-feedback
+# ![Link Beer Feedback](./public/favicon-32x32.png) Beer Feedback
 
 ## About
 
 `beer-feedback` is intended to provide a quick and detailed assessment of the beer that homebrewers deserve.
 
-It can be used wherever there is a beer and a smartphone
-(Internet is required for the first time to download the app as well as to share your review).
+It can be used wherever there is a beer and a smartphone.
 
 The evaluation is based on the [BJCP Scoresheet](https://dev.bjcp.org/news/structured-scoresheets-for-aha-nhc/) and should be familiar to [BJCP](https://dev.bjcp.org/) Judges.
 
-The result is a PDF document that can be saved and shared like any PDF document.
+The result is a PDF document that can be shared like any document.
 
 ## Try it
 
-There is nothing to setup, use your smartphone or any browser:
+There is nothing to install and no account to create, 
+just use your smartphone (or any browser) to reach this URL:
 
 http://beer-feedback.surge.sh/
 
-Fill out all the forms until there is no more red tab titles, then click the PDF button.
+![Link Beer Feedback](./qrcode.png)
+
+Fill out all the forms until there is no more red tab titles, then click the PDF button, read the next section for more details.
+
+Don't forget to [star the project on GitHub](https://github.com/bdelbosc/beer-feedback) if you like it. 
 
 ## Usage
 
@@ -31,33 +35,34 @@ Fill out all the forms until there is no more red tab titles, then click the PDF
 
 3. Start to fill your scoresheet, there is a tab for each section (Aroma, Appearance, Flavor, Mouthfeel and Overall impression).
 
-    ![Scoresheet 1](./page-aroma.png)
+    ![aroma tab](./page-aroma.png)
 
-    Use the (+) button to add aromatic using an aroma wheel
+    Use the (+) button to add aromatic
    
-    ![Scoresheet 2](./page-aroma-wheel.png)
+    ![aroma wheel](./page-aroma-wheel.png)
 
-    Then validate using the check button and give the intensity or other property of the aroma:
+    Navigate in the aroma wheel and validate the entry using the check button.
+    Then describe the intensity and other aroma properties:
 
-    ![Scoresheet 3](./page-aroma-intensity.png)
+    ![aroma intensity](./page-aroma-intensity.png)
 
     Validate again, the aroma is added to the list.
   
-    Once you a have added an aroma for each category (malt, hops and fermentation) and put a score
-    the aroma form is completed and the tab title is now green:
+    You need to add at least one aroma for malt, hops and fermentation,
+    then you set the aroma score using the slider, and the section is now completed:
   
-    ![Scoresheet 4](./page-aroma-completed.png)
+    ![aroma completed](./page-aroma-completed.png)
     
-    Note that you can click on any aroma to change the intensity or add other property later.
+    Note that you can click on any aroma to edit the intensity or properties, they can also be deleted using the (x) button on the right.
     
-    Continue with Appearance, Flavor, Mouthfeel and Overall tabs
+    Now continue with other tabs: Appearance, Flavor, Mouthfeel and Overall.
     
-4. Click on PDF, the report is generated on your smartphone there is no data transferred on the server side.
-   It is also possible to generate the report if the scoresheet is not yet completed.
-   
+4. Click on PDF, the report is generated on your smartphone there is no data transferred anywhere.
    Here is a PDF example:
     
-   [![Scoresheet 4](./pdf-export.png)](./scoresheet-20200816-2-10A-Raoul.pdf)
+   [![Pdf](./pdf-export.png)](./scoresheet-20200816-2-10A-Raoul.pdf)
+
+   It is also possible to generate the report when the scoresheet is not yet completed.
   
 5. Share the PDF the way you want, if you have a PDF editor you can add a photo of the beer.        
 

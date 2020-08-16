@@ -442,7 +442,7 @@
         <p>
           This is an extract of the 2015 BJCP Style Guide used for personal educational purpose.
           The BJCP data or any derivative output are protected by the BJCP Copyright and should not
-          be marketed for profit or integrated or embedded in websites without the BJCP agreement (pending).
+          be marketed for profit or integrated or embedded in websites without the BJCP agreement.
           The most current version of the BCJP Style Guide can be found on the
           <a href="https://www.bjcp.org/" rel="noopener" target="_blank">BJCP web site</a>.
         </p>

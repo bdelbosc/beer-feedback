@@ -126,8 +126,9 @@ class Appearance extends BaseCategory {
     if (this.retention !== undefined) retention.push(getLabel(RETENTION_OPTIONS, this.retention));
     renderer.addHeadline('Retention', retention);
     let other = [];
-    if (this.laces) other.push('Laces cling on the glass');
-    if (this.legs) other.push('Legs');
+    if (this.laces && this.legs) other.push('Laces and legs!?');
+    else if (this.laces) other.push('Laces cling on the glass');
+    else if (this.legs) other.push('Legs');
     renderer.addHeadline2('Other', other);
   }
 

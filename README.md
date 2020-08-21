@@ -2,9 +2,9 @@
 
 ## About
 
-`beer-feedback` is intended to provide a quick and detailed assessment of the beer that homebrewers deserve.
+`beer-feedback` is intended to provide a quick and detailed assessment of the beer that home brewers deserve.
 
-It can be used wherever there is a beer and a smartphone.
+It can also be used to improve your judging ability wherever there is a beer and a smartphone.
 
 The evaluation is based on the [BJCP Scoresheet](https://dev.bjcp.org/news/structured-scoresheets-for-aha-nhc/) and should be familiar to [BJCP](https://dev.bjcp.org/) Judges.
 
@@ -25,11 +25,11 @@ Don't forget to [star the project on GitHub](https://github.com/bdelbosc/beer-fe
 
 ## Usage
 
-1. The first time, you have to give your name and judging rank, this information is persisted in your smartphone and will be part of the final PDF report.
+1. The first time, you have to give your name and fill your judging rank if any, this information is persisted in your smartphone and will be part of the final PDF report.
 
     ![First page](./page-identity.png) 
 
-2. Describe the beer that you want to evaluate, this information is also persisted on your smartphone. 
+2. Describe the beer that you want to evaluate, this information will be persisted on your smartphone. 
 
     ![Beer page](./page-beer.png)
 
@@ -66,8 +66,67 @@ Don't forget to [star the project on GitHub](https://github.com/bdelbosc/beer-fe
   
 5. Share the PDF the way you want, if you have a PDF editor you can add a photo of the beer.        
 
-
 A beer-feedback PDF scoresheet can be loaded (from the beer entry section), this enables to edit the content and produce a new PDF.
+
+## FAQ
+
+### Some aromatic is missing in the aroma wheel?
+
+First select the correct category from the wheel, 
+the wheel selection is an editable field, so you can type whatever you want.
+
+If you think some aroma or flavor are missing or wrongly classified, 
+please create an issue:  
+
+https://github.com/bdelbosc/beer-feedback/issues
+
+### I can't enter a long text from my smartphone!
+
+Possible work around:
+
+- Enter your text using voice transcription
+
+- Continue the Scoresheet on a computer using a keyboard:
+    - Create a PDF from your smartphone
+    - Transfer the PDF by mail (or whatever) to your computer
+    - Open [BF](http://beer-feedback.surge.sh/), read the PDF from the "Load" tab and continue editing
+
+- Create a PDF, print it and finish with a pencil
+
+### My fingers are too awkward, or the app is clunky?
+
+Help to improve the usability, fill an issue:
+
+https://github.com/bdelbosc/beer-feedback/issues
+
+###  What does the following term mean?
+
+The terms used in the application try to follow the [Beer Judge Certification Program](https://bjcp.org/) terminology.
+
+If you think they are inappropriate or can be improved, please report an issue:
+
+https://github.com/bdelbosc/beer-feedback/issues
+
+### I lost my Scoresheet!
+
+For now, the information you enter in the scoresheet (except the user name, user rank, and beer entry) are not
+persisted, if you close the browser they are lost.
+
+Fortunately, if you leave the site there should be a popup to warn you in such case.
+
+Before leaving or at any time just create a PDF, you will be able to load it from the beer section and continue editing.
+
+Do this if you have to restart your phone, your battery is low, or if you want to terminate the Scoresheet later.
+
+### The connection to the site is Not Secure (no https)!
+
+This is a static site, all the information you entered remains on your browser, 
+this browser security alert is not relevant for this site.
+
+### Hey, it worked!
+
+Cool, because it is a static page without analytic to track you and because you can generate tons of Scoresheets without generating any traffic on the site,
+I have no idea if the applicaiton works for you unless you star the project on Github, cheers!.
    
 ## Design choices
 

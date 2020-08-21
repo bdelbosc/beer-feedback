@@ -297,6 +297,7 @@
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    overscroll-behavior-y: contain !important;
   }
 
   button[disabled] {
@@ -447,7 +448,7 @@
           <a href="https://www.bjcp.org/" rel="noopener" target="_blank">BJCP web site</a>.
         </p>
         <p>
-          <a href="https://dev.bjcp.org/beer-styles/{bjcpGuideline[beer.category].link}/" rel="noopener"
+          <a href="https://dev.bjcp.org/style/2015/{bjcpGuideline[beer.category].link}/" rel="noopener"
              target="_blank">View original BJCP {beer.category} description</a>.
         </p>
       </div>

@@ -1,8 +1,3 @@
-<svelte:head>
-  <script src="/plotly-latest.min.js" type="text/javascript" on:load={plotlyLoaded}></script>
-</svelte:head>
-
-
 <script>
   import {onMount} from 'svelte';
   import SvgIcon from "./SvgIcon.svelte";
@@ -20,12 +15,12 @@
   });
 
   function plotlyLoaded() {
+    console.debug("plotly loaded");
     let plotDiv = document.getElementById(plotId);
     Plotly.newPlot(plotDiv, data, layout, {displayModeBar: false});
     plotDiv.on('plotly_sunburstclick', function (data) {
       selected = data["points"][0]["currentPath"] + data["points"][0]["label"];
     });
-    console.debug(plotDiv.data);
   }
 
   function validate() {
@@ -69,7 +64,7 @@
   }
 
 </style>
-<div id="{plotId}Edit">
+<div id="{plotId}Edit" on:load={plotlyLoaded()}>
   <div>
     <input bind:value="{selected}"/>
     <button on:click={validate} disabled={selected.length == 0}>

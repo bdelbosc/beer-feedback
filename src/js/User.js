@@ -42,6 +42,9 @@ class User extends BaseCategory {
         this.required.push(fields[i]);
       }
     }
+    if (this.name !== undefined && this.name.trim().length == 0) {
+      this.required.push("name");
+    }
     this.completed = (this.required.length === 0);
   }
 

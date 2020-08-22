@@ -1,5 +1,6 @@
 import {BaseCategory, compareCategory, LEVELS} from './BaseCategory';
 import {getLabel} from "./PdfRenderer";
+import {getFailureName} from "./Aroma";
 
 const fields = ['bitterness', 'balance', 'finish', 'score', 'comment'];
 
@@ -129,6 +130,12 @@ class Flavor extends BaseCategory {
     renderer.addHeadline('Finish', [getLabel(DRYNESS_OPTIONS, this.finish, this.finishInappropriate)]);
     if (this.comment)
       renderer.addHeadline('Comments', [this.comment]);
+  }
+
+  getFailures() {
+    let items = [];
+    this.flavors.filter(a => a.category === 'flaws').forEach(a => items.push(getFailureName(a.trait.trim())));
+    return items;
   }
 
 }

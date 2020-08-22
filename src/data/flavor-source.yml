@@ -134,6 +134,12 @@
         - Spicy | _4
         - Vinous character
         - Fusel
+    - Acidic | _3:
+        - Lactic | _3
+        - Citric | _3
+    - Astringent | _3:
+        - Harshness
+        - Husk-like
     - Diacetyl:
         - Artificial Butter
         - Butterscotch | _3
@@ -148,7 +154,7 @@
         - Fruits | _3
     - Grassy | _1:
         - Fresh cut grass
-    - Ligth-Struck
+    - Light-Struck
     - Earthy:
         - Mushroom
         - Beet | _2
@@ -176,6 +182,7 @@
         - Canned
         - Rotten
         - Cabbage, Onion, Celery
+    - Vinegary
     - Yeasty:
         - Bready | _1
         - Sulfury

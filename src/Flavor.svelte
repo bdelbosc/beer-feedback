@@ -163,7 +163,7 @@
 
   <div class="buttons">
     <button on:click={picker}>
-      <span title="Add new Flavor"><SvgIcon d={addIcon} size="2em" fill="blue"/></span>
+      <span class="buttonText" title="Add new Flavor"><SvgIcon d={addIcon} size="2em" fill="blue"/><br>Add flavor</span>
     </button>
   </div>
 
@@ -173,7 +173,6 @@
       Bitterness
     </SelectCheck>
   </div>
-
 
   <div>
     <SelectCheck on:change={updateHandler} bind:value={flavor.balance} options={BALANCE_OPTIONS}

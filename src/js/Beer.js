@@ -139,6 +139,8 @@ class Beer extends BaseCategory {
     this.category = this.getValue('beerCategory');
     this.special = this.getValue('beerSpecial', '');
     this.comment = this.getValue('beerComment', '');
+    console.log("entry: " + this.entry);
+    if (this.entry === undefined) console.log("IIS undefined!");
   }
 
   flush() {
@@ -168,6 +170,9 @@ class Beer extends BaseCategory {
       if (this[fields[i]] === undefined) {
         this.required.push(fields[i]);
       }
+    }
+    if (this.entry !== undefined && this.entry.trim().length == 0) {
+      this.required.push("entry");
     }
     this.completed = (this.required.length === 0);
   }

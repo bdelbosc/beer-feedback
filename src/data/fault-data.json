@@ -1,0 +1,112 @@
+{
+  "Acetaldehyde": {
+    "name": "Acetaldehyde",
+    "characteristic": "fresh cut green apples",
+    "solution": "Make sure fermentation is vigorous using healthy yeast. Allow full attenuation. Leave beer on yeast longer. Oxygenate wort fully. Try another yeast strain. Make sure sufficient yeast nutrients are available. Let beer age longer."
+  },
+  "Alcoholic": {
+    "name": "Alcoholic/Hot",
+    "characteristic": "spicy, vinous, warming from Ethanol and higher alcohols",
+    "solution": "Lower fermentation temperature. Use a less attenuative yeast strain. Check yeast health. Use less fermentables. Use less sugary adjuncts. Check for possible infection. Raise mash temperature. Let beer age longer before consuming."
+  },
+  "Astringent": {
+    "name": "Astringent",
+    "characteristic": "Mouth-puckering, lingering harshness, husk-like graininess",
+    "solution": "Don’t oversparge. Don’t overcrush grain. Don’t boil grain. Don’t sparge with water above 170°. Don’t sparge with water with a high pH (over 6). Use water with lower sulfate content. Use less dark grains (especially black malt). Use less whole hops (especially high-alpha hops or simply large quantities of hops). Avoid use of raw spices, fruit pith and fruit skins."
+  },
+  "Diacetyl": {
+    "name": "Diacetyl",
+    "characteristic": "Buttery, Butterscotch, Movie Popcorn",
+    "solution": "Try another yeast strain. Oxygenate wort before fermentation. Reduce primary fermentation temperature. Use a warmer/longer secondary fermentation. Use healthy yeast in sufficient quantity. Make sure sufficient yeast nutrients are available (including reducing adjunct use). Check for infection. Allow beer to rest on yeast until fully attenuated. Don’t rack, filter or fine too early. Don’t crash-cool yeast. If lager, raise temperature for a diacetyl rest at end of fermentation. Bottle condition beer at cellar temperatures. Avoid adding oxygen during fermentation."
+  },
+  "DMS": {
+    "name": "DMS (Dimethyl Sulfide)",
+    "characteristic": "Cooked corn",
+    "solution": "Use a long, rolling, open boil. Reduce amount of pilsner malt. Cool quickly before pitching yeast. Check for infection. Make sure you use a healthy, vigorous yeast starter."
+  },
+  "Estery": {
+    "name": "Estery",
+    "characteristic": "Fruity (strawberry, pear, banana, apple, grape, citrus)",
+    "solution": "Lower fermentation temperature. Try a cleaner yeast strain. Oxygenate wort sufficiently. Reduce original gravity. Check hop variety for fruity characteristics. Avoid carrying over excessive break into fermenter. Pitch a sufficient quantity of yeast (avoid yeast stress). Bottle condition and age beer longer at cellar temperatures to reduce esters."
+  },
+  "Grassy": {
+    "name": "Grassy",
+    "characteristic": "Fresh-cut grass, green leaves",
+    "solution": "Reduce dry-hopping or quantity of whole hops. Avoid oxygen pickup. Check hops and malt for freshness."
+  },
+  "Light-Struck": {
+    "name": "Light-struck",
+    "characteristic": "Skunky, catty",
+    "solution": "Don’t expose wort/beer to sunlight after hops have been added. Don’t use clear or green glass bottles. Avoid use of Cluster hops in late hop additions."
+  },
+  "Phenolic/Medicinal": {
+    "name": "Medicinal (chlorophenolic)",
+    "characteristic": "Chloroseptic, medicine cabinet",
+    "solution": "Avoid water with chlorine or chloramines (use RO water if necessary). Avoid bleach sanitizers. Reduce astringency/grain husk sources. Avoid excessive whole hop use. Check for infection."
+  },
+  "metallic": {
+    "name": "Metallic",
+    "characteristic": "Iron, copper, coins, blood",
+    "solution": "Check water for metallic ions. Reduce water salts. Check equipment condition for rust. Make sure stainless steel equipment is properly passivated. Fully rinse sanitizer. Try using RO water and add salts as needed."
+  },
+  "Earthy": {
+    "name": "Musty (Earthy)",
+    "characteristic": "Stale, moldy, cellar-like",
+    "solution": "Avoid oxidation (see Oxidized). Check sanitation. Avoid peat-smoked malt. Check water for freshness and taste. Use fresh ingredients (especially malt and hops)."
+  },
+  "Oxidized": {
+    "name": "Oxidized",
+    "characteristic": "Stale, papery, cardboard",
+    "solution": "Check for oxygen being introduced into beer post-fermentation. Don’t splash when racking/bottling. Check caps and/or keg seals for good fit. Purge bottles/kegs with CO 2 prior to filling. Store beer cool. Drink beer when fresh."
+  },
+  "Phenolic/Plastic": {
+    "name": "Plastic (Phenolic)",
+    "characteristic": "Band-aid, electrical tape, styrene",
+    "solution": "Check for infection. Check yeast strain and health. Lower fermentation temperature."
+  },
+  "Phenolic/Adhesive strip": {
+    "name": "Plastic (Phenolic)",
+    "characteristic": "Band-aid, electrical tape, styrene",
+    "solution": "Check for infection. Check yeast strain and health. Lower fermentation temperature."
+  },
+  "Solvent": {
+    "name": "Solvent/Fusel",
+    "characteristic": "Hot burning on palate",
+    "solution": "Lower fermentation temperature. Pitch a sufficient quantity of healthy, active yeast. Check for infection. Try a different yeast strain."
+  },
+  "Acidic": {
+    "name": "Sour/Acidic",
+    "characteristic": "Lactic acid, citric acid, sharp, clean sourness",
+    "solution": "Check for infection. Check yeast strain. Don’t mash for long periods of time at low temperatures."
+  },
+  "Phenolic/Smoky": {
+    "name": "Smoky (Phenolic)",
+    "characteristic": "Smoke-like, charcoal, burnt",
+    "solution": "Check for scorched mash or boil. Check excessive use of dark malts. Check for infection."
+  },
+  "Phenolic/Spicy": {
+    "name": "Spicy (Phenolic)",
+    "characteristic": "Clove, pepper, vanilla, etc.",
+    "solution": "Use a different yeast strain and/or hop variety. Adjust fermentation temperature (sometimes higher, sometimes lower, depending on yeast strain and beer style)."
+  },
+  "Sulfur": {
+    "name": "Sulfury",
+    "characteristic": "Rotten eggs, burning matches",
+    "solution": "Check for infection. Check water for excessive sulfates. Check yeast health. Check for yeast autolysis (beer left on yeast too long at warm temperatures). Try another yeast strain."
+  },
+  "Vegetal": {
+    "name": "Vegetal",
+    "characteristic": "Cooked, canned or rotten vegetables (cabbage, celery, onion, asparagus, parsnip)",
+    "solution": "Encourage a fast, vigorous fermentation (use a healthy, active starter to reduce lag time; this is often due to bacterial contamination of wort before yeast becomes established). Check sanitation. Check for aged, stale, or old ingredients (especially old liquid malt extract). Avoid oversparging at low temperatures."
+  },
+  "Vinegary": {
+    "name": "Vinegary",
+    "characteristic": "Acetic Acid, vinegar-like sourness",
+    "solution": "Check for infection. Check yeast strain. Check for oxidation sources (acetobacter is aerobic)."
+  },
+  "Yeasty": {
+    "name": "Yeasty",
+    "characteristic": "Bready, sulfury, yeast-like",
+    "solution": "Use a more flocculent yeast strain. Allow yeast sufficient time to flocculate. Filter beer or use clarifying agents. Avoid carrying over as much yeast. Age the beer longer. Try another yeast strain."
+  }
+}

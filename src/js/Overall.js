@@ -1,5 +1,6 @@
 import {BaseCategory} from './BaseCategory';
 import {getLabel, getScore, getScoreDescription} from "./PdfRenderer";
+import faultData from '../data/fault-data.json';
 
 const fields = ['accuracy', 'technical', 'intangible', 'drinkability', 'feedback', 'score'];
 
@@ -76,6 +77,14 @@ class Overall extends BaseCategory {
     this.completed = (this.required.length === 0);
   }
 
+  getFaults(aroma, flavor) {
+    let failures = new Set(aroma.getFailures());
+    flavor.getFailures().forEach(item => failures.add(item));
+    const solutions = [];
+    failures.forEach(f => solutions.push(getFault(f)));
+    return solutions;
+  }
+
   render(renderer, score) {
     renderer.addSection('Overall Impression', this.score, 10);
     renderer.addHeadline('Accuracy', [getLabel(ACCURACY_OPTIONS, this.accuracy)]);
@@ -86,6 +95,13 @@ class Overall extends BaseCategory {
     renderer.addHeadline('Feedback', [this.feedback !== undefined ? this.feedback : '']);
   }
 
+}
+
+function getFault(fault) {
+  if (faultData[fault]) {
+    return faultData[fault];
+  }
+  return {'name': fault, 'solution': '?', 'characteristic': ''}
 }
 
 export {

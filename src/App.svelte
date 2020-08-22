@@ -52,7 +52,11 @@
     if (item.isCompleted()) {
       return '';
     }
-    return header + item.getRequired().join(', ') + '.';
+    let required = item.getRequired();
+    if (required.length == 1) return header + required + ".";
+    if (required.length == 2) return header + required[0] + " and " + required[1] + ".";
+    let last = required[required.length - 1];
+    return header + required.join(', ').replace(last, 'and ' + last) + '.';
   }
 
   function computeScore() {
@@ -252,6 +256,20 @@
     flex-direction: row;
   }
 
+  :global(p.help) {
+    font-size: 1em;
+    color: #666;
+    font-style: italic;
+    margin: 0.4em 0 0.4em 0;
+  }
+
+  :global(span.buttonText) {
+    font-size: 1em;
+    color: #666;
+    font-style: italic;
+    margin: 0.4em 0 0.4em 0;
+  }
+
   /* ----------------------------------------
   ** Local
   **/
@@ -373,7 +391,7 @@
   <div id="beer">
     <Beer beer={beer} aroma={aroma} appearance={appearance} flavor={flavor} mouthfeel={mouthfeel} overall={overall}>
       <button on:click={() => evaluationEdit()} disabled={!beer.isCompleted()}>
-        <span title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
+        <span class="buttonText" title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/><br/>Go to Scoresheet</span>
       </button>
     </Beer>
   </div>
@@ -428,7 +446,7 @@
         </p>
       {:else}
         <div in:fade>
-          <Overall overall={overall} score={totalScore}/>
+          <Overall overall={overall} score={totalScore} aroma={aroma} flavor={flavor}/>
         </div>
       {/if}
     {/if}

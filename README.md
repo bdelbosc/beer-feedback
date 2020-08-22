@@ -25,48 +25,80 @@ Don't forget to [star the project on GitHub](https://github.com/bdelbosc/beer-fe
 
 ## Usage
 
-1. The first time, you have to give your name and fill your judging rank if any, this information is persisted in your smartphone and will be part of the final PDF report.
+### Preparation
 
-    ![First page](./page-identity.png) 
+The first time, you have to give your name and fill your judging rank if any, this information is persisted in your smartphone and will be part of the final PDF report.
 
-2. Describe the beer that you want to evaluate, this information will be persisted on your smartphone. 
+![First page](./page-identity.png) 
 
-    ![Beer page](./page-beer.png)
+Then describe the beer that you want to evaluate, you need to provide the BCJP category and an entry identifier,
+this information will be persisted on your smartphone. 
+When ready, poor your beer and go to the Scoresheet
 
-3. Start to fill your scoresheet, there is a tab for each section (Aroma, Appearance, Flavor, Mouthfeel and Overall impression).
+![Beer page](./page-beer.png)
 
-    ![aroma tab](./page-aroma.png)
 
-    Use the (+) button to add aromatic
+### Filling the Scoresheet
+
+There is a tab for each section (Aroma, Appearance, Flavor, Mouthfeel and Overall impression).
+
+![aroma tab](./page-aroma.png)
+
+Add aromatic using the aroma wheel:
    
-    ![aroma wheel](./page-aroma-wheel.png)
+![aroma wheel](./page-aroma-wheel.png)
 
-    Navigate in the aroma wheel and validate the entry using the check button.
-    Then describe the intensity and other aroma properties:
+Navigate in the aroma wheel and validate the entry using the check button.
+Then describe the intensity and other aroma properties:
 
-    ![aroma intensity](./page-aroma-intensity.png)
+![aroma intensity](./page-aroma-intensity.png)
 
-    Validate again, the aroma is added to the list.
+Validate again, the aroma is added to the list.
   
-    You need to add at least one aroma for malt, hops and fermentation,
-    then you set the aroma score using the slider, and the section is now completed:
+You need to add at least one aroma for malt, hops and fermentation,
+then you set the aroma score using the slider, and the section is now completed:
   
-    ![aroma completed](./page-aroma-completed.png)
-    
-    Note that you can click on any aroma to edit the intensity or properties, they can also be deleted using the (x) button on the right.
-    
-    Now continue with other tabs: Appearance, Flavor, Mouthfeel and Overall.
-    
-4. Click on PDF, the report is generated on your smartphone there is no data transferred anywhere.
-   Here is a PDF example:
-    
-   [![Pdf](./pdf-export.png)](./scoresheet-20200816-2-10A-Raoul.pdf)
-
-   It is also possible to generate the report when the scoresheet is not yet completed.
+![aroma completed](./page-aroma-completed.png)
   
-5. Share the PDF the way you want, if you have a PDF editor you can add a photo of the beer.        
+Note that you can click on any aroma to edit the intensity or properties, they can also be deleted using the (x) button on the right.
+    
+Continue with the `Appearance` tab:
 
-A beer-feedback PDF scoresheet can be loaded (from the beer entry section), this enables to edit the content and produce a new PDF.
+![appearance completed](./page-appearance.png)
+
+On the bottom of each section you can display the specific BJCP Guideline:
+
+![appearance completed](./page-guideline.png)
+ 
+On the bottom of `Overall` tab, you will find 2 helpers:
+- The meaning of the current score
+- A list of possible solutions for the flaws that have been entered using Aroma or Flavor wheels
+
+![overall helpers](./page-overall.png)
+    
+Click on the `PDF` button, the report is generated on your smartphone there is no data transferred anywhere.
+Here is a PDF example:
+    
+[![Pdf](./pdf-export.png)](./scoresheet-20200816-2-10A-Raoul.pdf)
+
+Note that you can generate the PDF Scoresheet at anytime even when the scoresheet is not yet completed.
+  
+### Load an existing Scoresheet
+
+A beer-feedback PDF Scoresheet can be loaded (from the beer entry section), this enables to edit the content and produce a new PDF.
+
+### Share links for a beer entry 
+
+When you have filled a beer description, you can share a link with other judges from the `Share` tab:
+
+![Share beer entry](./page-share.png)
+
+Copy then send a message like:
+
+  Please evaluate the following beer and send me your reports before next monday:
+  http://beer-feedback.surge.sh/?beerEntry=20w34b1&beerCategory=24C&beerSpecial=Seeds%20of%20paradise&beerComment=Name%20of%20the%20beer%2C%20purchased%20from%20...%204.40%E2%82%AC%2075cl
+       
+This will auto fill the beer entry.
 
 ## FAQ
 
@@ -80,7 +112,7 @@ please create an issue:
 
 https://github.com/bdelbosc/beer-feedback/issues
 
-### I can't enter a long text from my smartphone!
+### I don't want to type a long text on my smartphone!
 
 Possible work around:
 
@@ -91,7 +123,7 @@ Possible work around:
     - Transfer the PDF by mail (or whatever) to your computer
     - Open [BF](http://beer-feedback.surge.sh/), read the PDF from the "Load" tab and continue editing
 
-- Create a PDF, print it and finish with a pencil
+- Create a PDF, print it and finish with a pen
 
 ### My fingers are too awkward, or the app is clunky?
 

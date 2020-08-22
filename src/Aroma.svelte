@@ -167,13 +167,11 @@
       <AromaProperties inappropriate={item.inappropriate} initial={item.initial} warms={item.warms}/>
     </div>
   {/each}
-  {#if aroma.aromas.length == 0}
-    Click below to add aromatics
-  {/if}
   <div class="buttons">
     <button on:click={picker}>
-      <span title="Add new Aroma">
-        <SvgIcon d={addIcon} size="2em" fill="blue"/>
+      <span class="buttonText" title="Add new Aroma">
+        <SvgIcon d={addIcon} size="2em" fill="blue"/><br>
+        Add aromatic
       </span>
     </button>
   </div>

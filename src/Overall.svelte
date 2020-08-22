@@ -11,6 +11,10 @@
 
   export let overall;
   export let score;
+  export let aroma;
+  export let flavor;
+
+  const faults = overall.getFaults(aroma, flavor);
 
   function updateHandler() {
     overall.updateHandler()
@@ -26,6 +30,13 @@
   div.score {
     margin-top: 1em;
     margin-bottom: 1em;
+  }
+
+  dd {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 0.8em;
+    color: #444;
   }
 </style>
 
@@ -68,4 +79,16 @@
     <div class="scoreDescription">{getScoreLongDescription(score)}</div>
   </div>
 {/if}
+{#if faults.length > 0}
+  <div>
+    <span class="longLabel">Faults and possible solutions</span>
+    <dl>
+      {#each  faults as item}
+        <dt>{item.name}: {item.characteristic}</dt>
+        <dd>{item.solution}</dd>
+      {/each}
+    </dl>
+  </div>
+{/if}
+
 

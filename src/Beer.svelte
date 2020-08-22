@@ -6,6 +6,7 @@
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {beerIcon, trashIcon} from "./js/AppIcons";
   import {parsePDF} from "./js/PdfRenderer";
+  import Tabs from "./comp/Tabs.svelte";
 
   export let beer;
   export let aroma;
@@ -13,6 +14,13 @@
   export let appearance;
   export let mouthfeel;
   export let overall;
+
+  let tabItems = [
+    {label: "Description", shortLabel: "Description", value: 1, comment: ''},
+    {label: "Load", shortLabel: "Load", value: 2, comment: ''},
+    {label: "Share", shortLabel: "Share", value: 3, comment: ''}
+  ];
+  let currentTab = 1;
 
   function updateHandler() {
     beer.updateHandler();
@@ -65,6 +73,7 @@
         }
       };
       fr.readAsText(file);
+      currentTab = 1;
     } catch (err) {
       alert(err.message);
     }
@@ -86,55 +95,54 @@
 
 </script>
 
-<style>
-  div.upload {
-    margin-top: 3em;
-  }
 
-  /*input.hidden {*/
-  /*  visibility: hidden;*/
-  /*}*/
-</style>
 <h3>
   <SvgIcon d={beerIcon} boxSize="512" fill="#700000"/>
   Which beer deserves feedback?
 </h3>
 
-<div>
-  <SelectCheck on:change={updateHandler} bind:value={beer.category} options={CATEGORY_OPTIONS} noCheck="true">
-    Category
-  </SelectCheck>
-</div>
 
-<div>
-  <span class="label">Entry #</span>
-  <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.entry}/>
-</div>
+<Tabs bind:activeTabValue={currentTab} items={tabItems}/>
+{#if 1 === currentTab}
+  <div>
+    <SelectCheck on:change={updateHandler} bind:value={beer.category} options={CATEGORY_OPTIONS} noCheck="true">
+      Category
+    </SelectCheck>
+  </div>
 
-<div>
-  <span class="label">Special Ingredients</span>
-  <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.special}/>
-</div>
+  <div>
+    <span class="label">Entry #</span>
+    <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.entry}/>
+  </div>
 
-<div>
-  <span class="longLabel">Comment</span>
-  <textarea on:change={updateHandler} type="text" bind:value={beer.comment}/>
-</div>
+  <div>
+    <span class="label">Special Ingredients</span>
+    <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.special}/>
+  </div>
 
-<div>
-  <slot/>
-  <button class="delete" on:click={() => resetData()}>
-    <span title="Reset"><SvgIcon d={trashIcon} size="0.8em"/></span>
-  </button>
-</div>
-<div class="upload">
-  <label>Or load an existing PDF Scoresheet
-    <input id='upload' type='file' accept="application/pdf" on:change={() => onChooseFile(event)}/>
-  </label>
-</div>
+  <div>
+    <span class="longLabel">Comment</span>
+    <textarea on:change={updateHandler} type="text" bind:value={beer.comment}/>
+  </div>
 
-<div>
-  Share the link for this beer entry<br/>
-  <input type="text" value="..." id="sharedLink">
-  <button on:click={() => shareLink()}>Copy</button>
-</div>
+  <div>
+    <slot/>
+    <button class="delete" on:click={() => resetData()}>
+      <span class="buttonText" title="Reset"><SvgIcon d={trashIcon} size="0.8em"/><br>Reset</span>
+    </button>
+  </div>
+
+{:else if 2 === currentTab}
+  <div class="upload">
+    <label><p class="help">Load a PDF Scoresheet and continue editing</p>
+      <input id='upload' type='file' accept="application/pdf" on:change={() => onChooseFile(event)}/>
+    </label>
+  </div>
+
+{:else if 3 === currentTab}
+  <div>
+    <p class="help">Copy the link for this beer entry</p>
+    <input type="text" value="..." id="sharedLink">
+    <button on:click={() => shareLink()}>Copy</button>
+  </div>
+{/if}

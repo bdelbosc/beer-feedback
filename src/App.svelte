@@ -92,36 +92,31 @@
       tabItems[0].comment = getComment(aroma);
       completed = completed && aroma.isCompleted();
       updated = true;
-      console.debug("Aroma updated");
-      console.debug(aroma);
+      aroma.save();
     }
     if (appearance.isUpdated()) {
       tabItems[1].comment = getComment(appearance);
       completed = completed && appearance.isCompleted();
       updated = true;
-      console.debug("Appearance updated");
-      console.debug(appearance);
+      appearance.save();
     }
     if (flavor.isUpdated()) {
       tabItems[2].comment = getComment(flavor);
       completed = completed && flavor.isCompleted();
       updated = true;
-      console.debug("Flavor updated");
-      console.debug(flavor);
+      flavor.save();
     }
     if (mouthfeel.isUpdated()) {
       tabItems[3].comment = getComment(mouthfeel);
       completed = completed && mouthfeel.isCompleted();
       updated = true;
-      console.debug("Mouthfeel updated");
-      console.debug(mouthfeel);
+      mouthfeel.save();
     }
     if (overall.isUpdated()) {
       tabItems[4].comment = getComment(overall);
       completed = completed && overall.isCompleted();
       updated = true;
-      console.debug("Overall updated");
-      console.debug(overall);
+      overall.save();
     }
     if (updated) {
       tabItems = tabItems;

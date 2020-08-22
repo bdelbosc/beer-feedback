@@ -57,6 +57,10 @@ class Mouthfeel extends BaseCategory {
   constructor() {
     super();
     this.flush();
+    const jsonText = localStorage.getItem('mouthfeel');
+    if (jsonText) {
+      this.load(JSON.parse(unescape(jsonText)));
+    }
   }
 
   flush() {
@@ -112,6 +116,12 @@ class Mouthfeel extends BaseCategory {
       renderer.addHeadline('Other sensations', [(this.other !== undefined ? this.other : '')]);
   }
 
+  save() {
+    console.info("Saving mouthfeel");
+    console.debug(this);
+    const json = escape(JSON.stringify(this));
+    localStorage.setItem('mouthfeel', json);
+  }
 }
 
 export {

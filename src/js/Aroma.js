@@ -6,6 +6,10 @@ class Aroma extends BaseCategory {
   constructor() {
     super();
     this.flush();
+    const jsonText = localStorage.getItem('aroma');
+    if (jsonText) {
+      this.load(JSON.parse(unescape(jsonText)));
+    }
   }
 
   flush() {
@@ -86,6 +90,13 @@ class Aroma extends BaseCategory {
     let items = [];
     this.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(getFailureName(a.trait.trim())));
     return items;
+  }
+
+  save() {
+    console.info("Saving aroma");
+    console.debug(this);
+    const json = escape(JSON.stringify(this));
+    localStorage.setItem('aroma', json);
   }
 }
 

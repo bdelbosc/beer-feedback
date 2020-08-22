@@ -145,12 +145,10 @@ https://github.com/bdelbosc/beer-feedback/issues
 
 ### I lost my Scoresheet!
 
-For now, the information you enter in the scoresheet (except the user name, user rank, and beer entry) are not
-persisted, if you close the browser they are lost.
+This should not be the case since v1.14.0, all the information are now saved locally on your browser,
+Reloading the page or closing your browser should not erase your data, unless you are using a private session.
 
-Fortunately, if you leave the site there should be a popup to warn you in such case.
-
-Before leaving or at any time just create a PDF, you will be able to load it from the beer section and continue editing.
+You can always create a PDF to save a particular state. 
 
 Do this if you have to restart your phone, your battery is low, or if you want to terminate the Scoresheet later.
 

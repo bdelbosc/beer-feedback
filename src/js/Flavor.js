@@ -42,6 +42,10 @@ class Flavor extends BaseCategory {
   constructor() {
     super();
     this.flush();
+    const jsonText = localStorage.getItem('flavor');
+    if (jsonText) {
+      this.load(JSON.parse(unescape(jsonText)));
+    }
   }
 
   flush() {
@@ -138,6 +142,12 @@ class Flavor extends BaseCategory {
     return items;
   }
 
+  save() {
+    console.info("Saving flavor");
+    console.debug(this);
+    const json = escape(JSON.stringify(this));
+    localStorage.setItem('flavor', json);
+  }
 }
 
 function getFlavor(flavor, flaws = false) {

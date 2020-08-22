@@ -45,6 +45,10 @@ class Overall extends BaseCategory {
   constructor() {
     super();
     this.flush();
+    const jsonText = localStorage.getItem('overall');
+    if (jsonText) {
+      this.load(JSON.parse(unescape(jsonText)));
+    }
   }
 
   flush() {
@@ -95,6 +99,12 @@ class Overall extends BaseCategory {
     renderer.addHeadline('Feedback', [this.feedback !== undefined ? this.feedback : '']);
   }
 
+  save() {
+    console.info("Saving overall");
+    console.debug(this);
+    const json = escape(JSON.stringify(this));
+    localStorage.setItem('overall', json);
+  }
 }
 
 function getFault(fault) {

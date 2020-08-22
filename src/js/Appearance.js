@@ -71,6 +71,10 @@ class Appearance extends BaseCategory {
   constructor() {
     super();
     this.flush();
+    const jsonText = localStorage.getItem('appearance');
+    if (jsonText) {
+      this.load(JSON.parse(unescape(jsonText)));
+    }
   }
 
   flush() {
@@ -132,6 +136,12 @@ class Appearance extends BaseCategory {
     renderer.addHeadline2('Other', other);
   }
 
+  save() {
+    console.info("Saving appearance");
+    console.debug(this);
+    const json = escape(JSON.stringify(this));
+    localStorage.setItem('appearance', json);
+  }
 }
 
 

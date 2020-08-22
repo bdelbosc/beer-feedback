@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/bdelbosc/beer-feedback/compare/v1.12.0...v1.13.0) (2020-08-22)
+
+
+### Features
+
+* Add possible solution for beer fault, some cosmit ([97e89d0](https://github.com/bdelbosc/beer-feedback/commit/97e89d00d0c4cff41ea728839045a6685d002301))
+
+
+### Bug Fixes
+
+* update readme ([ef48d35](https://github.com/bdelbosc/beer-feedback/commit/ef48d35fecdce145cd109eaab1be3cb590b12ab4))
+* use CDN for plotly and cosmit ([e58dc49](https://github.com/bdelbosc/beer-feedback/commit/e58dc49da846fe1e118ef353e13998411e750dd9))
+
 ## [1.12.0](https://github.com/bdelbosc/beer-feedback/compare/v1.11.0...v1.12.0) (2020-08-16)
 
 

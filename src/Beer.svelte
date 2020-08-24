@@ -31,14 +31,16 @@
   }
 
   function resetData() {
-    console.info("Resetting Beer and Scoresheet data");
-    beer.flush();
-    beer = beer;
-    aroma.flush();
-    appearance.flush();
-    flavor.flush();
-    mouthfeel.flush();
-    overall.flush();
+    if (confirm("Clear Beer entry and Scoresheet data?")) {
+      console.info("Resetting Beer and Scoresheet data");
+      beer.flush();
+      beer = beer;
+      aroma.flush();
+      appearance.flush();
+      flavor.flush();
+      mouthfeel.flush();
+      overall.flush();
+    }
   }
 
   function uploadData(json) {

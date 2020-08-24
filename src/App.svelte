@@ -233,7 +233,7 @@
   }
 
   :global(input.fixedInput) {
-    width: 10em;
+    width: 170px;
   }
 
   :global(button.delete) {
@@ -244,6 +244,12 @@
   :global(button.delete:hover) {
     background-color: #f44336;
     color: white;
+  }
+
+  :global(button.validation) {
+    float: right;
+    clear: both;
+    margin: 1em 0 1em 0;
   }
 
   :global(div.inputRow) {
@@ -329,6 +335,7 @@
     width: 100%;
     font-size: 0.6em;
     color: #999;
+    clear: both;
   }
 
   div.statusLine {
@@ -354,6 +361,7 @@
   div.bjcpGuideline {
     color: #999;
     padding-top: 2em;
+    clear: both;
   }
 
 </style>
@@ -378,14 +386,14 @@
 <div class="main">
   <div id="user">
     <User user={user}/>
-    <button on:click={() => beerEdit()} disabled={!user.isCompleted()}>
-      <span title="Beer"><SvgIcon d={nextIcon} size="2em" fill="green"/></span>
+    <button class="validation" on:click={() => beerEdit()} disabled={!user.isCompleted()}>
+      <span title="Beer"><SvgIcon d={nextIcon} size="2em" fill="green"/><br>Beer</span>
     </button>
   </div>
 
   <div id="beer">
     <Beer beer={beer} aroma={aroma} appearance={appearance} flavor={flavor} mouthfeel={mouthfeel} overall={overall}>
-      <button on:click={() => evaluationEdit()} disabled={!beer.isCompleted()}>
+      <button class="validation" on:click={() => evaluationEdit()} disabled={!beer.isCompleted()}>
         <span class="buttonText" title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/><br/>Go to Scoresheet</span>
       </button>
     </Beer>

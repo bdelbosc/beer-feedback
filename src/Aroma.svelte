@@ -140,7 +140,7 @@
       <Level edit=true bind:value={level}/>
     </div>
 
-    <button on:click={() => add()}>
+    <button class="validation" on:click={() => add()}>
       <SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
     </button>
   {/if}

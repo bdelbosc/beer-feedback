@@ -94,7 +94,17 @@
   }
 
 </script>
+<style>
+  button.reset {
+    margin: 1em 0 1em 0;
+    clear: both;
+  }
 
+  button.reset:hover {
+    background-color: #f44336;
+    color: white;
+  }
+</style>
 
 <h3>
   <SvgIcon d={beerIcon} boxSize="512" fill="#700000"/>
@@ -127,7 +137,7 @@
 
   <div>
     <slot/>
-    <button class="delete" on:click={() => resetData()}>
+    <button class="reset" on:click={() => resetData()}>
       <span class="buttonText" title="Reset"><SvgIcon d={trashIcon} size="0.8em"/><br>Reset</span>
     </button>
   </div>

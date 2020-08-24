@@ -15,7 +15,7 @@ The result is a PDF document that can be shared like any document.
 There is nothing to install and no account to create, 
 just use your smartphone (or any browser) to reach this URL:
 
-http://beer-feedback.surge.sh/
+https://beer-feedback.surge.sh/
 
 ![Link Beer Feedback](./qrcode.png)
 
@@ -100,7 +100,7 @@ When you have filled a beer description, you can share a link with other judges 
 Copy then send a message like:
 
   Please evaluate the following beer and send me your Scoresheet before next monday:  
-  http://beer-feedback.surge.sh/?beerEntry=20w34b1&beerCategory=24C&beerSpecial=Seeds%20of%20paradise&beerComment=Name%20of%20the%20beer%2C%20purchased%20from%20...%204.40%E2%82%AC%2075cl
+  https://beer-feedback.surge.sh/?beerEntry=20w34b1&beerCategory=24C&beerSpecial=Seeds%20of%20paradise&beerComment=Name%20of%20the%20beer%2C%20purchased%20from%20...%204.40%E2%82%AC%2075cl
        
 Following the link will auto fill the beer entry, and your Scoresheet is ready to be started.
 
@@ -122,10 +122,12 @@ Possible work around:
 
 - Enter your text using voice transcription
 
+- Use a slim portable keyboard
+
 - Continue the Scoresheet on a computer using a keyboard:
     - Create a PDF from your smartphone
     - Transfer the PDF by mail (or whatever) to your computer
-    - Open [BF](http://beer-feedback.surge.sh/), read the PDF from the `Load` tab and continue editing
+    - Open [BF](https://beer-feedback.surge.sh/), read the PDF from the `Load` tab and continue editing
 
 - Create a PDF, print it and finish with a pen
 
@@ -143,15 +145,6 @@ If you think they are inappropriate or can be improved, please report an issue:
 
 https://github.com/bdelbosc/beer-feedback/issues
 
-### I lost my Scoresheet!
-
-This should not be the case since v1.14.0, all the information are now saved locally on your browser,
-Reloading the page or closing your browser should not erase your data, unless you are using a private session.
-
-You can always create a PDF to save a particular state. 
-
-Do this if you have to restart your phone, your battery is low, or if you want to terminate the Scoresheet later.
-
 ### I am X times faster using a paper Scoresheet
 
 For sure if you are an experimented BJCP judge you have spent such an amount of time to master this,
@@ -161,11 +154,15 @@ Also, you should take into account the time to scan your paper and the time othe
 
 If you want to compare the perceived aromas on more than 3 paper Scoresheets it becomes a rabbit hole.
 
-### The connection to the site is Not Secure (no https)!
+### I lost my Scoresheet!
 
-This is a static site, all the information you entered remains on your browser, 
-this browser security alert is not relevant for this site.
- 
+This should not happen since v1.14.0, all the information are now saved locally on your browser,
+Reloading the page or closing your browser should not be a problem, unless you are using a private session.
+
+You can always create a PDF to save a particular state.
+
+Do this if you have to restart your phone, your battery is low, or if you want to terminate the Scoresheet later.
+
 ### Hey, it worked!
 
 Cool, because it is a static page without analytic to track you and because you can generate tons of Scoresheets without generating any traffic on the site,

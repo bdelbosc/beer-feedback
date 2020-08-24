@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.2](https://github.com/bdelbosc/beer-feedback/compare/v1.14.1...v1.14.2) (2020-08-24)
+
+
+### Bug Fixes
+
+* confirm reset of scoresheet ([c6946e5](https://github.com/bdelbosc/beer-feedback/commit/c6946e573301302828fbc2ba0b1935b79e2f8c7f))
+
 ### [1.14.1](https://github.com/bdelbosc/beer-feedback/compare/v1.14.0...v1.14.1) (2020-08-24)
 
 

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.1](https://github.com/bdelbosc/beer-feedback/compare/v1.14.0...v1.14.1) (2020-08-24)
+
+
+### Bug Fixes
+
+* align validation on right, cosmit ([b15b35e](https://github.com/bdelbosc/beer-feedback/commit/b15b35eb3b8bc7b97919d69f99344605b7f36cab))
+* refer to https instead of http ([6159e5a](https://github.com/bdelbosc/beer-feedback/commit/6159e5ab99e9ab5c8a6bf5f2bc5fd8a166b4c119))
+
 ## [1.14.0](https://github.com/bdelbosc/beer-feedback/compare/v1.13.0...v1.14.0) (2020-08-22)
 
 

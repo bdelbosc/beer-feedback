@@ -104,6 +104,10 @@ Copy then send a message like:
        
 Following the link will auto fill the beer entry, and your Scoresheet is ready to be started.
 
+### Compare multiple PDF Scoresheets?
+
+Use the [Beer Feedback Comparator](https://github.com/bdelbosc/beer-feedback-comparator#try-it).
+
 ## FAQ
 
 ### Some aromatic is missing in the aroma wheel?

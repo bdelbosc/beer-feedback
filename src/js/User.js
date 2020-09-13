@@ -6,6 +6,11 @@ const fields = ['name', 'rank'];
 const RANK_OPTIONS = [
   {id: undefined, text: ''},
   {id: 'none', text: 'No Rank'},
+  {id: 'home-brewer', text: 'Home Brewer'},
+  {id: 'professional', text: 'Professional Brewer'},
+  {id: 'beer-sommelier', text: 'Beer Sommelier'},
+  {id: 'cicerone', text: 'Cicerone'},
+  {id: 'gabf-wbc', text: 'GABF/WBC'},
   {id: 'bjcp-novice', text: `BJCP Novice`},
   {id: 'bjcp-apprentice', text: `BJCP Apprentice`},
   {id: 'bjcp-pending', text: 'BJCP Rank Pending'},
@@ -14,12 +19,8 @@ const RANK_OPTIONS = [
   {id: 'bjcp-national', text: `BJCP National`},
   {id: 'bjcp-master', text: `BJCP Master`},
   {id: 'bjcp-grand-master', text: `BJCP Grand Master`},
-  {id: 'gabf-wbc', text: 'GABF/WBC'},
-  {id: 'professinal', text: 'Professional Brewer'},
-  {id: 'cicerone', text: 'Cicerone'},
-  {id: 'beer-sommelier', text: 'Beer Sommelier'},
-  {id: 'other', text: 'Other'}
-];
+  {id: 'other', text: 'Other'},
+  ];
 
 class User extends BaseCategory {
 

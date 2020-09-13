@@ -28,6 +28,7 @@
   import Octocat from "./comp/Octocat.svelte";
   import {fade} from 'svelte/transition';
   import bjcpGuideline from './data/bjcp-guideline.json';
+  import {TextRenderer} from "./js/TextRenderer";
 
   let visible = false;
 
@@ -158,6 +159,24 @@
     console.info(json);
     let renderer = new PdfRenderer("BEER SCORESHEET", totalScore);
     renderer.addMetdata(pkg.version, user.name, beer.entry, beer.category, json);
+    renderScoresheet(renderer);
+    let name = 'scoresheet-' + start.toISOString().slice(0, 10).replace(/-/g, "");
+    name += '-' + beer.entry.replace(/\W/g, '_');
+    name += '-' + beer.category.replace(/\W/g, '_');
+    name += '-' + user.name.replace(/\W/g, '_') + '.pdf';
+    renderer.produce(name);
+  }
+
+  function renderText() {
+    console.info("Generate Text Scoresheet");
+    let renderer = new TextRenderer("BEER SCORESHEET", totalScore);
+    renderScoresheet(renderer);
+    let text = renderer.produce();
+    console.info(text);
+
+  }
+
+  function renderScoresheet(renderer) {
     renderer.addVersion(pkg.version);
     user.render(renderer);
     beer.render(renderer);
@@ -166,11 +185,6 @@
     flavor.render(renderer);
     mouthfeel.render(renderer);
     overall.render(renderer, totalScore);
-    let name = 'scoresheet-' + start.toISOString().slice(0, 10).replace(/-/g, "");
-    name += '-' + beer.entry.replace(/\W/g, '_');
-    name += '-' + beer.category.replace(/\W/g, '_');
-    name += '-' + user.name.replace(/\W/g, '_') + '.pdf';
-    renderer.produce(name);
   }
 
   function beerEdit() {
@@ -392,7 +406,7 @@
   </div>
 
   <div id="beer">
-    <Beer beer={beer} aroma={aroma} appearance={appearance} flavor={flavor} mouthfeel={mouthfeel} overall={overall}>
+    <Beer beer={beer} user={user} aroma={aroma} appearance={appearance} flavor={flavor} mouthfeel={mouthfeel} overall={overall} totalScore={totalScore}>
       <button class="validation" on:click={() => evaluationEdit()} disabled={!beer.isCompleted()}>
         <span class="buttonText" title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/><br/>Go to Scoresheet</span>
       </button>

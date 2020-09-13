@@ -7,18 +7,22 @@
   import {beerIcon, trashIcon} from "./js/AppIcons";
   import {parsePDF} from "./js/PdfRenderer";
   import Tabs from "./comp/Tabs.svelte";
+  import {TextRenderer} from "./js/TextRenderer";
 
+  export let user;
   export let beer;
   export let aroma;
   export let flavor;
   export let appearance;
   export let mouthfeel;
   export let overall;
+  export let totalScore;
 
   let tabItems = [
     {label: "Description", shortLabel: "Description", value: 1, comment: ''},
     {label: "Load", shortLabel: "Load", value: 2, comment: ''},
-    {label: "Share", shortLabel: "Share", value: 3, comment: ''}
+    {label: "Share", shortLabel: "Share", value: 3, comment: ''},
+    {label: "...", shortLabel: "...", value: 4, comment: ''}
   ];
   let currentTab = 1;
 
@@ -95,6 +99,28 @@
     document.execCommand("copy");
   }
 
+  function exportText() {
+    console.info("Generate Text Scoresheet");
+    let renderer = new TextRenderer("BEER SCORESHEET", totalScore);
+    renderScoresheet(renderer);
+    let text = renderer.produce();
+    console.info(text);
+    let input = document.getElementById("exportText");
+    input.value = text;
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+  }
+
+  function renderScoresheet(renderer) {
+    user.render(renderer);
+    beer.render(renderer);
+    aroma.render(renderer);
+    appearance.render(renderer);
+    flavor.render(renderer);
+    mouthfeel.render(renderer);
+    overall.render(renderer, totalScore);
+  }
 </script>
 <style>
   button.reset {
@@ -154,7 +180,13 @@
 {:else if 3 === currentTab}
   <div>
     <p class="help">Copy the link for this beer entry</p>
-    <input type="text" value="..." id="sharedLink">
+    <input type="text" value="..." id="sharedLink"/>
     <button on:click={() => shareLink()}>Copy</button>
+  </div>
+{:else if 4 === currentTab}
+  <div>
+    <p class="help">Generate a text scoresheet</p>
+    <textarea type="text" value="..." id="exportText"/>
+    <button on:click={() => exportText()}>Export as Text</button>
   </div>
 {/if}

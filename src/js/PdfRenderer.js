@@ -62,6 +62,26 @@ function pdfUnescape(value) {
   return value.replace(/\\\\/g, '\\').replace(/\\\(/g, '(').replace(/\\\)/g, ')');
 }
 
+function splitLines(text) {
+  const maxLength = 85;
+  let rest = text;
+  let lines = [];
+  let i = 0;
+  while (rest.length > 0 && i < 30) {
+    let line = rest.split('\n')[0];
+    if (line.length > maxLength) {
+      line = rest.replace(/^(.{85}[^\s]*).*/m, "$1").split('\n')[0];
+    } else if (line.length == 0) {
+      rest = rest.substr(1, rest.length);
+      continue;
+    }
+    rest = rest.substr(line.length, rest.length);
+    lines.push(line.trim());
+    i = i+1;
+  }
+  return lines;
+}
+
 class PdfRenderer {
 
   constructor(title, score) {
@@ -126,34 +146,38 @@ class PdfRenderer {
     this.y += 6;
   }
 
+  addHeadlines(head, text, x = this.defaultX) {
+    this.addHeadline(head, splitLines(text), x);
+  }
+
   addHeadline(head, text, x=this.defaultX) {
     this.doc.setFont("helvetica");
     this.doc.setFontSize(10);
     this.doc.setFontStyle("bold");
     this.doc.text(head, x + 30, this.y, null, null, "right");
+    this.doc.setFontSize(9);
     this.doc.setFontStyle("normal");
     for (let i = 0; i < text.length; i++) {
       if (text[i] !== undefined) {
         this.doc.text(text[i], x + 35, this.y);
-        this.y += 6;
+        this.y += 5;
       }
     }
     if (text.length == 0) {
-      this.y += 6;
+      this.y += 5;
     }
   }
 
   addHeadline2(head, text) {
-    this.y -= 6;
+    this.y -= 5;
     this.addHeadline(head, text,  110);
   }
-
 
   addVersion(version) {
     this.doc.setFont("helvetica");
     this.doc.setFontSize(7);
-    this.doc.text("Generated with beer-feedback v" + version, 200, 284, null, null, "right");
-    this.doc.text("http://beer-feedback.surge.sh/", 200, 288, null, null, "right");
+    this.doc.text("Generated with beer-feedback v" + version, 10, 288, null, null, "left");
+    this.doc.text("http://beer-feedback.surge.sh/", 10, 292, null, null, "left");
   }
 
   addMetdata(version, username, entry, category, json) {

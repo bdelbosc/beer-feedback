@@ -133,7 +133,7 @@ class Flavor extends BaseCategory {
     renderer.addHeadline2('Balance', [getLabel(BALANCE_OPTIONS, this.balance, this.balanceInappropriate)]);
     renderer.addHeadline('Finish', [getLabel(DRYNESS_OPTIONS, this.finish, this.finishInappropriate)]);
     if (this.comment)
-      renderer.addHeadline('Comments', [this.comment]);
+      renderer.addHeadlines('Comments', this.comment);
   }
 
   getFailures() {

@@ -83,7 +83,7 @@ class Aroma extends BaseCategory {
     this.aromas.filter(a => a.category === 'flaws').forEach(a => items.push(getAroma(a, true)));
     renderer.addHeadline('Flaws', items);
     if (this.comment)
-      renderer.addHeadline('Comments', [this.comment]);
+      renderer.addHeadlines('Comments', this.comment);
   }
 
   getFailures() {

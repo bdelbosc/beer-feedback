@@ -96,7 +96,7 @@ class Overall extends BaseCategory {
     renderer.addHeadline('Drinkability', [getLabel(DRINKABILITY_OPTIONS, this.drinkability)]);
     renderer.addHeadline2('Intangible', [getLabel(INTANGIBLE_OPTIONS, this.intangible)]);
     renderer.addHeadline('Scoring Guide', [getScore(score) + ': ' + getScoreDescription(score)]);
-    renderer.addHeadline('Feedback', [this.feedback !== undefined ? this.feedback : '']);
+    renderer.addHeadlines('Feedback', this.feedback !== undefined ? this.feedback : '');
   }
 
   save() {

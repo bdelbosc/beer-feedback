@@ -113,7 +113,7 @@ class Mouthfeel extends BaseCategory {
     renderer.addHeadline2('Astringency', [getLabel(ASTRINGENCY_OPTIONS, this.astringency, this.astringencyInappropriate)]);
     renderer.addHeadline('Warmth', [getLabel(WARMTH_OPTIONS, this.warmth, this.warmthInappropriate)]);
     if (this.other)
-      renderer.addHeadline('Other sensations', [(this.other !== undefined ? this.other : '')]);
+      renderer.addHeadlines('Other sensations', this.other !== undefined ? this.other : '');
   }
 
   save() {

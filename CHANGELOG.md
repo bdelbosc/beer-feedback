@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.15.2](https://github.com/bdelbosc/beer-feedback/compare/v1.15.1...v1.15.2) (2021-01-04)
+
+
+### Bug Fixes
+
+* Improve rendering on non mobile device ([bf381fb](https://github.com/bdelbosc/beer-feedback/commit/bf381fbd5b111b97af65a0b08537b76b1b47adf1))
+
 ### [1.15.1](https://github.com/bdelbosc/beer-feedback/compare/v1.15.0...v1.15.1) (2020-12-30)
 
 

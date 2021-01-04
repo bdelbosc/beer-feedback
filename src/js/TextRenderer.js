@@ -35,8 +35,8 @@ class TextRenderer {
     }
   }
 
-  addHeadlines(head, text, x = this.defaultX) {
-    this.addHeadline(head, splitLines(text), x);
+  addHeadlines(head, text) {
+    this.addHeadline(head, [text]);
   }
 
   addHeadline2(head, text) {

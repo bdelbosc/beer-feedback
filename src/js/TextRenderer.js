@@ -1,4 +1,4 @@
-import {formatter, getScore} from "./PdfRenderer";
+import {formatter, getScore, splitLines} from "./PdfRenderer";
 
 
 class TextRenderer {
@@ -33,6 +33,10 @@ class TextRenderer {
     if (text.length > 0) {
       this.text.push(head + ': ' + text.join(", "));
     }
+  }
+
+  addHeadlines(head, text, x = this.defaultX) {
+    this.addHeadline(head, splitLines(text), x);
   }
 
   addHeadline2(head, text) {

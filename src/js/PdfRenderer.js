@@ -226,5 +226,5 @@ function parsePDF(text, updateData) {
   throw ("Invalid PDF Scoresheet file, unable to find the JSON data!");
 }
 
-export {PdfRenderer, formatter, getLabel, getScore, getScoreDescription, getScoreLongDescription, parsePDF};
+export {PdfRenderer, formatter, getLabel, getScore, getScoreDescription, getScoreLongDescription, parsePDF, splitLines};
 

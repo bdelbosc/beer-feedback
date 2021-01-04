@@ -56,6 +56,14 @@
     return SRM_RGB_MAP[41 - color];
   }
 
+  function getWidth() {
+    let isMobile = /iPhone|Android/i.test(navigator.userAgent);
+    if (! isMobile) {
+      return "250px";
+    }
+    return "170px";
+  }
+
   function selectSrm(color) {
     value = color;
     document.getElementById('picker').hidden = true;
@@ -84,7 +92,7 @@
             on:click={() => selectSrm(color)}>{color}</button>
   {/each}
 </div>
-<button id="selection" style="width: 170px; color: {getFontColor(value)}; background-color: {SRM_RGB_MAP[value]}"
+<button id="selection" style="width: {getWidth()}; color: {getFontColor(value)}; background-color: {SRM_RGB_MAP[value]}"
         on:click={() => pickSrm()}>
   {#if value >=0}
     {getColor(value)} <span class="small">{value} SRM</span>

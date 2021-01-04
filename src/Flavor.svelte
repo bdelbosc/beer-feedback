@@ -189,7 +189,7 @@
   </div>
 
   <div>
-    <span>Additional Comment</span>
+    <span class="longLabel">Additional Comment</span>
     <textarea on:change={updateHandler} type=text bind:value={flavor.comment}/>
   </div>
 

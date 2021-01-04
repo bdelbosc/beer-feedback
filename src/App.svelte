@@ -12,9 +12,7 @@
   import Mouthfeel from './Mouthfeel.svelte';
   import Overall from './Overall.svelte';
   import SvgIcon from "./comp/SvgIcon.svelte";
-  import {
-    nextIcon, userIcon, beerIcon
-  } from './js/AppIcons'
+  import {beerIcon, nextIcon, userIcon} from './js/AppIcons'
 
   import {AromaDto} from './js/Aroma';
   import {AppearanceDto} from './js/Appearance';
@@ -230,24 +228,27 @@
     vertical-align: middle;
     display: inline-block;
     width: 100px;
+    color: #555;
   }
 
-  :global(span.labelLong) {
+  :global(span.longLabel) {
     vertical-align: middle;
     display: inline-block;
+    color: #555;
     width: 100%;
   }
 
   :global(textarea) {
-    width: 100%;
+      width: 100%;
+      height: 150px;
   }
 
   :global(select.fixedInput) {
-    width: 170px;
+      width: 250px;
   }
 
   :global(input.fixedInput) {
-    width: 170px;
+      width: 250px;
   }
 
   :global(button.delete) {
@@ -289,13 +290,13 @@
   ** Local
   **/
   div.main {
-    max-width: 320px;
+    max-width: 640px;
     margin: auto;
     clear: both;
   }
 
   div.top {
-    max-width: 320px;
+    max-width: 640px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
@@ -376,6 +377,32 @@
     color: #999;
     padding-top: 2em;
     clear: both;
+  }
+
+  /* ----------------------------------------
+  ** Small device override
+  **/
+  @media (pointer:none), (pointer:coarse) {
+      :global(textarea) {
+          height: 100px;
+      }
+
+      :global(select.fixedInput) {
+          width: 170px;
+      }
+
+      :global(input.fixedInput) {
+          width: 170px;
+      }
+
+      div.main {
+          max-width: 320px;
+      }
+
+      div.top {
+          max-width: 320px;
+      }
+
   }
 
 </style>

@@ -17,6 +17,11 @@
   function plotlyLoaded() {
     console.debug("plotly loaded");
     let plotDiv = document.getElementById(plotId);
+    let isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
+    if (! isMobile) {
+      layout["width"] = 640;
+      layout["height"] = 700;
+    }
     Plotly.newPlot(plotDiv, data, layout, {displayModeBar: false});
     plotDiv.on('plotly_sunburstclick', function (data) {
       selected = data["points"][0]["currentPath"] + data["points"][0]["label"];

@@ -46,7 +46,7 @@
   </SelectCheck>
 </div>
 <div>
-  <span>Other Palate Sensations</span>
+  <span class="longLabel">Other Palate Sensations</span>
   <textarea on:change={updateHandler} type=text bind:value={mouthfeel.other}/>
 </div>
 <div>

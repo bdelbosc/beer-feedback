@@ -382,7 +382,7 @@
   /* ----------------------------------------
   ** Small device override
   **/
-  @media (pointer:none), (pointer:coarse) {
+  @media only screen and (max-width: 639px) {
       :global(textarea) {
           height: 100px;
       }

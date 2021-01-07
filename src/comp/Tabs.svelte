@@ -3,6 +3,7 @@
 
   export let items = [];
   export let activeTabValue;
+  let isMobile = /iPhone|Android/i.test(navigator.userAgent);
 
   onMount(() => {
     // Set default tab value
@@ -93,7 +94,7 @@
         </li>
       {:else}
         <li class={item.comment ? 'inactive': 'inactiveCompleted'}>
-          <span on:click={handleClick(item.value)}>{item.shortLabel}</span>
+          <span on:click={handleClick(item.value)}>{isMobile ? item.shortLabel : item.label}</span>
         </li>
       {/if}
     {/each}

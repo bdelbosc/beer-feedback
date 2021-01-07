@@ -17,7 +17,7 @@
   function plotlyLoaded() {
     console.debug("plotly loaded");
     let plotDiv = document.getElementById(plotId);
-    let isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent);
+    let isMobile = /iPhone|Android/i.test(navigator.userAgent);
     if (! isMobile) {
       layout["width"] = 640;
       layout["height"] = 700;

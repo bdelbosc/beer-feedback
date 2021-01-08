@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/bdelbosc/beer-feedback/compare/v1.16.0...v1.17.0) (2021-01-08)
+
+
+### Features
+
+* Add comment on user and appearance ([a62b7c4](https://github.com/bdelbosc/beer-feedback/commit/a62b7c41e7b66d7f46f6821a5159d8c881d226cc))
+
 ## [1.16.0](https://github.com/bdelbosc/beer-feedback/compare/v1.15.5...v1.16.0) (2021-01-08)
 
 

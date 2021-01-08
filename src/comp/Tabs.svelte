@@ -27,7 +27,9 @@
     margin-bottom: 2px;
     margin-top: 2px;
     list-style: none;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #eee;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
     clear: both;
   }
 
@@ -47,31 +49,43 @@
   li.active > span {
     color: orangered;
     background-color: #fff;
-    border-color: darkgrey darkgrey #fff;
+    border-color: #ffffff #ffffff orangered #ffffff;
+    border-width: 0 0 2px;
     font-size: 1.1em;
   }
 
   li.activeCompleted > span {
     color: darkgreen;
     background-color: #fff;
-    border-color: darkgrey darkgrey #fff;
+    border-color: #ffffff #ffffff darkgreen #ffffff;
+    border-width: 0 0 2px;
     font-size: 1.1em;
   }
 
   li.inactive > span {
     color: orangered;
-    opacity: 0.5;
-    background-color: #eee;
-    border-color: #dee2e6 #dee2e6 #eee;
+    opacity: 0.4;
+    background-color: #fff;
+    border-color: #ffffff #ffffff #ddd;
+    border-width: 0 0 2px;
     font-size: 1.1em;
+  }
+
+  li.inactive > span:hover {
+      background-color: #eee;
   }
 
   li.inactiveCompleted > span {
     color: darkgreen;
-    opacity: 0.5;
-    background-color: #eee;
-    border-color: #dee2e6 #dee2e6 #eee;
+    opacity: 0.4;
+    background-color: #fff;
+    border-color: #ffffff #ffffff #eeeeee;
+      border-width: 0 0 2px;
     font-size: 1.1em;
+  }
+
+  li.inactiveCompleted > span:hover {
+      background-color: #eee;
   }
 
   .comment {

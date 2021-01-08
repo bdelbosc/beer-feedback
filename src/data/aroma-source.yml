@@ -20,6 +20,8 @@
         - Molasse
         - Toffee
         - Chocolate
+        - Dark Chocolate
+        - Cola
     - Roasty:
         - Coffee
         - Burnt Sugar
@@ -94,6 +96,7 @@
         - Musty | _1
         - Soil | _1
         - Beet
+    - Alcohol | Without being a fault
     - Clean | Clean Fermentation
 - Others:
     - Acid:

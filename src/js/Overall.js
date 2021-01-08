@@ -34,6 +34,7 @@ const INTANGIBLE_OPTIONS = [
 
 const DRINKABILITY_OPTIONS = [
   {id: undefined, text: ''},
+  {id: 1, text: `Not relevant`},
   {id: 2, text: `I would finish this sample`},
   {id: 3, text: `I would drink a pint`},
   {id: 4, text: 'I would drink a yard glass'}

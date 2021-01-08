@@ -5,6 +5,7 @@
   export let checked = false;
   export let options = [];
   export let noCheck = false;
+  export let required = false;
 
   import {createEventDispatcher} from 'svelte';
   import {alertIcon, checkmarkIcon} from '../js/AppIcons'
@@ -22,7 +23,7 @@
   }
 
 </script>
-<span class="label"><slot/></span>
+<span class={required ? 'label required' : 'label'}><slot/></span>
 <select class="fixedInput" on:change={eventHandler} bind:value={value}>
   {#each options as item}
     <option value={item.id}>

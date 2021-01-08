@@ -19,7 +19,7 @@
   }
 
   input[type=range] {
-    width: 320px;
+    width: 100%;
   }
 </style>
 <label>

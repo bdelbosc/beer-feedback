@@ -1,5 +1,5 @@
 <style>
-  /* ----------------------------------------
+ /* ----------------------------------------
  ** octocat link
  **/
   .github-corner:hover .octo-arm {
@@ -18,7 +18,7 @@
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 639px) {
     .github-corner:hover .octo-arm {
       animation: none
     }

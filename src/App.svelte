@@ -12,7 +12,7 @@
   import Mouthfeel from './Mouthfeel.svelte';
   import Overall from './Overall.svelte';
   import SvgIcon from "./comp/SvgIcon.svelte";
-  import {beerIcon, nextIcon, userIcon} from './js/AppIcons'
+  import {beerIcon, downloadIcon, nextIcon, userIcon} from './js/AppIcons'
 
   import {AromaDto} from './js/Aroma';
   import {AppearanceDto} from './js/Appearance';
@@ -72,54 +72,54 @@
     mytime = new Date();
     elapsed = Math.round((mytime - start) / 1000);
     let updated = false;
-    let completed = true;
     if (user.isUpdated()) {
       user = user;
       mainComment = getComment(user, 'Missing: ');
-      completed = completed && user.isCompleted();
       user.save();
     }
     if (beer.isUpdated()) {
       beer = beer;
       mainComment = getComment(beer, 'Missing: ');
-      completed = completed && beer.isCompleted();
       start = new Date();
       beer.save();
     }
     if (start == undefined && beer.isCompleted()) start = new Date();
     if (aroma.isUpdated()) {
       tabItems[0].comment = getComment(aroma);
-      completed = completed && aroma.isCompleted();
       updated = true;
       aroma.save();
     }
     if (appearance.isUpdated()) {
       tabItems[1].comment = getComment(appearance);
-      completed = completed && appearance.isCompleted();
       updated = true;
       appearance.save();
     }
     if (flavor.isUpdated()) {
       tabItems[2].comment = getComment(flavor);
-      completed = completed && flavor.isCompleted();
       updated = true;
       flavor.save();
     }
     if (mouthfeel.isUpdated()) {
       tabItems[3].comment = getComment(mouthfeel);
-      completed = completed && mouthfeel.isCompleted();
       updated = true;
       mouthfeel.save();
     }
     if (overall.isUpdated()) {
       tabItems[4].comment = getComment(overall);
-      completed = completed && overall.isCompleted();
       updated = true;
       overall.save();
     }
     if (updated) {
       tabItems = tabItems;
       totalScore = computeScore();
+      let completed = true;
+      completed = completed && user.isCompleted();
+      completed = completed && beer.isCompleted();
+      completed = completed && aroma.isCompleted();
+      completed = completed && appearance.isCompleted();
+      completed = completed && flavor.isCompleted();
+      completed = completed && mouthfeel.isCompleted();
+      completed = completed && overall.isCompleted();
       if (completed) {
         console.debug("SHOW PDF");
         showPdf = true;
@@ -134,8 +134,8 @@
   let tabItems = [
     {label: "Aroma", shortLabel: "A", value: 1, comment: ''},
     {label: "Appearance", shortLabel: "A", value: 2, comment: ''},
-    {label: "Flavors", shortLabel: "F", value: 3, comment: ''},
-    {label: "Moothfeel", shortLabel: "M", value: 4, comment: ''},
+    {label: "Flavor", shortLabel: "F", value: 3, comment: ''},
+    {label: "Mouthfeel", shortLabel: "M", value: 4, comment: ''},
     {label: "Overall", shortLabel: "O", value: 5, comment: ''}
   ];
   let currentTab = 1;
@@ -210,11 +210,12 @@
 
   onMount(() => {
     if (!user.isCompleted()) userEdit();
-    else if (!beer.isCompleted()) beerEdit();
+    else if (!beer.isCompleted() || beer.isFromShareLink() || beer.isSelectedTab()) beerEdit();
     else evaluationEdit();
-
-    window.onbeforeunload = function () {
-      return "";
+    if (!beer.isFromShareLink()) {
+      window.onbeforeunload = function () {
+        return "";
+      }
     }
   });
 </script>
@@ -286,6 +287,11 @@
     margin: 0.4em 0 0.4em 0;
   }
 
+  :global(.required:after) {
+      content:" *";
+      color: #933;
+  }
+
   /* ----------------------------------------
   ** Local
   **/
@@ -299,12 +305,18 @@
     max-width: 640px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 0;
+    margin-bottom: 6px;
     margin-top: 0;
     clear: both;
   }
 
+  :global(div.break) {
+      clear: both;
+  }
+
   .pdf {
+    border: 1px solid #ccc;
+    color: #444;
     float: right;
     margin: 0 0 0 0;
     opacity: 0.5;
@@ -312,6 +324,8 @@
   }
 
   .showPdf {
+    border: 1px solid #ccc;
+    color: #444;
     float: right;
     margin: 0 0 0 0;
     opacity: 1;
@@ -319,9 +333,8 @@
   }
 
   button.settings {
-    border: 0px;
-    background-color: #fff;
     color: #444;
+    border: 1px solid #ccc;
     margin-bottom: 0;
   }
 
@@ -346,11 +359,12 @@
   }
 
   div.footLine {
-    border-top: 1px solid #dee2e6;
-    width: 100%;
-    font-size: 0.6em;
-    color: #999;
-    clear: both;
+      float: right;
+      border-top: 1px solid #dee2e6;
+      width: 100%;
+      font-size: 0.6em;
+      color: #999;
+      clear: both;
   }
 
   div.statusLine {
@@ -409,18 +423,21 @@
 
 <div class="top" id="top">
   <button class="settings" on:click={() => userEdit()}>
-    <div title="Edit User">
+    <div title="User">
       <SvgIcon d={userIcon} fill="blue" boxSize="20"/>{user.name}
     </div>
   </button>
   <button class="settings" on:click={() => beerEdit()}>
-    <div title="Edit Beer">
+    <div title="Beer Entry">
       <SvgIcon d={beerIcon} boxSize="512" fill="#700000"/>
       #{beer.entry}
     </div>
   </button>
   <button on:click={() => submit()} class="pdf" class:showPdf={showPdf}>
-    <span title="Export PDF">PDF</span>
+    <div title="Generate PDF Scoresheet">
+      <SvgIcon d={downloadIcon} fill="transparent"/>
+      PDF
+    </div>
   </button>
 </div>
 
@@ -430,6 +447,13 @@
     <button class="validation" on:click={() => beerEdit()} disabled={!user.isCompleted()}>
       <span title="Beer"><SvgIcon d={nextIcon} size="2em" fill="green"/><br>Beer</span>
     </button>
+    <div class="bjcpGuideline">
+      <p>Fill in the required fields with a <span class="required">red asterisk</span></p>
+      <p>This web application respects your privacy, all the data entered is stored on your browser,
+         the PDF generation is done from your browser, no data is transferred to any server.</p>
+      <p>Visit <a href="https://github.com/bdelbosc/beer-feedback#-beer-feedback">beer-feedback's GitHub</a> for more information.</p>
+    </div>
+    <Octocat/>
   </div>
 
   <div id="beer">
@@ -438,6 +462,7 @@
         <span class="buttonText" title="Scoresheet"><SvgIcon d={nextIcon} size="2em" fill="green"/><br/>Go to Scoresheet</span>
       </button>
     </Beer>
+    <Octocat/>
   </div>
 
   <div id="evaluation">
@@ -516,7 +541,7 @@
       </div>
     {/if}
   </div>
-  <div class="footLine">{pkg.name} v{pkg.version}</div>
+  <div class="footLine"><a href="https://github.com/bdelbosc/beer-feedback#-beer-feedback" rel="noopener" target="_blank">{pkg.name} v{pkg.version}</a></div>
 </div>
 
-<Octocat/>
+

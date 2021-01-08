@@ -26,6 +26,7 @@ const CLARITY_OPTIONS = [
   {id: undefined, text: ''},
   {id: 'brillant', text: `Brillant`},
   {id: 'clear', text: `Clear`},
+  {id: 'good', text: `Good`},
   {id: 'hazy', text: `Hazy`},
   {id: 'cloudy', text: `Cloudy`},
   {id: 'opaque', text: `Opaque`}

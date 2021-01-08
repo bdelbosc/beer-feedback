@@ -168,7 +168,7 @@
     </div>
   {/each}
   <div class="buttons">
-    <button on:click={picker}>
+    <button class="validation" on:click={picker}>
       <span class="buttonText" title="Add new Aroma">
         <SvgIcon d={addIcon} size="2em" fill="blue"/><br>
         Add aromatic
@@ -177,7 +177,7 @@
   </div>
 
   <div>
-    <span class="longLabel">Additional Comment</span>
+    <span class="longLabel" title="Pleasure, expected/surprising for style, evolution, conflict, complexity">Additional Comment</span>
     <textarea on:change={updateHandler} type=text bind:value={aroma.comment}/>
   </div>
 

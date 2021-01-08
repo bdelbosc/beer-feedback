@@ -22,6 +22,8 @@ const BALANCE_OPTIONS = [
   {id: 'even', text: `Even`},
   {id: 'slightly-hoppy', text: `Slightly Hoppy`},
   {id: 'hoppy', text: `Hoppy`},
+  {id: 'slightly-bitter', text: `Slightly Bitter`},
+  {id: 'bitter', text: `Bitter`},
   {id: 'sligthly-sour', text: `Slightly Sour`},
   {id: 'sour', text: `Sour`},
   {id: 'fermentation', text: `Fermentation Forward`},

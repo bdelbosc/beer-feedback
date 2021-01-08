@@ -133,7 +133,7 @@
       <Level edit=true bind:value={level}/>
     </div>
 
-    <button on:click={() => add()}>
+    <button class="validation" on:click={() => add()}>
       <SvgIcon d={checkmarkIcon} fill="green" size="2em"/>
     </button>
   {/if}
@@ -145,11 +145,11 @@
       <button class="delete" on:click={() => clear(i)}><span title="Delete"><SvgIcon d={trashIcon} size="0.8em"/></span>
       </button>
       {#if item.category === 'hops'}
-        <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="YellowGreen"/></span>
+        <span title="Hops"><SvgIcon d={hopsIcon} size="1em" boxSize=510 fill="darkolivegreen"/></span>
       {:else if item.category === 'malt'}
-        <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="#FFC300"/></span>
+        <span title="Malt"><SvgIcon d={maltIcon} size="1em" boxSize=225 fill="orange"/></span>
       {:else if item.category === 'fermentation'}
-        <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="BurlyWood"/></span>
+        <span title="Fermentation"><SvgIcon d={fermentationIcon} size="1em" boxSize=225 fill="chocolate"/></span>
       {:else if item.category === 'flaws'}
         <span title="Flaws"><SvgIcon d={alertIcon} size="1em" fill="OrangeRed"/></span>
       {:else}
@@ -162,12 +162,12 @@
   {/each}
 
   <div class="buttons">
-    <button on:click={picker}>
+    <button class="validation" on:click={picker}>
       <span class="buttonText" title="Add new Flavor"><SvgIcon d={addIcon} size="2em" fill="blue"/><br>Add flavor</span>
     </button>
   </div>
 
-  <div>
+  <div class="break">
     <SelectCheck on:change={updateHandler} bind:value={flavor.bitterness} options={BITTERNESS_OPTIONS}
                  bind:checked={flavor.bitternessInappropriate}>
       Bitterness
@@ -189,7 +189,7 @@
   </div>
 
   <div>
-    <span class="longLabel">Additional Comment</span>
+    <span class="longLabel" title="Pleasure, expected/surprising for style and comparing to aromas, works together, backbone">Additional Comment</span>
     <textarea on:change={updateHandler} type=text bind:value={flavor.comment}/>
   </div>
 

@@ -61,13 +61,17 @@
 </script>
 <style>
   input {
-    width: 270px;
+    width: 400px;
   }
   button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
   }
-
+  @media only screen and (max-width: 639px) {
+      input {
+          width: 270px;
+      }
+  }
 </style>
 <div id="{plotId}Edit" on:load={plotlyLoaded()}>
   <div>

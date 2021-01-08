@@ -185,7 +185,7 @@ class Beer extends BaseCategory {
   }
 
   save() {
-    console.debug("Saving beer");
+    console.info("Saving beer");
     if (this.entry)
       localStorage.setItem('beerEntry', this.entry);
     else
@@ -209,15 +209,41 @@ class Beer extends BaseCategory {
   }
 
   getValue(name, defaultValue = undefined) {
-    // First params
-    const params = new URLSearchParams(window.location.search);
-    if (params.has(name)) return params.get(name);
-    // Then local storage
+    // First local storage
     const value = localStorage.getItem(name);
     if (value)
       return value;
     // unknown
     return defaultValue;
+  }
+
+  isFromShareLink() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("beerCategory"))
+      return true;
+    return false;
+  }
+
+  isSelectedTab() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("tab") && params.get("tab") == "beer")
+      return true;
+    return false;
+  }
+
+
+  loadFromShareLink() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("beerEntry"))
+      this.entry = params.get("beerEntry");
+    if (params.has("beerCategory"))
+      this.category = params.get("beerCategory");
+    if (params.has("beerSpecial"))
+      this.special = params.get("beerSpecial");
+    if (params.has("beerComment"))
+      this.comment = params.get("beerComment");
+    this.save();
+    console.log("load from URL beer entry: " + this.entry);
   }
 }
 

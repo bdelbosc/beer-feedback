@@ -17,12 +17,12 @@
   Who are you?
 </h3>
 <div>
-  <span class="label">Name</span>
+  <span class="label required">Name</span>
   <input type="text" class="fixedInput" on:change={updateHandler} bind:value={user.name}/>
 </div>
 
 <div>
-  <SelectCheck on:change={updateHandler} bind:value={user.rank} options={RANK_OPTIONS} noCheck="true">
+  <SelectCheck on:change={updateHandler} bind:value={user.rank} options={RANK_OPTIONS} noCheck="true" required="true">
     Rank
   </SelectCheck>
 </div>

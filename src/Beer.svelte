@@ -1,8 +1,6 @@
 <script>
   import SelectCheck from "./comp/SelectCheck.svelte";
-  import {
-    CATEGORY_OPTIONS
-  } from './js/Beer';
+  import {CATEGORY_OPTIONS} from './js/Beer';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {beerIcon, trashIcon} from "./js/AppIcons";
   import {parsePDF} from "./js/PdfRenderer";
@@ -19,7 +17,7 @@
   export let totalScore;
 
   let tabItems = [
-    {label: "Description", shortLabel: "Description", value: 1, comment: ''},
+    {label: "Entry", shortLabel: "Entry", value: 1, comment: ''},
     {label: "Load", shortLabel: "Load", value: 2, comment: ''},
     {label: "Share", shortLabel: "Share", value: 3, comment: ''},
     {label: "...", shortLabel: "...", value: 4, comment: ''}
@@ -34,17 +32,24 @@
     document.getElementById(elementId).innerText = event.target.result;
   }
 
-  function resetData() {
-    if (confirm("Clear Beer entry and Scoresheet data?")) {
+  function resetData(message) {
+    if (confirm(message)) {
       console.info("Resetting Beer and Scoresheet data");
       beer.flush();
       beer = beer;
       aroma.flush();
+      aroma = aroma;
       appearance.flush();
+      appearance = appearance;
       flavor.flush();
+      flavor = flavor;
       mouthfeel.flush();
+      mouthfeel = mouthfeel;
       overall.flush();
+      overall = overall;
+      return true;
     }
+    return false;
   }
 
   function uploadData(json) {
@@ -121,6 +126,24 @@
     mouthfeel.render(renderer);
     overall.render(renderer, totalScore);
   }
+
+  function checkShareLinkAndRedirect(theUser) {
+    console.info("checkShareLink");
+    if (beer.isFromShareLink() && theUser.isCompleted()) {
+      if (resetData("Make sure you have generated a PDF of your current Scoresheet before starting a new Beer Entry")) {
+        beer.loadFromShareLink();
+        aroma.save();
+        appearance.save();
+        flavor.save();
+        mouthfeel.save();
+        overall.save();
+      }
+      window.location.href = "/?tab=beer";
+    }
+  }
+
+  $: checkShareLinkAndRedirect(user);
+
 </script>
 <style>
   button.reset {
@@ -143,13 +166,13 @@
 <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
 {#if 1 === currentTab}
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={beer.category} options={CATEGORY_OPTIONS} noCheck="true">
+    <SelectCheck on:change={updateHandler} bind:value={beer.category} options={CATEGORY_OPTIONS} noCheck="true" required="true">
       Category
     </SelectCheck>
   </div>
 
   <div>
-    <span class="label">Entry #</span>
+    <span class="label required">Entry #</span>
     <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.entry}/>
   </div>
 
@@ -165,27 +188,29 @@
 
   <div>
     <slot/>
-    <button class="reset" on:click={() => resetData()}>
-      <span class="buttonText" title="Reset"><SvgIcon d={trashIcon} size="0.8em"/><br>Reset</span>
+    <button class="reset" on:click={() => resetData("Clear Current Beer Entry and its Scoresheet?\nMake sure you have generated a PDF before")}>
+      <span class="buttonText" title="Reset"><SvgIcon d={trashIcon} size="0.8em"/><br>New Beer Entry</span>
     </button>
   </div>
 
 {:else if 2 === currentTab}
   <div class="upload">
-    <label><p class="help">Load a PDF Scoresheet and continue editing</p>
+    <label><p class="help">Load a PDF Scoresheet, note that the current Scoresheet will be lost</p>
       <input id='upload' type='file' accept="application/pdf" on:change={() => onChooseFile(event)}/>
     </label>
   </div>
 
 {:else if 3 === currentTab}
   <div>
-    <p class="help">Copy the link for this beer entry</p>
+    <p class="help">Share the beer entry description with other judges, copying the following link:</p>
     <input type="text" value="..." id="sharedLink"/>
     <button on:click={() => shareLink()}>Copy</button>
+
+    <p class="help">Note that if you want to share the Scoresheet itself, you have to generate a PDF</p>
   </div>
 {:else if 4 === currentTab}
   <div>
-    <p class="help">Generate a text scoresheet</p>
+    <p class="help">Generate a text Scoresheet</p>
     <textarea type="text" value="..." id="exportText"/>
     <button on:click={() => exportText()}>Export as Text</button>
   </div>

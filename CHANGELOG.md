@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/bdelbosc/beer-feedback/compare/v1.17.0...v1.18.0) (2021-01-08)
+
+
+### Features
+
+* adding a tasting date ([fe151c3](https://github.com/bdelbosc/beer-feedback/commit/fe151c334717fbde23337e94cb0279b2ecd8242e))
+
 ## [1.17.0](https://github.com/bdelbosc/beer-feedback/compare/v1.16.0...v1.17.0) (2021-01-08)
 
 

@@ -177,7 +177,7 @@
   </div>
 
   <div>
-    <span class="longLabel" title="Pleasure, expected/surprising for style, evolution, conflict, complexity">Additional Comment</span>
+    <span class="longLabel" title="Pleasure; Expected/surprising for style; Evolution; Conflict?; Complexity">Additional Comment</span>
     <textarea on:change={updateHandler} type=text bind:value={aroma.comment}/>
   </div>
 

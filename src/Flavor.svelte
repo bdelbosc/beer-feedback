@@ -189,7 +189,7 @@
   </div>
 
   <div>
-    <span class="longLabel" title="Pleasure, expected/surprising for style and comparing to aromas, works together, backbone">Additional Comment</span>
+    <span class="longLabel" title="Pleasure; Expected/surprising for style, comparing to aromas; Works together?; Backbone">Additional Comment</span>
     <textarea on:change={updateHandler} type=text bind:value={flavor.comment}/>
   </div>
 

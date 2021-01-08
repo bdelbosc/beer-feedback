@@ -30,6 +30,11 @@ class User extends BaseCategory {
     if (username) this.name = username;
     const rank = localStorage.getItem('userRank')
     if (rank) this.rank = rank;
+    const comment = localStorage.getItem('userComment')
+    if (comment)
+      this.comment = comment;
+    else
+      this.comment = '';
   }
 
   checkCompletion() {
@@ -63,10 +68,14 @@ class User extends BaseCategory {
       localStorage.setItem('userRank', this.rank.toString());
     else
       localStorage.removeItem('userRank');
+    if (this.comment)
+      localStorage.setItem('userComment', this.comment.toString());
+    else
+      localStorage.removeItem('userComment');
   }
 
-  render(renderer) {
-    renderer.addUser(this.name, getLabel(RANK_OPTIONS, this.rank));
+  render(renderer, start) {
+    renderer.addUser(this.name, getLabel(RANK_OPTIONS, this.rank), this.comment, start);
   }
 
 }

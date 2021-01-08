@@ -52,6 +52,12 @@
   <label for="legs"><span class="label">Legs</span><input id="legs" on:change={updateHandler} type=checkbox
                                                           bind:checked={appearance.legs}></label>
 </div>
+
+<div>
+  <span class="longLabel" title="Expected/surprising for style">Additional Comment</span>
+  <textarea on:change={updateHandler} type=text bind:value={appearance.comment}/>
+</div>
+
 <div>
   <Score on:change={updateHandler} bind:value={appearance.score} max="3" min="1">Score</Score>
 </div>

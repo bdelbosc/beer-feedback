@@ -1,7 +1,7 @@
 import {BaseCategory} from './BaseCategory';
 import {getLabel} from "./PdfRenderer";
 
-const fields = ['color', 'head', 'clarity', 'hue', 'retention', 'texture', 'legs', 'laces', 'score'];
+const fields = ['color', 'head', 'clarity', 'hue', 'retention', 'texture', 'legs', 'laces', 'score', 'comment'];
 
 const HEAD_OPTIONS = [
   {id: undefined, text: ''},
@@ -83,6 +83,7 @@ class Appearance extends BaseCategory {
     this.hue = 'none';
     this.laces = false;
     this.legs = false;
+    this.comment = '';
   }
 
   load(json) {
@@ -95,6 +96,10 @@ class Appearance extends BaseCategory {
     this.retention = json.retention;
     this.texture = json.texture;
     this.clarity = json.clarity;
+    if (json.comment)
+      this.comment = json.comment;
+    else
+      this.comment = '';
     this.updateHandler();
   }
 
@@ -135,6 +140,8 @@ class Appearance extends BaseCategory {
     else if (this.laces) other.push('Laces cling on the glass');
     else if (this.legs) other.push('Legs');
     renderer.addHeadline2('Other', other);
+    if (this.comment)
+      renderer.addHeadlines('Comments', this.comment);
   }
 
   save() {

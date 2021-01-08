@@ -9,9 +9,10 @@ class TextRenderer {
     this.text.push("# " + title);
   }
 
-  addUser(name, rank, start) {
+  addUser(name, rank, comment, start) {
     this.text.push('Judge Name: ' + name + ', rank: ' + rank)
     this.text.push('Date: ' + formatter.format(start));
+    if (comment) this.text.push(comment);
   }
 
   addBeer(entry, category, special, comment) {

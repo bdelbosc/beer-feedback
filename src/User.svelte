@@ -1,8 +1,6 @@
 <script>
   import SelectCheck from "./comp/SelectCheck.svelte";
-  import {
-    RANK_OPTIONS
-  } from './js/User';
+  import {RANK_OPTIONS} from './js/User';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {userIcon} from "./js/AppIcons";
 
@@ -12,6 +10,13 @@
     user.updateHandler()
   }
 </script>
+<style>
+    textarea {
+        width: 100%;
+        height: 75px;
+    }
+</style>
+
 <h3>
   <SvgIcon d={userIcon} fill="blue" boxSize="20"/>
   Who are you?
@@ -27,3 +32,7 @@
   </SelectCheck>
 </div>
 
+<div>
+  <span class="longLabel" title="BJCP ID, email, ...">Additional Information</span>
+  <textarea on:change={updateHandler} type=text bind:value={user.comment}/>
+</div>

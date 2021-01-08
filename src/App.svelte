@@ -176,7 +176,7 @@
 
   function renderScoresheet(renderer) {
     renderer.addVersion(pkg.version);
-    user.render(renderer);
+    user.render(renderer, start);
     beer.render(renderer);
     aroma.render(renderer);
     appearance.render(renderer);
@@ -393,6 +393,12 @@
     clear: both;
   }
 
+  div.help {
+      color: #999;
+      padding-top: 0em;
+      clear: both;
+  }
+
   /* ----------------------------------------
   ** Small device override
   **/
@@ -447,7 +453,7 @@
     <button class="validation" on:click={() => beerEdit()} disabled={!user.isCompleted()}>
       <span title="Beer"><SvgIcon d={nextIcon} size="2em" fill="green"/><br>Beer</span>
     </button>
-    <div class="bjcpGuideline">
+    <div class="help">
       <p>Fill in the required fields with a <span class="required">red asterisk</span></p>
       <p>This web application respects your privacy, all the data entered is stored on your browser,
          the PDF generation is done from your browser, no data is transferred to any server.</p>

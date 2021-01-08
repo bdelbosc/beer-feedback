@@ -67,7 +67,7 @@
 <div>
 </div>
 <div>
-  <span class="longLabel" title="Praise, complexity, layers, correct: increase, eliminate, decrease, improve, thanks">Feedback</span>
+  <span class="longLabel" title="Stay HUMBLE; Praise; Complexity and layers; Correct: increase, eliminate, decrease, improve; Thanks">Feedback</span>
   <textarea on:change={updateHandler} type=text bind:value={overall.feedback}/>
 </div>
 <div>

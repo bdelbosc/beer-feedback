@@ -1,4 +1,4 @@
-import {formatter, getScore, splitLines} from "./PdfRenderer";
+import {getScore, splitLines} from "./PdfRenderer";
 
 
 class TextRenderer {
@@ -11,7 +11,7 @@ class TextRenderer {
 
   addUser(name, rank, comment, start) {
     this.text.push('Judge Name: ' + name + ', rank: ' + rank)
-    this.text.push('Date: ' + formatter.format(start));
+    this.text.push('Date: ' + start);
     if (comment) this.text.push(comment);
   }
 

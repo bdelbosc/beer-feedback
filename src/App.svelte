@@ -176,7 +176,7 @@
 
   function renderScoresheet(renderer) {
     renderer.addVersion(pkg.version);
-    user.render(renderer, start);
+    user.render(renderer, beer.tastingDate);
     beer.render(renderer);
     aroma.render(renderer);
     appearance.render(renderer);

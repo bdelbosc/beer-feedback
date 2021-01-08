@@ -115,7 +115,7 @@ class PdfRenderer {
     this.doc.text('Judge Name: ' + name, 10, 20);
     this.doc.setFontSize(9);
     this.doc.text('Rank: ' + rank, 10, 25);
-    this.doc.text('Date: ' + formatter.format(start), 10, 30);
+    this.doc.text('Date: ' + start, 10, 30);
     if (comment) this.doc.text(comment, 10, 35);
   }
 

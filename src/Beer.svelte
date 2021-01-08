@@ -182,6 +182,11 @@
   </div>
 
   <div>
+    <span class="label">Tasting date</span>
+    <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.tastingDate}/>
+  </div>
+
+  <div>
     <span class="longLabel">Comment</span>
     <textarea on:change={updateHandler} type="text" bind:value={beer.comment}/>
   </div>

@@ -1,7 +1,7 @@
 import {BaseCategory} from './BaseCategory';
 import {getLabel} from "./PdfRenderer";
 
-const fields = ['category', 'special', 'comment', 'entry'];
+const fields = ['category', 'special', 'comment', 'entry', 'tastingDate'];
 
 const CATEGORY_OPTIONS = [
   {id: undefined, text: ''},
@@ -131,6 +131,11 @@ const CATEGORY_OPTIONS = [
   {id: "X5", text:"X5 New Zealand Pilsner"}
 ];
 
+function today() {
+  const today = new Date();
+  return today.toLocaleDateString();
+}
+
 class Beer extends BaseCategory {
 
   constructor() {
@@ -139,14 +144,16 @@ class Beer extends BaseCategory {
     this.category = this.getValue('beerCategory');
     this.special = this.getValue('beerSpecial', '');
     this.comment = this.getValue('beerComment', '');
+    this.tastingDate = this.getValue('beerTastingDate', today());
     console.log("entry: " + this.entry);
-    if (this.entry === undefined) console.log("IIS undefined!");
+    if (this.entry === undefined) console.log("Entry undefined!");
   }
 
   flush() {
     this.flushFields(fields);
     this.comment = '';
     this.special = '';
+    this.tastingDate = today();
   }
 
   load(json) {
@@ -154,6 +161,8 @@ class Beer extends BaseCategory {
     this.category = json.category;
     this.special = json.special;
     this.comment = json.comment;
+    if (json.tastingDate)
+      this.tastingDate = json.tastingDate;
     this.updateHandler();
   }
 
@@ -202,6 +211,10 @@ class Beer extends BaseCategory {
       localStorage.setItem('beerComment', this.comment);
     else
       localStorage.removeItem('beerComment')
+    if (this.tastingDate)
+      localStorage.setItem('beerTastingDate', this.tastingDate);
+    else
+      localStorage.removeItem('beerTastingDate');
   }
 
   render(renderer) {

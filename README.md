@@ -2,24 +2,29 @@
 
 ## About
 
-`beer-feedback` is intended to provide a quick and detailed assessment of the beer that home brewers deserve.
+Homebrewers deserve a real and helpful feedback better than "Yeah, I like this. Not bad at all".
 
-It can also be used to improve your judging ability wherever there is a beer and a smartphone.
+`beer-feedback` guides you through a beer evaluation based on the [BJCP Scoresheet](https://dev.bjcp.org/news/structured-scoresheets-for-aha-nhc/),
+and produces a readable and detailed PDF document.
 
-The evaluation is based on the [BJCP Scoresheet](https://dev.bjcp.org/news/structured-scoresheets-for-aha-nhc/) and should be familiar to [BJCP](https://dev.bjcp.org/) judges.
-
-The result is a PDF document that can be shared like any document.
+It should be straightforward to use for a [BJCP](https://dev.bjcp.org/) judge,
+but it can be used by any beer lovers to improve judging abilities, wherever there is beer and a smartphone!
 
 ## Try it
 
-There is nothing to install and no account to create, 
-just use your smartphone (or any browser) to reach this URL:
+There is nothing to install, no account to create, 
+just use your smartphone, tablet, or any browser to open:
 
 https://beer-feedback.surge.sh/
 
 ![Link Beer Feedback](./qrcode.png)
 
-Fill out all the forms until there is no more red tab titles, then click the PDF button, read the next section for more details.
+How to use it?
+1. Fill out all the forms until there is no more red tabs
+2. Click on the PDF button to generate the Scoresheet
+3. Share the PDF the way you want
+ 
+Read the next section for more details.
 
 Don't forget to [star the project on GitHub](https://github.com/bdelbosc/beer-feedback) if you like it. 
 
@@ -27,13 +32,15 @@ Don't forget to [star the project on GitHub](https://github.com/bdelbosc/beer-fe
 
 ### Preparation
 
-The first time, you have to give your name and fill your judging rank if any, this information is persisted in your smartphone and will be part of the final PDF report.
+The first time, you have to give your name and fill your judging rank if any, 
+you can add additional information to be contacted if you want,
+this information is persisted in your browser and will be part of the final PDF report.
 
 ![First page](./page-identity.png) 
 
-Then describe the beer that you want to evaluate, you need to provide the BCJP category and an entry identifier,
+Click on ">> Beer" and describe the beer entry that you want to evaluate, you need to provide the BCJP category and an entry identifier,
 this information will be persisted on your smartphone. 
-When you're ready, pour your beer and go to the Scoresheet
+When you're ready, pour your beer and click on ">> Go to the Scoresheet"
 
 ![Beer page](./page-beer.png)
 
@@ -57,13 +64,17 @@ Then describe the intensity and other aroma properties:
 
 Validate again, the aroma is added to the list.
   
-Once you have added all the required aromatics set a score using the slider, the `Aroma` tab is now completed:
-  
+Continue with all the aromatics:
+
+![aroma intensity](./page-aroma-list.png)
+
+Then add some comments if you want and set a score for the aroma using the slider, the `Aroma` tab is now completed:
+
 ![aroma completed](./page-aroma-completed.png)
   
 Note that you can click on any aroma to edit the intensity or its properties, they can also be deleted using the (x) button on the right.
     
-Continue with the `Appearance` tab:
+Now click on the "A" tab to continue with the `Appearance` tab, select a color and other options and add comment and a score:
 
 ![appearance completed](./page-appearance.png)
 
@@ -71,25 +82,31 @@ Note that on the bottom of each tab you can display the specific BJCP Guideline:
 
 ![appearance completed](./page-guideline.png)
  
-On the bottom of `Overall` tab, you will find 2 helpers:
+Continue on all tabs, on the bottom of `Overall` tab, you will find 2 helpers:
 - The meaning of the current score, that must match your feedback and appreciation
-- A list of possible solutions for the flaws that have been entered using Aroma or Flavor wheels
+- A list of possible solutions for the flaws that have been entered using Aroma or Flavor wheels:
 
 ![overall helpers](./page-overall.png)
     
-Click on the `PDF` button, the report is generated on your smartphone and available in your Download directory,
+When you are done click ont the "PDF" button:
+
+![overall helpers](./page-overall-done.png)
+
+The report is generated on your smartphone and available in your Download directory,
 
 You should have something similar to this:
     
-[![Pdf](./pdf-export.png)](./scoresheet-20200816-2-10A-Raoul.pdf)
+[![Pdf](./pdf-export.png)](./scoresheet-20210109-1-12B-John_Doe.pdf)
 
 Note that you can generate a PDF Scoresheet at anytime even when the scoresheet is incomplete.
 
-The PDF file name follow the pattern: `scoresheet-<date>-<entry>-<category>-<judge name>.pdf`
+The PDF file name follow the pattern: `scoresheet-<date>-<entry>-<category>-<judge name>.pdf` for instance `scoresheet-20210109-1-12B-John_Doe.pdf`.
 
 ### Load an existing Scoresheet
 
 A beer-feedback PDF Scoresheet can be loaded (from the beer entry section), this enables to edit the content and produce a new PDF.
+
+![Load a scoresheet](./page-load.png)
 
 ### Share links for a beer entry 
 
@@ -104,9 +121,16 @@ Copy then send a message like:
        
 Following the link will auto fill the beer entry, and your Scoresheet is ready to be started.
 
-### Compare multiple PDF Scoresheets?
+### Export the report as text
 
-Use the [Beer Feedback Comparator](https://github.com/bdelbosc/beer-feedback-comparator#try-it).
+This can be useful if you want to integrate the feedback inside other tools like beersmith/brewfather tasting notes. 
+
+![Export as text](./page-export-text.png)
+
+### Compare multiple Scoresheets about the same beer entry
+
+Now you have received multiple feedbacks for your beer, there is an experimental tool to compare them:
+Use [Beer Feedback Comparator](https://github.com/bdelbosc/beer-feedback-comparator#try-it).
 
 ## FAQ
 
@@ -115,25 +139,29 @@ Use the [Beer Feedback Comparator](https://github.com/bdelbosc/beer-feedback-com
 First select the correct category from the wheel, 
 the wheel selection is an editable field, so you can type whatever you want.
 
-If you think some aroma or flavor should be added by default or some are wrongly classified, 
+![New aromatic](./page-aroma-new.png)
+
+If you think some aroma or flavor should be added by default, or some are wrongly classified, 
 please create an issue:
 
 https://github.com/bdelbosc/beer-feedback/issues
 
 ### I don't want to type a long text on my smartphone!
 
-Possible work around:
+Some possible work around:
 
 - Enter your text using voice transcription
 
 - Use a slim portable keyboard
 
-- Continue the Scoresheet on a computer using a keyboard:
+- Use a tablet
+
+- Fill the comments and feedback from a computer using a keyboard:
     - Create a PDF from your smartphone
     - Transfer the PDF by mail (or whatever) to your computer
     - Open [BF](https://beer-feedback.surge.sh/), read the PDF from the `Load` tab and continue editing
 
-- Create a PDF, print it and finish with a pen
+- Create a PDF, print it and finish with a pen!
 
 ### My fingers are too awkward, or the app is clunky?
 
@@ -160,17 +188,20 @@ If you want to compare the perceived aromas on more than 3 paper Scoresheets it 
 
 ### I lost my Scoresheet!
 
-This should not happen since v1.14.0, all the information are now saved locally on your browser,
-Reloading the page or closing your browser should not be a problem, unless you are using a private session.
+You can only edit a single Scoresheet at a time.
 
-You can always create a PDF to save a particular state.
+The current Scoresheet could be lost in the following cases:
+- you load a new PDF Scoresheet
+- you are opening a "Shared Link" to start a new beer entry
+- you are closing beer-feedback that is running in a private session
 
-Do this if you have to restart your phone, your battery is low, or if you want to terminate the Scoresheet later.
+In these cases, you should have a popup that warns you, if you don't want to lose the current Scoresheet,
+create a PDF of the current Scoresheet.
 
 ### Hey, it worked!
 
 Cool, because it is a static page without analytic to track you and because you can generate tons of Scoresheets without generating any traffic on the site,
-I have no idea if the applicaiton works for you unless you star the project on Github, cheers!.
+I have no idea if the application works for you unless you star the project on Github, cheers!.
    
 ### I want a JSON Scoresheet not a PDF
 

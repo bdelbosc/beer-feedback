@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/bdelbosc/beer-feedback/compare/v1.18.0...v1.19.0) (2021-01-10)
+
+
+### Features
+
+* PWA like try to continue working in offline mode ([733144c](https://github.com/bdelbosc/beer-feedback/commit/733144c55e0331f12b153d3639dfee2c533c447f))
+
+
+### Bug Fixes
+
+* Update readme ([84b4dfa](https://github.com/bdelbosc/beer-feedback/commit/84b4dfa3aaddeb87401c26b73ab06fca1319de5b))
+
 ### [1.18.1](https://github.com/bdelbosc/beer-feedback/compare/v1.18.0...v1.18.1) (2021-01-09)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "beer-feedback",
-  "version": "1.18.1",
+  "version": "1.19.0",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",

@@ -108,5 +108,10 @@
     "name": "Yeasty",
     "characteristic": "Bready, sulfury, yeast-like",
     "solution": "Use a more flocculent yeast strain. Allow yeast sufficient time to flocculate. Filter beer or use clarifying agents. Avoid carrying over as much yeast. Age the beer longer. Try another yeast strain."
+  },
+  "Judge is out of service": {
+    "name": "Judge Out of Service",
+    "characteristic": "Numbness of the tongue, incoherent speech, loss of modesty",
+    "solution": "Bring him home"
   }
 }

@@ -18,5 +18,5 @@
   <span title="When the beer warms"><SvgIcon d={warmsIcon}/></span>
 {/if}
 {#if aftertaste}
-  <span title="Aftertaste"><SvgIcon d={aftertasteIcon}/></span>
+  <span title="Aftertaste"><SvgIcon d={aftertasteIcon} fill="orange"/></span>
 {/if}

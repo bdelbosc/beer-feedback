@@ -156,6 +156,7 @@ function getFlavor(flavor, flaws = false) {
   let desc = LEVELS[flavor.level] + ' ' + flavor.trait;
   if (flavor.trait.trim() === 'Not Found') desc = 'Not detected';
   if (flavor.trait.trim() === 'Clean') desc = 'Clean';
+  if (flavor.warms) desc += ' when the beer warms';
   if (flavor.aftertaste) desc += ' aftertaste';
   if (flavor.inappropriate || flaws) desc += ' INAPPROPRIATE';
   return desc;

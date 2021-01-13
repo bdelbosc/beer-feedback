@@ -17,9 +17,8 @@
     addIcon,
     alertIcon,
     aftertasteIcon,
-    editIcon,
     checkmarkIcon,
-    nextIcon
+    warmsIcon
   } from './js/AppIcons'
   import Score from "./comp/Score.svelte";
 
@@ -28,6 +27,7 @@
   let currentFlavor = '';
   let inappropriate = false;
   let aftertaste = false;
+  let warms = false;
   let level = 3;
   let selecting = true;
   let editEntry = -1;
@@ -50,6 +50,7 @@
     currentFlavor = 'Aroma/' + flavor.flavors[index].category + "/" + flavor.flavors[index].trait;
     inappropriate = flavor.flavors[index].inappropriate;
     aftertaste = flavor.flavors[index].aftertaste;
+    warms = flavor.flavors[index].warms;
     level = flavor.flavors[index].level;
     editEntry = index;
     document.getElementById('picker').hidden = false;
@@ -72,7 +73,8 @@
         category: category,
         trait: aroma,
         inappropriate: inappropriate,
-        aftertaste: aftertaste
+        aftertaste: aftertaste,
+        warms: warms
       };
       editEntry = -1;
     } else {
@@ -81,13 +83,15 @@
         category: category,
         trait: aroma,
         inappropriate: inappropriate,
-        aftertaste: aftertaste
+        aftertaste: aftertaste,
+        warms: warms
       });
       flavor = flavor;
     }
     // aromas = aromas;
     inappropriate = false;
     aftertaste = false;
+    warms = false;
     flavor.updateHandler(true);
   }
 
@@ -117,6 +121,14 @@
         <input type="checkbox" bind:checked={inappropriate}/>
         <SvgIcon d={alertIcon} fill="orange"/>
         Inappropriate
+      </label>
+    </div>
+
+    <div class="inputRow">
+      <label>
+        <input type="checkbox" bind:checked={warms}/>
+        <SvgIcon d={warmsIcon}/>
+        When the beer warms
       </label>
     </div>
 
@@ -157,7 +169,7 @@
       {/if}
       <Level value={item.level}/>
       <span on:click={() => edit(i)}>{item.trait}</span>
-      <AromaProperties inappropriate={item.inappropriate} aftertaste={item.aftertaste}/>
+      <AromaProperties inappropriate={item.inappropriate} aftertaste={item.aftertaste} warms={item.warms}/>
     </div>
   {/each}
 

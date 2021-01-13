@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.2](https://github.com/bdelbosc/beer-feedback/compare/v1.19.1...v1.19.2) (2021-01-13)
+
+
+### Bug Fixes
+
+* Add Cherry aroma/flavor wihtout being a flaw ([ce86ff1](https://github.com/bdelbosc/beer-feedback/commit/ce86ff16aa9a824ffe28284816c3747f344b4120))
+
 ### [1.19.1](https://github.com/bdelbosc/beer-feedback/compare/v1.19.0...v1.19.1) (2021-01-11)
 
 

@@ -96,7 +96,7 @@
         - Musty | _1
         - Soil | _1
         - Beet
-    - Alcohol | Without being a fault
+    - Alcohol | Without being a flaw
     - Clean | Clean Fermentation
 - Others:
     - Acid:
@@ -105,9 +105,11 @@
         - Cidery
         - Citric
     - Mineral:
-        - Gypsum | plaster
+        - Gypsum | Plaster
         - Chalky
         - Salty
+    - Oxidized | _3:
+        - Cherry | Without being a flaw
     - Sugar:
         - Turbinado
         - Molasse | _3

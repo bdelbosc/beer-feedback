@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/bdelbosc/beer-feedback/compare/v1.19.2...v1.20.0) (2021-01-13)
+
+
+### Features
+
+* Add warm beer flavor property ([d1a3e61](https://github.com/bdelbosc/beer-feedback/commit/d1a3e613a6904bbba3e366498a588f966c2c16c6))
+
 ### [1.19.2](https://github.com/bdelbosc/beer-feedback/compare/v1.19.1...v1.19.2) (2021-01-13)
 
 

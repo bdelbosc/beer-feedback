@@ -3,7 +3,7 @@
 
   export let items = [];
   export let activeTabValue;
-  let isMobile = /iPhone|Android/i.test(navigator.userAgent);
+  let isMobile = screen.width < 640;
 
   onMount(() => {
     // Set default tab value

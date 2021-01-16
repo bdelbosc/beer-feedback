@@ -57,8 +57,7 @@
   }
 
   function getWidth() {
-    let isMobile = /iPhone|Android/i.test(navigator.userAgent);
-    if (! isMobile) {
+    if (screen.width >= 640) {
       return "250px";
     }
     return "170px";

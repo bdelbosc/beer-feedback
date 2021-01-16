@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.1](https://github.com/bdelbosc/beer-feedback/compare/v1.21.0...v1.21.1) (2021-01-16)
+
+
+### Bug Fixes
+
+* Add alcohol in fermentation flavors ([3c352a8](https://github.com/bdelbosc/beer-feedback/commit/3c352a892b9324cace672dcb198687af359c40cd))
+
 ## [1.21.0](https://github.com/bdelbosc/beer-feedback/compare/v1.20.1...v1.21.0) (2021-01-16)
 
 

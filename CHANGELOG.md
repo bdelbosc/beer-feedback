@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/bdelbosc/beer-feedback/compare/v1.20.1...v1.21.0) (2021-01-16)
+
+
+### Features
+
+* Display guideline on bottom of each section ([afec833](https://github.com/bdelbosc/beer-feedback/commit/afec833cfb7f42425d4db0046e33da0664df65b8))
+
 ### [1.20.1](https://github.com/bdelbosc/beer-feedback/compare/v1.20.0...v1.20.1) (2021-01-14)
 
 

@@ -25,8 +25,8 @@
   import pkg from '../package.json'
   import Octocat from "./comp/Octocat.svelte";
   import {fade} from 'svelte/transition';
-  import bjcpGuideline from './data/bjcp-guideline.json';
   import {TextRenderer} from "./js/TextRenderer";
+  import Guideline from "./comp/Guideline.svelte";
 
   let visible = false;
 
@@ -375,24 +375,6 @@
     margin-bottom: 5px;
   }
 
-  p.guideline {
-    text-align: justify;
-    text-justify: inter-word;
-  }
-
-  div.bjcpDisclamer {
-    text-align: justify;
-    text-justify: inter-word;
-    font-size: 0.8em;
-    color: #444;
-  }
-
-  div.bjcpGuideline {
-    color: #999;
-    padding-top: 2em;
-    clear: both;
-  }
-
   div.help {
       color: #999;
       padding-top: 0em;
@@ -475,79 +457,31 @@
     <div class="statusLine">{elapsed}s elapsed, score: {totalScore}</div>
     <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
     {#if 1 === currentTab}
-      {#if visible && beer.category}
-        <p class="guideline" in:fade>
-          {beer.category}: {bjcpGuideline[beer.category].aroma}
-        </p>
-      {:else}
-        <div in:fade>
-          <Aroma aroma={aroma}/>
-        </div>
-      {/if}
-    {:else if 2 === currentTab}
-      {#if visible && beer.category}
-        <p class="guideline" in:fade>
-          {beer.category}: {bjcpGuideline[beer.category].appearance}
-        </p>
-      {:else}
-        <div in:fade>
-          <Appearance appearance={appearance}/>
-        </div>
-      {/if}
-    {:else if 3 === currentTab}
-      {#if visible && beer.category}
-        <p class="guideline" in:fade>
-          {beer.category}: {bjcpGuideline[beer.category].flavor}
-        </p>
-      {:else}
-        <div in:fade>
-          <Flavor flavor={flavor}/>
-        </div>
-      {/if}
-    {:else if 4 === currentTab}
-      {#if visible && beer.category}
-        <p class="guideline" in:fade>
-          {beer.category}: {bjcpGuideline[beer.category].mouthfeel}
-        </p>
-      {:else}
-        <div in:fade>
-          <Mouthfeel mouthfeel={mouthfeel}/>
-        </div>
-      {/if}
-    {:else if 5 === currentTab}
-      {#if visible && beer.category}
-        <p class="guideline" in:fade>
-          {beer.category}: {bjcpGuideline[beer.category].overall}
-        </p>
-      {:else}
-        <div in:fade>
-          <Overall overall={overall} score={totalScore} aroma={aroma} flavor={flavor}/>
-        </div>
-      {/if}
-    {/if}
-    <div class="bjcpGuideline">
-      <label>
-        <input type="checkbox" bind:checked={visible}>
-        View BJCP Guideline
-      </label>
-    </div>
-    {#if visible}
-      <div in:fade class="bjcpDisclamer">
-        <p>
-          This is an extract of the 2015 BJCP Style Guide used for personal educational purpose.
-          The BJCP data or any derivative output are protected by the BJCP Copyright and should not
-          be marketed for profit or integrated or embedded in websites without the BJCP agreement.
-          The most current version of the BCJP Style Guide can be found on the
-          <a href="https://www.bjcp.org/" rel="noopener" target="_blank">BJCP web site</a>.
-        </p>
-        <p>
-          <a href="https://dev.bjcp.org/style/2015/{bjcpGuideline[beer.category].link}/" rel="noopener"
-             target="_blank">View original BJCP {beer.category} description</a>.
-        </p>
+      <div in:fade>
+        <Aroma aroma={aroma}/>
       </div>
+      <Guideline bind:value={visible} category={beer.category} section="aroma"/>
+    {:else if 2 === currentTab}
+      <div in:fade>
+        <Appearance appearance={appearance}/>
+      </div>
+      <Guideline bind:value={visible} category={beer.category} section="appearance"/>
+    {:else if 3 === currentTab}
+      <div in:fade>
+        <Flavor flavor={flavor}/>
+      </div>
+      <Guideline bind:value={visible} category={beer.category} section="flavor"/>
+    {:else if 4 === currentTab}
+      <div in:fade>
+        <Mouthfeel mouthfeel={mouthfeel}/>
+      </div>
+      <Guideline bind:value={visible} category={beer.category} section="mouthfeel"/>
+    {:else if 5 === currentTab}
+      <div in:fade>
+        <Overall overall={overall} score={totalScore} aroma={aroma} flavor={flavor}/>
+      </div>
+      <Guideline bind:value={visible} category={beer.category} section="overall"/>
     {/if}
   </div>
   <div class="footLine"><a href="https://github.com/bdelbosc/beer-feedback#-beer-feedback" rel="noopener" target="_blank">{pkg.name} v{pkg.version}</a></div>
 </div>
-
-

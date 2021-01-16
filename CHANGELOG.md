@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.2](https://github.com/bdelbosc/beer-feedback/compare/v1.21.1...v1.21.2) (2021-01-16)
+
+
+### Bug Fixes
+
+* use screen size to select wider rendering ([b335fa8](https://github.com/bdelbosc/beer-feedback/commit/b335fa8496aa464d6d387fd4309613e0e838c16d))
+
 ### [1.21.1](https://github.com/bdelbosc/beer-feedback/compare/v1.21.0...v1.21.1) (2021-01-16)
 
 

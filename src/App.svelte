@@ -25,7 +25,6 @@
   import pkg from '../package.json'
   import Octocat from "./comp/Octocat.svelte";
   import {fade} from 'svelte/transition';
-  import {TextRenderer} from "./js/TextRenderer";
   import Guideline from "./comp/Guideline.svelte";
 
   let visible = false;
@@ -163,15 +162,6 @@
     name += '-' + beer.category.replace(/\W/g, '_');
     name += '-' + user.name.replace(/\W/g, '_') + '.pdf';
     renderer.produce(name);
-  }
-
-  function renderText() {
-    console.info("Generate Text Scoresheet");
-    let renderer = new TextRenderer("BEER SCORESHEET", totalScore);
-    renderScoresheet(renderer);
-    let text = renderer.produce();
-    console.info(text);
-
   }
 
   function renderScoresheet(renderer) {

@@ -78,6 +78,15 @@ class User extends BaseCategory {
     renderer.addUser(this.name, getLabel(RANK_OPTIONS, this.rank), this.comment, start);
   }
 
+  load(json) {
+    this.name = json.name;
+    this.rank = json.rank;
+    if (json.comment)
+      this.comment = json.comment;
+    else
+      this.comment = '';
+    this.updateHandler();
+  }
 }
 
 export {User as UserDto, RANK_OPTIONS}

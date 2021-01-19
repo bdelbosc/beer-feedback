@@ -124,8 +124,13 @@ class PdfRenderer {
     this.doc.text('Entry # ' + entry, 85, 20);
     this.doc.text('Category: ' + category, 85, 25);
     this.doc.setFontSize(9);
-    this.doc.text('Special ingredients: ' + (special ? special : ''), 85, 30);
-    this.doc.text('Comments: ' + (comment ? comment : ''), 85, 35);
+    let posX = 30;
+    if (special) {
+      this.doc.text('Special ingredients: ' + special, 85, posX);
+      posX = 35;
+    }
+    if (comment)
+      this.doc.text(comment, 85, posX);
   }
 
   addSection(title, score, max) {
@@ -192,7 +197,7 @@ class PdfRenderer {
 
   produce(name) {
     this.doc.setProperties({'title': name.replace('.pdf', '')});
-    this.doc.save(name);
+    return this.doc.save(name, {'returnPromise': true});
   }
 }
 

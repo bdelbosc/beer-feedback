@@ -17,6 +17,11 @@
     }
 </style>
 
+{#if !user.name}
+  <h2>Welcome to <a href="https://github.com/bdelbosc/beer-feedback#-beer-feedback" rel="noopener" target="_blank">Beer
+    Feedback</a>!</h2>
+{/if}
+
 <h3>
   <SvgIcon d={userIcon} fill="blue" boxSize="20"/>
   Who are you?

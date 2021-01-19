@@ -132,8 +132,20 @@ const CATEGORY_OPTIONS = [
 ];
 
 function today() {
-  const today = new Date();
-  return today.toLocaleDateString();
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, '0') + "-" + String(d.getDate()).padStart(2, '0');
+}
+
+function stringAsDate(s) {
+  const dateParts = s.split("-");
+  if (dateParts.length >=3)
+    return new Date(dateParts[0], dateParts[1]-1, dateParts[2]);
+  console.error("Invalid tasting date: " + s + " fall back to today")
+  return new Date();
+}
+
+function dateAsString(d) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, '0') + "-" + String(d.getDate()).padStart(2, '0');
 }
 
 class Beer extends BaseCategory {
@@ -145,6 +157,7 @@ class Beer extends BaseCategory {
     this.special = this.getValue('beerSpecial', '');
     this.comment = this.getValue('beerComment', '');
     this.tastingDate = this.getValue('beerTastingDate', today());
+    this._tastingDate = stringAsDate(this.tastingDate);
     console.log("entry: " + this.entry);
     if (this.entry === undefined) console.log("Entry undefined!");
   }
@@ -154,6 +167,7 @@ class Beer extends BaseCategory {
     this.comment = '';
     this.special = '';
     this.tastingDate = today();
+    this._tastingDate = stringAsDate(this.tastingDate);
   }
 
   load(json) {
@@ -163,6 +177,7 @@ class Beer extends BaseCategory {
     this.comment = json.comment;
     if (json.tastingDate)
       this.tastingDate = json.tastingDate;
+      this._tastingDate = null;
     this.updateHandler();
   }
 
@@ -186,15 +201,18 @@ class Beer extends BaseCategory {
     this.completed = (this.required.length === 0);
   }
 
-  updateHandler(sort = false) {
+  updateHandler() {
     super.updateHandler();
-    if (sort) {
-      this.flavors.sort(compareCategory);
-    }
+    if (this._tastingDate)
+      this.tastingDate = dateAsString(this._tastingDate);
+    else if (this.tastingDate)
+      this._tastingDate = stringAsDate(this.tastingDate);
   }
 
   save() {
     console.info("Saving beer");
+    if (this._tastingDate)
+      this.tastingDate = dateAsString(this._tastingDate);
     if (this.entry)
       localStorage.setItem('beerEntry', this.entry);
     else
@@ -230,9 +248,16 @@ class Beer extends BaseCategory {
     return defaultValue;
   }
 
-  isFromShareLink() {
+  isFromSharedBeerEntry() {
     const params = new URLSearchParams(window.location.search);
     if (params.has("beerCategory"))
+      return true;
+    return false;
+  }
+
+  isFromSharedScoresheet() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("renderPdf"))
       return true;
     return false;
   }
@@ -243,7 +268,6 @@ class Beer extends BaseCategory {
       return true;
     return false;
   }
-
 
   loadFromShareLink() {
     const params = new URLSearchParams(window.location.search);

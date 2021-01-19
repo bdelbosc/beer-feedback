@@ -21,11 +21,11 @@
   import {OverallDto} from './js/Overall';
   import {UserDto} from './js/User';
   import {BeerDto} from './js/Beer';
-  import {PdfRenderer} from './js/PdfRenderer';
   import pkg from '../package.json'
   import Octocat from "./comp/Octocat.svelte";
   import {fade} from 'svelte/transition';
   import Guideline from "./comp/Guideline.svelte";
+  import {generatePdf} from "./js/PdfGenerator";
 
   let visible = false;
 
@@ -140,7 +140,7 @@
   let currentTab = 1;
 
   function submit() {
-    let json = JSON.stringify({
+    let json = {
       'user': user,
       'beer': beer,
       'aroma': aroma,
@@ -148,31 +148,10 @@
       'flavor': flavor,
       'mouthfeel': mouthfeel,
       'overall': overall,
-      'start': start,
       'score': totalScore,
-      'version': pkg.version
-    });
-    console.info("Generate PDF");
-    console.info(json);
-    let renderer = new PdfRenderer("BEER SCORESHEET", totalScore);
-    renderer.addMetdata(pkg.version, user.name, beer.entry, beer.category, json);
-    renderScoresheet(renderer);
-    let name = 'scoresheet-' + start.toISOString().slice(0, 10).replace(/-/g, "");
-    name += '-' + beer.entry.replace(/\W/g, '_');
-    name += '-' + beer.category.replace(/\W/g, '_');
-    name += '-' + user.name.replace(/\W/g, '_') + '.pdf';
-    renderer.produce(name);
-  }
-
-  function renderScoresheet(renderer) {
-    renderer.addVersion(pkg.version);
-    user.render(renderer, beer.tastingDate);
-    beer.render(renderer);
-    aroma.render(renderer);
-    appearance.render(renderer);
-    flavor.render(renderer);
-    mouthfeel.render(renderer);
-    overall.render(renderer, totalScore);
+      'version': pkg.version,
+    };
+    generatePdf(json);
   }
 
   function beerEdit() {
@@ -200,9 +179,9 @@
 
   onMount(() => {
     if (!user.isCompleted()) userEdit();
-    else if (!beer.isCompleted() || beer.isFromShareLink() || beer.isSelectedTab()) beerEdit();
+    else if (!beer.isCompleted() || beer.isFromSharedBeerEntry() || beer.isSelectedTab()) beerEdit();
     else evaluationEdit();
-    if (!beer.isFromShareLink()) {
+    if (!beer.isFromSharedBeerEntry()) {
       window.onbeforeunload = function () {
         return "";
       }

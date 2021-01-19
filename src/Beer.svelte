@@ -1,11 +1,20 @@
 <script>
   import SelectCheck from "./comp/SelectCheck.svelte";
-  import {CATEGORY_OPTIONS} from './js/Beer';
+  import {BeerDto, CATEGORY_OPTIONS} from './js/Beer';
   import SvgIcon from "./comp/SvgIcon.svelte";
   import {beerIcon, trashIcon} from "./js/AppIcons";
   import {parsePDF} from "./js/PdfRenderer";
   import Tabs from "./comp/Tabs.svelte";
   import {TextRenderer} from "./js/TextRenderer";
+  import pkg from "../package.json";
+  import {generatePdf} from "./js/PdfGenerator";
+  import {UserDto} from "./js/User";
+  import {AromaDto} from "./js/Aroma";
+  import {AppearanceDto} from "./js/Appearance";
+  import {MouthfeelDto} from "./js/Mouthfeel";
+  import {OverallDto} from "./js/Overall";
+  import {FlavorDto} from "./js/Flavor";
+  import Datepicker from 'svelte-calendar';
 
   export let user;
   export let beer;
@@ -90,14 +99,36 @@
     }
   }
 
-  function shareLink() {
-    let link = "http://beer-feedback.surge.sh/?"
-    link += "beerEntry=" + encodeURIComponent(beer.entry)
-    link += "&beerCategory=" + encodeURIComponent(beer.category)
-    link += "&beerSpecial=" + encodeURIComponent(beer.special)
-    link += "&beerComment=" + encodeURIComponent(beer.comment)
-    console.info("Copying link: " + link);
-    let input = document.getElementById("sharedLink");
+  function shareEntryLink() {
+    let link = "https://beer-feedback.surge.sh/?";
+    link += "beerEntry=" + encodeURIComponent(beer.entry);
+    link += "&beerCategory=" + encodeURIComponent(beer.category);
+    link += "&beerSpecial=" + encodeURIComponent(beer.special);
+    link += "&beerComment=" + encodeURIComponent(beer.comment);
+    console.info("Copying entry link: " + link);
+    let input = document.getElementById("sharedEntryLink");
+    input.value = link;
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+  }
+
+  function shareScoresheetLink() {
+    let link = "https://beer-feedback.surge.sh/?"
+    let json = JSON.stringify({
+      'user': user,
+      'beer': beer,
+      'aroma': aroma,
+      'appearance': appearance,
+      'flavor': flavor,
+      'mouthfeel': mouthfeel,
+      'overall': overall,
+      'score': totalScore,
+      'version': pkg.version
+    });
+    link += "renderPdf=" + encodeURIComponent(json);
+    console.info("Copying score link: " + link);
+    let input = document.getElementById("sharedScoresheetLink");
     input.value = link;
     input.select();
     input.setSelectionRange(0, 99999);
@@ -128,8 +159,8 @@
   }
 
   function checkShareLinkAndRedirect(theUser) {
-    console.info("checkShareLink");
-    if (beer.isFromShareLink() && theUser.isCompleted()) {
+    console.info("Check for shared link");
+    if (beer.isFromSharedBeerEntry() && theUser.isCompleted()) {
       if (resetData("Make sure you have generated a PDF of your current Scoresheet before starting a new Beer Entry")) {
         beer.loadFromShareLink();
         aroma.save();
@@ -139,6 +170,33 @@
         overall.save();
       }
       window.location.href = "/?tab=beer";
+    } else if (beer.isFromSharedScoresheet()) {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has("renderPdf")) {
+        let json = JSON.parse(unescape(params.get("renderPdf")));
+        let pdfJson = {};
+        pdfJson.user = new UserDto();
+        pdfJson.beer = new BeerDto();
+        pdfJson.aroma = new AromaDto();
+        pdfJson.appearance = new AppearanceDto();
+        pdfJson.flavor = new FlavorDto();
+        pdfJson.mouthfeel = new MouthfeelDto();
+        pdfJson.overall = new OverallDto();
+
+        pdfJson.user.load(json.user);
+        pdfJson.beer.load(json.beer);
+        pdfJson.aroma.load(json.aroma);
+        pdfJson.appearance.load(json.appearance);
+        pdfJson.flavor.load(json.flavor);
+        pdfJson.mouthfeel.load(json.mouthfeel);
+        pdfJson.overall.load(json.overall);
+        pdfJson.score = json.score;
+        generatePdf(pdfJson).then(() => {
+            alert("You have a new Scoresheet in your Download folder!");
+            window.location.href = "/"
+          }
+          , () => alert("PDF generation failure"));
+      }
     }
   }
 
@@ -166,7 +224,7 @@
 <Tabs bind:activeTabValue={currentTab} items={tabItems}/>
 {#if 1 === currentTab}
   <div>
-    <SelectCheck on:change={updateHandler} bind:value={beer.category} options={CATEGORY_OPTIONS} noCheck="true" required="true">
+    <SelectCheck bind:value={beer.category} options={CATEGORY_OPTIONS} noCheck="true" required="true">
       Category
     </SelectCheck>
   </div>
@@ -183,7 +241,9 @@
 
   <div>
     <span class="label">Tasting date</span>
-    <input type="text" class="fixedInput" on:change={updateHandler} bind:value={beer.tastingDate}/>
+    <Datepicker bind:selected={beer._tastingDate} bind:dateChosen={beer.updated}>
+      <button class="fixedInput">{beer.tastingDate}</button>
+    </Datepicker>
   </div>
 
   <div>
@@ -207,16 +267,19 @@
 
 {:else if 3 === currentTab}
   <div>
-    <p class="help">Share the beer entry description with other judges, copying the following link:</p>
-    <input type="text" value="..." id="sharedLink"/>
-    <button on:click={() => shareLink()}>Copy</button>
+    <p class="help">Share this <b>Beer Entry</b> with other judges, copying the following link:</p>
+    <input type="text" value="..." id="sharedEntryLink"/>
+    <button disabled={!beer.isCompleted()} on:click={() => shareEntryLink()}>Copy</button>
 
-    <p class="help">Note that if you want to share the Scoresheet itself, you have to generate a PDF</p>
+    <p class="help">Share your <b>Scoresheet</b>, copying the following link:</p>
+    <input type="text" value="..." id="sharedScoresheetLink"/>
+    <button disabled={!beer.isCompleted()} on:click={() => shareScoresheetLink()}>Copy</button>
+    <p class="help">Because the link contains the Scoresheet data it can be very long and may not work everywhere.</p>
   </div>
 {:else if 4 === currentTab}
   <div>
     <p class="help">Generate a text Scoresheet</p>
     <textarea type="text" value="..." id="exportText"/>
-    <button on:click={() => exportText()}>Export as Text</button>
+    <button disabled={!beer.isCompleted()} on:click={() => exportText()}>Export as Text</button>
   </div>
 {/if}

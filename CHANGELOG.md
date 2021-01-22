@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.22.0](https://github.com/bdelbosc/beer-feedback/compare/v1.21.2...v1.22.0) (2021-01-22)
+
+
+### Features
+
+* try to provide a share scoresheet link ([a2c143e](https://github.com/bdelbosc/beer-feedback/commit/a2c143e5331925e3a735c134c705f285a817db26))
+
 ### [1.21.2](https://github.com/bdelbosc/beer-feedback/compare/v1.21.1...v1.21.2) (2021-01-16)
 
 

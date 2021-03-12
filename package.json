@@ -21,7 +21,7 @@
     "svelte-calendar": "^2.0.4"
   },
   "dependencies": {
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "sirv-cli": "^0.4.4"
   }
 }

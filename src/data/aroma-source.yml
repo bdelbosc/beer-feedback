@@ -78,12 +78,14 @@
         - Banana
         - Ripe Apple
         - Bubblegum
+        - Pineapple | _1
         - Apricot
         - Quince
         - Berry
         - Citrus
         - Dried Fruit  | _1
         - Grape
+        - Anis | Ethyl Exanoate
     - Phenols:
         - Clove
         - Black Pepper
@@ -92,6 +94,8 @@
         - Hot Spicy | Capsicum
     - Wild:
         - Brett
+        - Leather
+        - Horsey
         - Barnyard
         - Musty | _1
         - Soil | _1
@@ -180,11 +184,14 @@
         - Medicinal
     - Solvent:
         - Fusel | _3
-        - Acetone
+        - Acetone/Nail polish
         - Lacquer thinner
     - Sulfur:
         - Rotten Eggs
         - Burning Matches
+        - Brothy
+        - Meaty
+        - Soy sauce
     - Vegetal:
         - Onion fresh
         - Garlic
@@ -195,3 +202,5 @@
         - Bready | _1
         - Sulfury
         - Yeast like
+        - Meaty
+        - Soy sauce

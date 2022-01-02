@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.24.0](https://github.com/bdelbosc/beer-feedback/compare/v1.23.0...v1.24.0) (2022-01-02)
+
+
+### Features
+
+* Add some aromas and flavors ([9916e1d](https://github.com/bdelbosc/beer-feedback/commit/9916e1ddef534c87acf143b3774dc24275d1c8cd))
+
 ## [1.23.0](https://github.com/bdelbosc/beer-feedback/compare/v1.22.0...v1.23.0) (2022-01-02)
 
 

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.23.0](https://github.com/bdelbosc/beer-feedback/compare/v1.22.0...v1.23.0) (2022-01-02)
+
+
+### Features
+
+* Use BJCP 2021 Update ([082b248](https://github.com/bdelbosc/beer-feedback/commit/082b2480004d6d3299ca5eb075c6c97f153c1a29))
+
+
+### Bug Fixes
+
+* Kellerbier not dead! ([894fbb9](https://github.com/bdelbosc/beer-feedback/commit/894fbb978c8e39a2525074bda263475a89606a33))
+
 ## [1.22.0](https://github.com/bdelbosc/beer-feedback/compare/v1.21.2...v1.22.0) (2021-01-22)
 
 

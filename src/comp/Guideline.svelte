@@ -37,11 +37,11 @@
         {category}: {bjcpGuideline[category][section]}
       </p>
       <p>
-        <a href="https://dev.bjcp.org/style/2015/{bjcpGuideline[category].link}/" rel="noopener"
+        <a href="https://www.bjcp.org/style/2015/{bjcpGuideline[category].link}/" rel="noopener"
            target="_blank">View original BJCP {category} description</a>.
       </p>
       <p in:fade class="disclamer">
-        This is an extract of the 2015 BJCP Style Guide used for personal educational purpose.
+        This is an extract of the 2021 BJCP Style Guide used for personal educational purpose.
         The BJCP data or any derivative output are protected by the BJCP Copyright and should not
         be marketed for profit or integrated or embedded in websites without the BJCP agreement.
         The most current version of the BCJP Style Guide can be found on the

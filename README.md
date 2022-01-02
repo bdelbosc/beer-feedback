@@ -271,7 +271,7 @@ Technical choices:
 
 This application is a personal project and should not be used in official competition.  
 
-This application uses [Beer Judge Certification Program](https://bjcp.org/) terms and derivative output of the 2015 BJCP Style Guide.
+This application uses [Beer Judge Certification Program](https://bjcp.org/) terms and derivative output of the 2021 BJCP Style Guide.
 This is only for personal educational purpose.
 
 The BJCP data or any derivative output are protected by the BJCP Copyright and should not be marketed for profit

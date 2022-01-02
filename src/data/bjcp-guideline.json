@@ -183,6 +183,22 @@
     "overall": "A moderately colored, well-attenuated, bitter beer with a rich maltiness balancing a strong bitterness. Light and spicy hop character complements the malt. A dry beer with a firm body and smooth palate.",
     "link": "7/7B"
   },
+  "7C1": {
+    "aroma": "Moderately-low to moderately-high spicy, floral, or herbal hop aroma. Very low to moderate diacetyl, possible very low green apple or other yeast derived notes. Pleasantly grainy-sweet, clean malt aroma, with possible low background note of DMS.",
+    "appearance": "Slight haze to moderately cloudy, but never extremely cloudy or murky. Medium yellow to pale gold color. Creamy white head with good persistence. When served on cask, can have low carbonation and very low head.",
+    "flavor": "Moderately malty with a rounded, grainy-sweet profile. Low to moderately-high spicy, floral, or herbal hop flavor, with a moderate hop bitterness that can linger. Finish is crisp and dry, but the aftertaste remains malty. Very low to moderate diacetyl, which should always remain at a pleasant, drinkable level that balances somewhat with the other characteristics of the beer; overwhelming diacetyl is not appropriate. Possible very low green apple or other yeast derived notes, and possible low background note of DMS.",
+    "mouthfeel": "Medium body. Low to medium carbonation. Depending on the level of yeast in suspension, it may assist in creating a slightly creamy texture. A slight slickness on the tongue may be present from the diacetyl.",
+    "overall": "A young, fresh Helles, so while still a malty, fully-attenuated Pils malt showcase, the hop character (aroma, flavor and bitterness) is more pronounced, and the beer is cloudy, often with some level of diacetyl, and possibly has some green apple and/or other yeast-derived notes. As with the traditional Helles, the Keller version is still a beer intended to be drunk by the liter, so overall it should remain a light, refreshing, easy drinking golden lager.",
+    "link": "7/7C"
+  },
+  "7C2": {
+    "aroma": "Moderate intensity of German malt, typically rich, bready, somewhat toasty, with light bread crust notes. Moderately-low to moderate spicy peppery hop aroma. Very low to low diacetyl, occasionally low to moderately-low sulfur and very low green apple or other yeast-derived notes. Caramel, biscuity, or roasted malt aroma is inappropriate.",
+    "appearance": "Moderately cloudy to clear depending on age, but never extremely cloudy or murky. Gold to deep reddish-amber color. Off-white, creamy head. When served on cask, can have low carbonation and very low head.",
+    "flavor": "Initial malt flavor may suggest sweetness, but finish is moderately dry to dry, and slightly bitter. Distinctive and complex maltiness often includes a bready-toasty aspect. Hop bitterness is moderate to moderately high, and spicy or herbal hop flavor is low to moderately high. Balance can be either on the malt or hop side, but the finish is not sweet. Noticeable caramel or roasted malt flavors are inappropriate. Very low to low diacetyl. Possible very low green apple or other yeast-derived notes. Smooth, malty aftertaste.",
+    "mouthfeel": "Medium body, with a creamy texture and medium carbonation. Fully fermented, without a sweet or cloying impression.",
+    "overall": "A young, unfiltered, and unpasteurized beer that is between a Helles and Märzen in color, spicier in the hops with greater attenuation. Interpretations range in color and balance, but remain in the drinkable 4.8% ABV neighborhood. Balance ranges from the dry, spicy and pale-colored interpretations by St. Georgen and Löwenbräu of Buttenheim, to darker and maltier interpretations in the Fränkische Schweiz. This style is above all a method of producing simple drinkable beers for neighbors out of local ingredients to be served fresh. Balance with a focus on drinkability and digestibility is important.",
+    "link": "7/7C"
+  },
   "8A": {
     "aroma": "Moderate to high malt richness, like toasted bread crusts with hints of chocolate, nuts, caramel, or toffee. Fresh traditional versions often show higher levels of chocolate. The malt character is more malty-rich than sugary or caramelly sweet. Clean fermentation profile. A light spicy, floral, or herbal hop aroma is optional.",
     "appearance": "Deep copper to dark brown, often with a red or garnet tint. Creamy, light to medium tan head. Usually clear.",

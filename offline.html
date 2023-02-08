@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name='viewport' content='width=device-width,initial-scale=1.0'>
+
+  <title>Beer Feedback</title>
+
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="description" content="Beer Feedback PWA">
+  <meta name="theme-color" content="#2F3BA2"/>
+</head>
+<body>
+<div>
+  Oops, you appear to be offline, to go back to beer-feedback
+  <ul>
+    <li>1. Go back to the previous page
+    <input
+      action="action"
+      onclick="window.history.go(-1); return false;"
+      type="submit"
+      value="Go back ..."
+    />
+    </li>
+    <li>
+      2. Then go forward to reload beer-feedback from the cache
+    </li>
+  </ul>
+</div>
+</body>
+</html>
